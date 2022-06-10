@@ -1,0 +1,115 @@
+Date : 2022-06-10 12:43:51
+Directory : k:\Work\React-native\Bakish\Bakish
+Total : 48 files,  27958 codes, 385 comments, 283 blanks, all 28626 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| JSON               |          6 |     26,826 |          0 |          4 |     26,830 |
+| Java               |          6 |        288 |         69 |         53 |        410 |
+| Groovy             |          3 |        205 |        142 |         38 |        385 |
+| C++                |          8 |        165 |         21 |         57 |        243 |
+| XML                |          6 |        100 |         26 |         14 |        140 |
+| Objective-C++      |          1 |         85 |          0 |         24 |        109 |
+| Batch              |          1 |         68 |          0 |         22 |         90 |
+| Objective-C        |          2 |         61 |          0 |         17 |         78 |
+| JavaScript         |          5 |         53 |          9 |          8 |         70 |
+| Makefile           |          1 |         28 |         12 |         10 |         50 |
+| TypeScript React   |          3 |         26 |          4 |         10 |         40 |
+| TypeScript         |          3 |         21 |          0 |          7 |         28 |
+| JSON with Comments |          1 |         21 |         76 |          9 |        106 |
+| Properties         |          2 |         11 |         26 |         10 |         47 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                                           | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                                              |         48 |     27,958 |        385 |        283 |     28,626 |
+| __tests__                                                                                                                                      |          1 |          7 |          4 |          4 |         15 |
+| android                                                                                                                                        |         25 |        814 |        295 |        199 |      1,308 |
+| android\app                                                                                                                                    |         20 |        687 |        260 |        160 |      1,107 |
+| android\app\src                                                                                                                                |         19 |        530 |        127 |        129 |        786 |
+| android\app\src\debug                                                                                                                          |          2 |         71 |          8 |          9 |         88 |
+| android\app\src\debug\java                                                                                                                     |          1 |         60 |          8 |          6 |         74 |
+| android\app\src\debug\java\com                                                                                                                 |          1 |         60 |          8 |          6 |         74 |
+| android\app\src\debug\java\com\bakish                                                                                                          |          1 |         60 |          8 |          6 |         74 |
+| android\app\src\main                                                                                                                           |         17 |        459 |        119 |        120 |        698 |
+| android\app\src\main\java                                                                                                                      |          5 |        228 |         61 |         47 |        336 |
+| android\app\src\main\java\com                                                                                                                  |          5 |        228 |         61 |         47 |        336 |
+| android\app\src\main\java\com\bakish                                                                                                           |          5 |        228 |         61 |         47 |        336 |
+| android\app\src\main\java\com\bakish\newarchitecture                                                                                           |          3 |        135 |         38 |         30 |        203 |
+| android\app\src\main\java\com\bakish\newarchitecture\components                                                                                |          1 |         22 |          8 |          7 |         37 |
+| android\app\src\main\java\com\bakish\newarchitecture\modules                                                                                   |          1 |         30 |         10 |          9 |         49 |
+| android\app\src\main\jni                                                                                                                       |          8 |        188 |         33 |         63 |        284 |
+| android\app\src\main\res                                                                                                                       |          3 |         19 |         25 |          7 |         51 |
+| android\app\src\main\res\drawable                                                                                                              |          1 |         11 |         23 |          3 |         37 |
+| android\app\src\main\res\values                                                                                                                |          2 |          8 |          2 |          4 |         14 |
+| android\gradle                                                                                                                                 |          1 |          5 |          0 |          1 |          6 |
+| android\gradle\wrapper                                                                                                                         |          1 |          5 |          0 |          1 |          6 |
+| ios                                                                                                                                            |          7 |        256 |          1 |         48 |        305 |
+| ios\Bakish                                                                                                                                     |          6 |        203 |          1 |         34 |        238 |
+| ios\BakishTests                                                                                                                                |          1 |         53 |          0 |         14 |         67 |
+| ios\Bakish\Images.xcassets                                                                                                                     |          2 |         59 |          0 |          2 |         61 |
+| ios\Bakish\Images.xcassets\AppIcon.appiconset                                                                                                  |          1 |         53 |          0 |          1 |         54 |
+| src                                                                                                                                            |          4 |         31 |          0 |         10 |         41 |
+| src\screens                                                                                                                                    |          2 |         11 |          0 |          4 |         15 |
+| src\screens\HomeScreen                                                                                                                         |          2 |         11 |          0 |          4 |         15 |
+| src\theme                                                                                                                                      |          2 |         20 |          0 |          6 |         26 |
++------------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                                                                                                       | language           | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| k:\Work\React-native\Bakish\Bakish\.eslintrc.js                                                                                                | JavaScript         |         16 |          0 |          1 |         17 |
+| k:\Work\React-native\Bakish\Bakish\.prettierrc.js                                                                                              | JavaScript         |          7 |          0 |          1 |          8 |
+| k:\Work\React-native\Bakish\Bakish\.watchmanconfig                                                                                             | JSON               |          1 |          0 |          0 |          1 |
+| k:\Work\React-native\Bakish\Bakish\App.tsx                                                                                                     | TypeScript React   |          9 |          0 |          3 |         12 |
+| k:\Work\React-native\Bakish\Bakish\__tests__\App-test.tsx                                                                                      | TypeScript React   |          7 |          4 |          4 |         15 |
+| k:\Work\React-native\Bakish\Bakish\android\app\build.gradle                                                                                    | Groovy             |        157 |        133 |         31 |        321 |
+| k:\Work\React-native\Bakish\Bakish\android\app\src\debug\AndroidManifest.xml                                                                   | XML                |         11 |          0 |          3 |         14 |
+| k:\Work\React-native\Bakish\Bakish\android\app\src\debug\java\com\bakish\ReactNativeFlipper.java                                               | Java               |         60 |          8 |          6 |         74 |
+| k:\Work\React-native\Bakish\Bakish\android\app\src\main\AndroidManifest.xml                                                                    | XML                |         24 |          0 |          3 |         27 |
+| k:\Work\React-native\Bakish\Bakish\android\app\src\main\java\com\bakish\MainActivity.java                                                      | Java               |         25 |          9 |          7 |         41 |
+| k:\Work\React-native\Bakish\Bakish\android\app\src\main\java\com\bakish\MainApplication.java                                                   | Java               |         68 |         14 |         10 |         92 |
+| k:\Work\React-native\Bakish\Bakish\android\app\src\main\java\com\bakish\newarchitecture\MainApplicationReactNativeHost.java                    | Java               |         83 |         20 |         14 |        117 |
+| k:\Work\React-native\Bakish\Bakish\android\app\src\main\java\com\bakish\newarchitecture\components\MainComponentsRegistry.java                 | Java               |         22 |          8 |          7 |         37 |
+| k:\Work\React-native\Bakish\Bakish\android\app\src\main\java\com\bakish\newarchitecture\modules\MainApplicationTurboModuleManagerDelegate.java | Java               |         30 |         10 |          9 |         49 |
+| k:\Work\React-native\Bakish\Bakish\android\app\src\main\jni\Android.mk                                                                         | Makefile           |         28 |         12 |         10 |         50 |
+| k:\Work\React-native\Bakish\Bakish\android\app\src\main\jni\MainApplicationModuleProvider.cpp                                                  | C++                |         11 |          9 |          5 |         25 |
+| k:\Work\React-native\Bakish\Bakish\android\app\src\main\jni\MainApplicationModuleProvider.h                                                    | C++                |         11 |          0 |          6 |         17 |
+| k:\Work\React-native\Bakish\Bakish\android\app\src\main\jni\MainApplicationTurboModuleManagerDelegate.cpp                                      | C++                |         37 |          1 |          8 |         46 |
+| k:\Work\React-native\Bakish\Bakish\android\app\src\main\jni\MainApplicationTurboModuleManagerDelegate.h                                        | C++                |         25 |          5 |          9 |         39 |
+| k:\Work\React-native\Bakish\Bakish\android\app\src\main\jni\MainComponentsRegistry.cpp                                                         | C++                |         43 |          5 |         14 |         62 |
+| k:\Work\React-native\Bakish\Bakish\android\app\src\main\jni\MainComponentsRegistry.h                                                           | C++                |         23 |          1 |          9 |         33 |
+| k:\Work\React-native\Bakish\Bakish\android\app\src\main\jni\OnLoad.cpp                                                                         | C++                |         10 |          0 |          2 |         12 |
+| k:\Work\React-native\Bakish\Bakish\android\app\src\main\res\drawable\rn_edit_text_material.xml                                                 | XML                |         11 |         23 |          3 |         37 |
+| k:\Work\React-native\Bakish\Bakish\android\app\src\main\res\values\strings.xml                                                                 | XML                |          3 |          0 |          1 |          4 |
+| k:\Work\React-native\Bakish\Bakish\android\app\src\main\res\values\styles.xml                                                                  | XML                |          5 |          2 |          3 |         10 |
+| k:\Work\React-native\Bakish\Bakish\android\build.gradle                                                                                        | Groovy             |         40 |          9 |          5 |         54 |
+| k:\Work\React-native\Bakish\Bakish\android\gradle.properties                                                                                   | Properties         |          6 |         26 |          9 |         41 |
+| k:\Work\React-native\Bakish\Bakish\android\gradle\wrapper\gradle-wrapper.properties                                                            | Properties         |          5 |          0 |          1 |          6 |
+| k:\Work\React-native\Bakish\Bakish\android\gradlew.bat                                                                                         | Batch              |         68 |          0 |         22 |         90 |
+| k:\Work\React-native\Bakish\Bakish\android\settings.gradle                                                                                     | Groovy             |          8 |          0 |          2 |         10 |
+| k:\Work\React-native\Bakish\Bakish\app.json                                                                                                    | JSON               |          4 |          0 |          0 |          4 |
+| k:\Work\React-native\Bakish\Bakish\babel.config.js                                                                                             | JavaScript         |         16 |          0 |          1 |         17 |
+| k:\Work\React-native\Bakish\Bakish\index.js                                                                                                    | JavaScript         |          4 |          3 |          3 |         10 |
+| k:\Work\React-native\Bakish\Bakish\ios\BakishTests\BakishTests.m                                                                               | Objective-C        |         53 |          0 |         14 |         67 |
+| k:\Work\React-native\Bakish\Bakish\ios\Bakish\AppDelegate.h                                                                                    | C++                |          5 |          0 |          4 |          9 |
+| k:\Work\React-native\Bakish\Bakish\ios\Bakish\AppDelegate.mm                                                                                   | Objective-C++      |         85 |          0 |         24 |        109 |
+| k:\Work\React-native\Bakish\Bakish\ios\Bakish\Images.xcassets\AppIcon.appiconset\Contents.json                                                 | JSON               |         53 |          0 |          1 |         54 |
+| k:\Work\React-native\Bakish\Bakish\ios\Bakish\Images.xcassets\Contents.json                                                                    | JSON               |          6 |          0 |          1 |          7 |
+| k:\Work\React-native\Bakish\Bakish\ios\Bakish\LaunchScreen.storyboard                                                                          | XML                |         46 |          1 |          1 |         48 |
+| k:\Work\React-native\Bakish\Bakish\ios\Bakish\main.m                                                                                           | Objective-C        |          8 |          0 |          3 |         11 |
+| k:\Work\React-native\Bakish\Bakish\metro.config.js                                                                                             | JavaScript         |         10 |          6 |          2 |         18 |
+| k:\Work\React-native\Bakish\Bakish\package-lock.json                                                                                           | JSON               |     26,716 |          0 |          1 |     26,717 |
+| k:\Work\React-native\Bakish\Bakish\package.json                                                                                                | JSON               |         46 |          0 |          1 |         47 |
+| k:\Work\React-native\Bakish\Bakish\src\screens\HomeScreen\HomeScreen.tsx                                                                       | TypeScript React   |         10 |          0 |          3 |         13 |
+| k:\Work\React-native\Bakish\Bakish\src\screens\HomeScreen\index.ts                                                                             | TypeScript         |          1 |          0 |          1 |          2 |
+| k:\Work\React-native\Bakish\Bakish\src\theme\colors.ts                                                                                         | TypeScript         |          2 |          0 |          2 |          4 |
+| k:\Work\React-native\Bakish\Bakish\src\theme\fonts.ts                                                                                          | TypeScript         |         18 |          0 |          4 |         22 |
+| k:\Work\React-native\Bakish\Bakish\tsconfig.json                                                                                               | JSON with Comments |         21 |         76 |          9 |        106 |
+| Total                                                                                                                                          |                    |     27,958 |        385 |        283 |     28,626 |
++------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
