@@ -10,12 +10,10 @@ const size = {
   xxlg: 30,
 };
 
-const weight: {[key: string]: TextStyle['fontWeight']} = {
-  full: '900',
-  semi: '600',
-  bold: 'bold',
-  normal: 'normal',
-  thin: '400',
+const family = {
+  semiBold: 'Poppins-SemiBold',
+  light: 'Poppins-Light',
+  medium: 'Poppins-Medium',
 };
 
-export default {size, weight};
+export default {size, family};
