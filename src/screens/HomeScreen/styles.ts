@@ -7,6 +7,7 @@ export default StyleSheet.create({
     paddingVertical: 10,
     overflow: 'visible',
     flex: 1,
+    marginBottom: 30,
   },
   homepageHeader: {
     paddingHorizontal: 25,

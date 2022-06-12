@@ -30,7 +30,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 20,
     width: 150,
-    aspectRatio: 5 / 3,
+    aspectRatio: 5 / 4,
+    top: 10,
+    resizeMode: 'contain',
   },
 });
 

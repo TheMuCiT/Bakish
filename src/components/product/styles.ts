@@ -36,10 +36,13 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: colors.grey,
+    paddingVertical: 10,
   },
   image: {
     width: '70%',
     aspectRatio: 1,
+    resizeMode: 'contain',
   },
   content: {
     paddingHorizontal: 10,
