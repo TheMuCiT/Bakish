@@ -31,7 +31,7 @@ const HomeScreenHeader = () => {
   });
 
   return (
-    <>
+    <View style={{flex: 1}}>
       <View>
         <FlatList
           data={ads}
@@ -43,78 +43,84 @@ const HomeScreenHeader = () => {
           snapToAlignment={'center'}
           decelerationRate={'fast'}
           viewabilityConfig={viewConfig.current}
+          contentContainerStyle={{paddingHorizontal: 25}}
           pagingEnabled={true}
         />
       </View>
       {/* HomeScreen Category */}
-      <View style={{marginBottom: 20}}>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          <Pressable
-            onPress={() => setActiveCategory(0)}
+
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={{paddingHorizontal: 25}}
+        style={{
+          marginBottom: 20,
+        }}>
+        <Pressable
+          onPress={() => setActiveCategory(0)}
+          style={
+            activeCategory === 0
+              ? styles.categoryContainerActive
+              : styles.categoryContainer
+          }>
+          <View style={styles.categoryIcon}>
+            <Newest />
+          </View>
+          <Text
             style={
               activeCategory === 0
-                ? styles.categoryContainerActive
-                : styles.categoryContainer
+                ? styles.categoryTextActive
+                : styles.categoryText
             }>
-            <View style={styles.categoryIcon}>
-              <Newest />
-            </View>
-            <Text
-              style={
-                activeCategory === 0
-                  ? styles.categoryTextActive
-                  : styles.categoryText
-              }>
-              Popular
-            </Text>
-          </Pressable>
+            Popular
+          </Text>
+        </Pressable>
 
-          <View style={styles.gap} />
+        <View style={styles.gap} />
 
-          <Pressable
-            onPress={() => setActiveCategory(1)}
+        <Pressable
+          onPress={() => setActiveCategory(1)}
+          style={
+            activeCategory === 1
+              ? styles.categoryContainerActive
+              : styles.categoryContainer
+          }>
+          <View style={styles.categoryIcon}>
+            <Newest />
+          </View>
+          <Text
             style={
               activeCategory === 1
-                ? styles.categoryContainerActive
-                : styles.categoryContainer
+                ? styles.categoryTextActive
+                : styles.categoryText
             }>
-            <View style={styles.categoryIcon}>
-              <Newest />
-            </View>
-            <Text
-              style={
-                activeCategory === 1
-                  ? styles.categoryTextActive
-                  : styles.categoryText
-              }>
-              Newest
-            </Text>
-          </Pressable>
+            Newest
+          </Text>
+        </Pressable>
 
-          <View style={styles.gap} />
+        <View style={styles.gap} />
 
-          <Pressable
-            onPress={() => setActiveCategory(2)}
+        <Pressable
+          onPress={() => setActiveCategory(2)}
+          style={
+            activeCategory === 2
+              ? styles.categoryContainerActive
+              : styles.categoryContainer
+          }>
+          <View style={styles.categoryIcon}>
+            <Recommended />
+          </View>
+          <Text
             style={
               activeCategory === 2
-                ? styles.categoryContainerActive
-                : styles.categoryContainer
+                ? styles.categoryTextActive
+                : styles.categoryText
             }>
-            <View style={styles.categoryIcon}>
-              <Recommended />
-            </View>
-            <Text
-              style={
-                activeCategory === 2
-                  ? styles.categoryTextActive
-                  : styles.categoryText
-              }>
-              Recommended
-            </Text>
-          </Pressable>
-        </ScrollView>
-      </View>
-    </>
+            Recommended
+          </Text>
+        </Pressable>
+      </ScrollView>
+    </View>
   );
 };
 

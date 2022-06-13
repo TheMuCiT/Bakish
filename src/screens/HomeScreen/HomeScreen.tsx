@@ -1,4 +1,4 @@
-import {useRef, useState} from 'react';
+import {useState} from 'react';
 import {
   View,
   Text,
@@ -56,14 +56,16 @@ const HomeScreen = () => {
           placeholderTextColor={colors.textPlaceholder}
         />
       </View>
-
       {/* HomeScreen product flatList */}
       <FlatList
         data={products}
         renderItem={({item}) => <Product product={item} />}
-        contentContainerStyle={{paddingHorizontal: 25}}
+        contentContainerStyle={{paddingHorizontal: 0}}
         numColumns={2}
-        columnWrapperStyle={{justifyContent: 'space-between'}}
+        columnWrapperStyle={{
+          justifyContent: 'space-between',
+          paddingHorizontal: 25,
+        }}
         ItemSeparatorComponent={() => <View style={{height: 19}} />}
         ListHeaderComponent={() => <HomeScreenHeader />}
       />
