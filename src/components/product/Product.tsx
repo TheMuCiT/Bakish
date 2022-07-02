@@ -2,6 +2,7 @@ import {View, Text, Image, useWindowDimensions} from 'react-native';
 
 import Favorite from '../../assets/icons/Favorite';
 import Plus from '../../assets/icons/Plus';
+import colors from '../../theme/colors';
 import styles from './styles';
 
 const Product = ({product}: any) => {
@@ -12,7 +13,7 @@ const Product = ({product}: any) => {
         <Favorite />
       </View>
       <View style={styles.add}>
-        <Plus />
+        <Plus color={colors.white} />
       </View>
       <View style={styles.imageContainer}>
         <Image source={{uri: product.image}} style={styles.image} />

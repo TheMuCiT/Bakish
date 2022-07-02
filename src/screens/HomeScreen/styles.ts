@@ -4,10 +4,10 @@ import fonts from '../../theme/fonts';
 
 export default StyleSheet.create({
   page: {
-    paddingVertical: 10,
+    paddingTop: 10,
     overflow: 'visible',
     flex: 1,
-    marginBottom: 30,
+    backgroundColor: colors.white,
   },
   homepageHeader: {
     paddingHorizontal: 25,

@@ -1,16 +1,7 @@
-import {Text, View} from 'react-native';
-import CheckoutScreen from './src/screens/Checkout/CheckoutScreen';
-import HomeScreen from './src/screens/HomeScreen';
-import ProductScreen from './src/screens/ProductScreen';
+import Navigation from './src/navigation';
 
 const App = () => {
-  return (
-    <View style={{flex: 1}}>
-      {/* <HomeScreen /> */}
-      {/* <ProductScreen /> */}
-      <CheckoutScreen />
-    </View>
-  );
+  return <Navigation />;
 };
 
 export default App;
