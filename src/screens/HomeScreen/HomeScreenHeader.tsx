@@ -17,6 +17,7 @@ import Recommended from '../../assets/icons/Recommended';
 
 import styles from './styles';
 import {useRef, useState} from 'react';
+import colors from '../../theme/colors';
 const HomeScreenHeader = () => {
   const [activeCategory, setActiveCategory] = useState(1);
 
@@ -31,7 +32,7 @@ const HomeScreenHeader = () => {
   });
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1, backgroundColor: colors.white}}>
       <View>
         <FlatList
           data={ads}

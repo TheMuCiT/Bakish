@@ -47,9 +47,11 @@ export default StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 16,
     marginVertical: 19,
+    paddingVertical: 0,
     borderRadius: 8,
   },
   input: {
+    height: 50,
     marginLeft: 14,
     color: colors.textDark,
   },

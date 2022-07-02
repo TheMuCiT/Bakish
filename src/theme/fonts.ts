@@ -1,6 +1,7 @@
 import {TextStyle} from 'react-native';
 
 const size = {
+  xxs: 8,
   xs: 10,
   sm: 12,
   default: 14,
@@ -14,6 +15,7 @@ const family = {
   semiBold: 'Poppins-SemiBold',
   light: 'Poppins-Light',
   medium: 'Poppins-Medium',
+  regular: 'Poppins-Regular',
 };
 
 export default {size, family};

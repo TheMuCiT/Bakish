@@ -27,8 +27,6 @@ import HomeScreenHeader from './HomeScreenHeader';
 const HomeScreen = () => {
   const [searchBarValue, setSearchBarValue] = useState('');
 
-  const width = useWindowDimensions().width;
-
   return (
     <View style={styles.page}>
       {/* HomeScreen header */}

@@ -7,6 +7,7 @@ const colors = {
 
   textDark: '#1F1F1F',
   textGrey: '#999999',
+  textSubTitle: '#AFAFAF',
 
   shadowColor: '#d6d6d6',
 };

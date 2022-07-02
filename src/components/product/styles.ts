@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
   root: {
     backgroundColor: colors.white,
     shadowColor: colors.shadowColor,
-    shadowOffset: {width: 10, height: 10},
+    shadowOffset: {width: 5, height: 5},
     shadowOpacity: 0.25,
     borderRadius: 8,
     elevation: 20,
