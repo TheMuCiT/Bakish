@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
   page: {
     overflow: 'visible',
     flex: 1,
-    marginBottom: 30,
+    backgroundColor: colors.white,
   },
   header: {
     paddingVertical: 10,
@@ -107,7 +107,10 @@ const styles = StyleSheet.create({
     fontFamily: fonts.family.light,
     fontSize: fonts.size.xxs,
   },
-  size: {paddingHorizontal: 25, paddingVertical: 10},
+  size: {
+    paddingHorizontal: 25,
+    paddingVertical: 10,
+  },
   sizeTitle: {
     marginTop: 10,
     marginBottom: 20,
@@ -146,7 +149,11 @@ const styles = StyleSheet.create({
     fontFamily: fonts.family.semiBold,
     fontSize: fonts.size.sm,
   },
-  buttonContainer: {paddingHorizontal: 25, marginTop: 10},
+  buttonContainer: {
+    paddingHorizontal: 25,
+    marginTop: 10,
+    marginBottom: 30,
+  },
   button: {
     alignItems: 'center',
     justifyContent: 'center',

@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
     overflow: 'visible',
     flex: 1,
     marginBottom: 30,
+    backgroundColor: colors.white,
   },
   header: {
     paddingVertical: 10,

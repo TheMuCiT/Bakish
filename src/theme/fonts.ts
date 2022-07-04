@@ -1,5 +1,3 @@
-import {TextStyle} from 'react-native';
-
 const size = {
   xxs: 8,
   xs: 10,
