@@ -14,10 +14,26 @@ const AuthStackNavigator = () => {
         component={SignInScreen}
         options={{headerShown: false}}
       />
-      <Stack.Screen name="Sign up" component={SignUpScreen} />
-      <Stack.Screen name="Confirm email" component={ConfirmEmailScreen} />
-      <Stack.Screen name="Forgot password" component={ForgotPasswordScreen} />
-      <Stack.Screen name="New password" component={NewPasswordScreen} />
+      <Stack.Screen
+        name="Sign up"
+        component={SignUpScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Confirm email"
+        component={ConfirmEmailScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Forgot password"
+        component={ForgotPasswordScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="New password"
+        component={NewPasswordScreen}
+        options={{headerShown: false}}
+      />
     </Stack.Navigator>
   );
 };

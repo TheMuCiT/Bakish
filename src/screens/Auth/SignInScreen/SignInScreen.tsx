@@ -1,4 +1,4 @@
-import {Alert, StyleSheet, Text, View} from 'react-native';
+import {Alert, ScrollView, StyleSheet, Text, View} from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
 
@@ -60,7 +60,7 @@ const SignInScreen = () => {
   return (
     <View style={styles.backgroundSVG}>
       <SignUpSVG style={styles.backSVG} />
-      <View style={styles.root}>
+      <ScrollView style={styles.root}>
         <View style={styles.header}>
           <Logo />
           <Text style={styles.title}>
@@ -118,10 +118,10 @@ const SignInScreen = () => {
             <Apple />
           </View>
         </View>
-      </View>
-      <Text style={styles.register} onPress={onSignUpPress}>
-        Not a member? <Text style={styles.registerBold}>Register Now</Text>
-      </Text>
+        <Text style={styles.register} onPress={onSignUpPress}>
+          Not a member? <Text style={styles.registerBold}>Register Now</Text>
+        </Text>
+      </ScrollView>
     </View>
   );
 };
@@ -137,15 +137,13 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   root: {
-    padding: 25,
-    paddingTop: '30%',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flex: 1,
     zIndex: 5,
   },
   header: {
+    paddingTop: '30%',
     alignItems: 'center',
+    paddingHorizontal: 25,
   },
   title: {
     fontSize: fonts.size.md,
@@ -164,6 +162,7 @@ const styles = StyleSheet.create({
   form: {
     width: '100%',
     marginTop: 30,
+    paddingHorizontal: 25,
   },
   forgotPassword: {
     width: '100%',
@@ -185,6 +184,7 @@ const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'space-between',
     flexDirection: 'row',
+    paddingHorizontal: 25,
   },
   linkBox: {
     backgroundColor: colors.white,
@@ -199,14 +199,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   register: {
+    marginTop: 20,
     textAlign: 'center',
-    position: 'absolute',
-    bottom: 30,
-    width: '100%',
     fontSize: fonts.size.xs,
     fontFamily: fonts.family.medium,
     color: colors.textRegister,
     zIndex: 10,
+    marginBottom: 40,
   },
   registerBold: {
     fontFamily: fonts.family.semiBold,

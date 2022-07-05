@@ -1,5 +1,7 @@
 import {View, Text, StyleSheet, TextInput} from 'react-native';
 import {Control, Controller, Path} from 'react-hook-form';
+import colors from '../../../theme/colors';
+import fonts from '../../../theme/fonts';
 
 interface IFormInput<ContentType> {
   control: any;
@@ -35,6 +37,7 @@ function FormInput<ContentType>({
               placeholder={placeholder}
               style={styles.input}
               secureTextEntry={secureTextEntry}
+              placeholderTextColor="#A3A3A3"
             />
           </View>
           {error && (
@@ -56,9 +59,13 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingHorizontal: 10,
     marginVertical: 5,
-    marginBottom: 20,
+    marginTop: 15,
+    borderRadius: 8,
   },
   input: {
     height: 50,
+    color: colors.textDark,
+    fontSize: fonts.size.sm,
+    fontFamily: fonts.family.medium,
   },
 });
