@@ -8,6 +8,8 @@ const colors = {
   textDark: '#1F1F1F',
   textGrey: '#999999',
   textSubTitle: '#AFAFAF',
+  textRegister: '#A3A3A3',
+  textRegisterBold: '#3D3C3C',
 
   shadowColor: '#d6d6d6',
 

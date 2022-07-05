@@ -6,7 +6,6 @@ const styles = StyleSheet.create({
   page: {
     overflow: 'visible',
     flex: 1,
-    marginBottom: 30,
     backgroundColor: colors.white,
   },
   header: {
@@ -41,6 +40,8 @@ const styles = StyleSheet.create({
   bottom: {
     paddingHorizontal: 25,
     paddingTop: 20,
+    paddingBottom: 30,
+    backgroundColor: 'red',
   },
   infoContainer: {
     flexDirection: 'row',

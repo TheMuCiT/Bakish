@@ -1,0 +1,15 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-bakish-staging-190346-authRole",
+      "UnauthRoleArn": "arn:aws:iam::969782989435:role/amplify-bakish-staging-190346-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::969782989435:role/amplify-bakish-staging-190346-authRole",
+      "Region": "eu-west-1",
+      "DeploymentBucketName": "amplify-bakish-staging-190346-deployment",
+      "UnauthRoleName": "amplify-bakish-staging-190346-unauthRole",
+      "StackName": "amplify-bakish-staging-190346",
+      "StackId": "arn:aws:cloudformation:eu-west-1:969782989435:stack/amplify-bakish-staging-190346/07d9fef0-fbcc-11ec-a220-0a6b2dbd32f5",
+      "AmplifyAppId": "d9lhbuvrfq373"
+    }
+  }
+}
