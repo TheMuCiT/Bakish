@@ -1,6 +1,13 @@
 import {useState} from 'react';
-import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import {
+  Alert,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import {useForm} from 'react-hook-form';
 
 import GoBackIcon from '../../../assets/icons/GoBackIcon';
@@ -9,7 +16,10 @@ import Verification from '../../../assets/icons/Verification';
 
 import CustomButton from '../../../components/Auth/CustomButton';
 
-import {ConfirmEmailNavigationProp} from '../../../types/navigation';
+import {
+  ConfirmEmailNavigationProp,
+  ConfirmUsernameRouteProp,
+} from '../../../types/navigation';
 
 import colors from '../../../theme/colors';
 import fonts from '../../../theme/fonts';
@@ -19,21 +29,48 @@ import {
   useBlurOnFulfill,
   useClearByFocusCell,
 } from 'react-native-confirmation-code-field';
+import {Auth} from 'aws-amplify';
+import FormInput from '../../../components/Auth/FormInput';
 
 type ConfirmEmailData = {
-  email: string;
+  username: string;
   code: string;
 };
 
 const ConfirmEmailScreen = () => {
+  const route = useRoute<ConfirmUsernameRouteProp>();
   const navigation = useNavigation<ConfirmEmailNavigationProp>();
 
   const [loading, setLoading] = useState(false);
 
-  const {control, handleSubmit, watch} = useForm<ConfirmEmailData>();
+  const {control, handleSubmit, watch} = useForm<ConfirmEmailData>({
+    defaultValues: {username: route.params.username},
+  });
 
-  const onConfirmEmailPressed = () => {};
-  const onResendPress = () => {};
+  const username = watch('username');
+
+  const onConfirmEmailPressed = async ({username}: ConfirmEmailData) => {
+    if (loading) {
+      return;
+    }
+    setLoading(true);
+    try {
+      await Auth.confirmSignUp(username, value);
+      navigation.navigate('Sign in');
+    } catch (e) {
+      Alert.alert('oops', (e as Error).message);
+    } finally {
+      setLoading(false);
+    }
+  };
+  const onResendPress = async () => {
+    try {
+      await Auth.resendSignUp(username);
+      Alert.alert('Check your email', 'The code has been sent');
+    } catch (e) {
+      Alert.alert('oops', (e as Error).message);
+    }
+  };
 
   const goBack = () => {
     navigation.goBack();
@@ -71,6 +108,19 @@ const ConfirmEmailScreen = () => {
             Protecting your privacy is our top priority. Please confirm account
             by entering the authorization code:
           </Text>
+
+          <FormInput
+            name="username"
+            placeholder="Username"
+            control={control}
+            rules={{
+              required: 'Username is required',
+              minLength: {
+                value: 3,
+                message: 'Username should be minimum 3 characters long',
+              },
+            }}
+          />
 
           <CodeField
             ref={ref}

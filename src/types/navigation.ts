@@ -59,7 +59,7 @@ export type ConfirmEmailNavigationProp = NativeStackNavigationProp<
   AuthStackNavigatorParamList,
   'Confirm email'
 >;
-export type ConfirmEmailRouteProp = RouteProp<
+export type ConfirmUsernameRouteProp = RouteProp<
   AuthStackNavigatorParamList,
   'Confirm email'
 >;

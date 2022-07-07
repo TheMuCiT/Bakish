@@ -1,4 +1,11 @@
-import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {
+  Alert,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 
 import GoBackIcon from '../../../assets/icons/GoBackIcon';
 import SignUpSVG from '../../../assets/icons/SignUpSVG';
@@ -12,9 +19,10 @@ import {useForm} from 'react-hook-form';
 import {useState} from 'react';
 import colors from '../../../theme/colors';
 import fonts from '../../../theme/fonts';
+import {Auth} from 'aws-amplify';
 
 type NewPasswordType = {
-  email: string;
+  username: string;
   code: string;
   password: string;
 };
@@ -24,9 +32,27 @@ const NewPasswordScreen = () => {
 
   const [loading, setLoading] = useState(false);
 
-  const {control, handleSubmit, watch} = useForm<NewPasswordType>();
+  const {control, handleSubmit} = useForm<NewPasswordType>();
 
-  const onNewPasswordPressed = () => {};
+  const onNewPasswordPressed = async ({
+    username,
+    code,
+    password,
+  }: NewPasswordType) => {
+    if (loading) {
+      return;
+    }
+    setLoading(true);
+    try {
+      await Auth.forgotPasswordSubmit(username, code, password);
+      navigation.navigate('New password');
+    } catch (e) {
+      Alert.alert('oops', (e as Error).message);
+    } finally {
+      setLoading(false);
+    }
+    navigation.navigate('Sign in');
+  };
 
   const goBack = () => {
     navigation.goBack();
@@ -56,6 +82,19 @@ const NewPasswordScreen = () => {
           </Text>
 
           <FormInput
+            name="username"
+            placeholder="Username"
+            control={control}
+            rules={{
+              required: 'Username is required',
+              minLength: {
+                value: 3,
+                message: 'Username should be minimum 3 characters long',
+              },
+            }}
+          />
+
+          <FormInput
             placeholder="Code"
             name="code"
             control={control}
@@ -70,8 +109,8 @@ const NewPasswordScreen = () => {
             rules={{
               required: 'Password is required',
               minLength: {
-                value: 8,
-                message: 'Password should be at least 8 characters long',
+                value: 7,
+                message: 'Password should be at least 7 characters long',
               },
             }}
           />

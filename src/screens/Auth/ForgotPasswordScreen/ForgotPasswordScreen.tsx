@@ -1,7 +1,14 @@
 import {useNavigation} from '@react-navigation/native';
 import {useState} from 'react';
 import {useForm} from 'react-hook-form';
-import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {
+  Alert,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 
 import GoBackIcon from '../../../assets/icons/GoBackIcon';
 import SignUpSVG from '../../../assets/icons/SignUpSVG';
@@ -13,12 +20,13 @@ import fonts from '../../../theme/fonts';
 
 import {ForgotPasswordNavigationProp} from '../../../types/navigation';
 import FormInput from '../../../components/Auth/FormInput';
+import {Auth} from 'aws-amplify';
 
 const EMAIL_REGEX =
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 type ForgotPasswordData = {
-  email: string;
+  username: string;
 };
 
 const ForgotPasswordScreen = () => {
@@ -26,9 +34,26 @@ const ForgotPasswordScreen = () => {
 
   const [loading, setLoading] = useState(false);
 
-  const {control, handleSubmit, watch} = useForm<ForgotPasswordData>();
+  const {control, handleSubmit} = useForm<ForgotPasswordData>();
 
-  const onPasswordRecoveryPressed = () => {};
+  const onPasswordRecoveryPressed = async ({username}: ForgotPasswordData) => {
+    if (loading) {
+      return;
+    }
+    setLoading(true);
+    try {
+      const response = await Auth.forgotPassword(username);
+      Alert.alert(
+        'Check your email',
+        `The code has been sent to ${response.CodeDeliveryDetails.Destination}`,
+      );
+      navigation.navigate('New password');
+    } catch (e) {
+      Alert.alert('oops', (e as Error).message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const goBack = () => {
     navigation.goBack();
@@ -58,12 +83,11 @@ const ForgotPasswordScreen = () => {
           </Text>
 
           <FormInput
-            name="email"
-            placeholder="Enter email"
+            name="username"
+            placeholder="Username"
             control={control}
             rules={{
-              required: 'Email is required',
-              pattern: {value: EMAIL_REGEX, message: 'Email is invalid'},
+              required: 'Username is required',
             }}
           />
 

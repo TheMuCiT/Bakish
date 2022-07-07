@@ -10,6 +10,11 @@
       "StackName": "amplify-bakish-staging-190346",
       "StackId": "arn:aws:cloudformation:eu-west-1:969782989435:stack/amplify-bakish-staging-190346/07d9fef0-fbcc-11ec-a220-0a6b2dbd32f5",
       "AmplifyAppId": "d9lhbuvrfq373"
+    },
+    "categories": {
+      "auth": {
+        "Bakish": {}
+      }
     }
   }
 }

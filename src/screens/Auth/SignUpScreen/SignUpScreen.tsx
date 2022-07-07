@@ -1,4 +1,11 @@
-import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {
+  Alert,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 import GoBackIcon from '../../../assets/icons/GoBackIcon';
@@ -15,12 +22,13 @@ import FormInput from '../../../components/Auth/FormInput';
 import {useForm} from 'react-hook-form';
 import CustomButton from '../../../components/Auth/CustomButton';
 import {useState} from 'react';
+import {Auth} from 'aws-amplify';
 
 const EMAIL_REGEX =
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 type SignUpData = {
-  name: string;
+  username: string;
   email: string;
   password: string;
   passwordRepeat: string;
@@ -34,7 +42,24 @@ const SignUpScreen = () => {
   const {control, handleSubmit, watch} = useForm<SignUpData>();
   const pwd = watch('password');
 
-  const onSignUpPressed = () => {};
+  const onSignUpPressed = async ({username, email, password}: SignUpData) => {
+    if (loading) {
+      return;
+    }
+    setLoading(true);
+    try {
+      await Auth.signUp({
+        username,
+        password,
+        attributes: {email},
+      });
+      navigation.navigate('Confirm email', {username});
+    } catch (e) {
+      Alert.alert('oops', (e as Error).message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const goBack = () => {
     navigation.goBack();
