@@ -10,6 +10,7 @@ import FavoritePageIcon from '../assets/icons/FavoritePageIcon';
 import CheckoutPageIcon from '../assets/icons/CheckoutPageIcon';
 import PortfolioPageIcon from '../assets/icons/PortfolioPageIcon';
 import CheckoutScreen from '../screens/Checkout/CheckoutScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 
 const Tab = createBottomTabNavigator<BottomTabNavigatorParamList>();
 const BottomTabNavigator = () => {
@@ -46,7 +47,7 @@ const BottomTabNavigator = () => {
       />
       <Tab.Screen
         name="Portfolio"
-        component={HomeStackNavigator}
+        component={ProfileScreen}
         options={{
           headerShown: false,
           tabBarIcon: ({color}) => <PortfolioPageIcon color={color} />,
