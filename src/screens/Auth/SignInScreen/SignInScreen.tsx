@@ -1,4 +1,11 @@
-import {Alert, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {
+  Alert,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
 
@@ -16,6 +23,7 @@ import FormInput from '../../../components/Auth/FormInput';
 import CustomButton from '../../../components/Auth/CustomButton';
 
 import {Auth} from 'aws-amplify';
+import {CognitoHostedUIIdentityProvider} from '@aws-amplify/auth';
 import {SignInNavigationProp} from '../../../types/navigation';
 
 type SignInData = {
@@ -56,6 +64,28 @@ const SignInScreen = () => {
   const onSignUpPress = () => {
     navigation.navigate('Sign up');
   };
+
+  const onSignInFacebook = async () => {
+    try {
+      await Auth.federatedSignIn({
+        provider: CognitoHostedUIIdentityProvider.Facebook,
+      });
+    } catch (e) {
+      Alert.alert('Ops', (e as Error).message);
+    }
+  };
+
+  const onSignInGoogle = async () => {
+    try {
+      await Auth.federatedSignIn({
+        provider: CognitoHostedUIIdentityProvider.Google,
+      });
+    } catch (e) {
+      Alert.alert('Ops', (e as Error).message);
+    }
+  };
+
+  const onSignInApple = () => {};
 
   return (
     <View style={styles.backgroundSVG}>
@@ -108,15 +138,15 @@ const SignInScreen = () => {
         </View>
         <Text style={styles.or}>Or</Text>
         <View style={styles.links}>
-          <View style={styles.linkBox}>
+          <Pressable style={styles.linkBox} onPress={onSignInGoogle}>
             <Gmail />
-          </View>
-          <View style={styles.linkBox}>
+          </Pressable>
+          <Pressable style={styles.linkBox} onPress={onSignInFacebook}>
             <Facebook />
-          </View>
-          <View style={styles.linkBox}>
+          </Pressable>
+          <Pressable style={styles.linkBox} onPress={onSignInApple}>
             <Apple />
-          </View>
+          </Pressable>
         </View>
         <Text style={styles.register} onPress={onSignUpPress}>
           Not a member? <Text style={styles.registerBold}>Register Now</Text>

@@ -23,6 +23,7 @@ import {useForm} from 'react-hook-form';
 import CustomButton from '../../../components/Auth/CustomButton';
 import {useState} from 'react';
 import {Auth} from 'aws-amplify';
+import {CognitoHostedUIIdentityProvider} from '@aws-amplify/auth';
 
 const EMAIL_REGEX =
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -64,6 +65,27 @@ const SignUpScreen = () => {
   const goBack = () => {
     navigation.goBack();
   };
+
+  const onSignInFacebook = async () => {
+    try {
+      await Auth.federatedSignIn({
+        provider: CognitoHostedUIIdentityProvider.Facebook,
+      });
+    } catch (e) {
+      Alert.alert('Ops', (e as Error).message);
+    }
+  };
+
+  const onSignInGoogle = async () => {
+    try {
+      await Auth.federatedSignIn({
+        provider: CognitoHostedUIIdentityProvider.Google,
+      });
+    } catch (e) {
+      Alert.alert('Ops', (e as Error).message);
+    }
+  };
+  const onSignInApple = () => {};
   return (
     <View style={styles.backgroundSVG}>
       <SignUpSVG style={styles.backSVG} />
@@ -77,15 +99,15 @@ const SignUpScreen = () => {
         </View>
         <Text style={styles.social}>Continue with socials</Text>
         <View style={styles.links}>
-          <View style={styles.linkBox}>
+          <Pressable style={styles.linkBox} onPress={onSignInGoogle}>
             <Gmail />
-          </View>
-          <View style={styles.linkBox}>
+          </Pressable>
+          <Pressable style={styles.linkBox} onPress={onSignInFacebook}>
             <Facebook />
-          </View>
-          <View style={styles.linkBox}>
+          </Pressable>
+          <Pressable style={styles.linkBox} onPress={onSignInApple}>
             <Apple />
-          </View>
+          </Pressable>
         </View>
         <Text style={styles.or}>Or</Text>
         <View style={styles.form}>
