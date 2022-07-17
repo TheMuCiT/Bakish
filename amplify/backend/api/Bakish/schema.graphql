@@ -1,0 +1,67 @@
+enum OrderStatus {
+  NEW
+  PREPARING
+  READY
+  PICKED_UP
+  COMPLETED
+}
+
+type OrderItem @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  quantity: Int!
+  Product: Product @hasOne
+  orderID: ID! @index(name: "byOrder")
+}
+
+type Order @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  userID: ID! @index(name: "byUser")
+  total: Float!
+  status: OrderStatus!
+  OrderItems: [OrderItem] @hasMany(indexName: "byOrder", fields: ["id"])
+}
+
+type Likes @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  userID: ID! @index(name: "byUser")
+  productID: ID! @index(name: "byProduct")
+}
+
+type Product @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String!
+  description: String!
+  size: [String]
+  price: Float!
+  rating: Float!
+  Likes: [Likes] @hasMany(indexName: "byProduct", fields: ["id"])
+}
+
+type BasketItem @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  quantity: Int!
+  Product: Product @hasOne
+  basketID: ID! @index(name: "byBasket")
+}
+
+type Basket @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  BasketItems: [BasketItem] @hasMany(indexName: "byBasket", fields: ["id"])
+}
+
+type User @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  username: String!
+  email: String!
+  Basket: Basket @hasOne
+  Likes: [Likes] @hasMany(indexName: "byUser", fields: ["id"])
+  Orders: [Order] @hasMany(indexName: "byUser", fields: ["id"])
+}
+
+type Ads @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  title: String!
+  text: String!
+  date: AWSDate!
+  image: String!
+}

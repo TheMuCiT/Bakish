@@ -9,11 +9,18 @@
       "UnauthRoleName": "amplify-bakish-staging-190346-unauthRole",
       "StackName": "amplify-bakish-staging-190346",
       "StackId": "arn:aws:cloudformation:eu-west-1:969782989435:stack/amplify-bakish-staging-190346/07d9fef0-fbcc-11ec-a220-0a6b2dbd32f5",
-      "AmplifyAppId": "d9lhbuvrfq373"
+      "AmplifyAppId": "d9lhbuvrfq373",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-bakish-staging-190346-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
     },
     "categories": {
       "auth": {
         "Bakish": {}
+      },
+      "function": {
+        "BakishPostConfirmation": {
+          "deploymentBucketName": "amplify-bakish-staging-190346-deployment",
+          "s3Key": "amplify-builds/BakishPostConfirmation-562f36414b4655355944-build.zip"
+        }
       }
     }
   }
