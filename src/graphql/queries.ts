@@ -9,10 +9,12 @@ export const getOrderItem = /* GraphQL */ `
       quantity
       Product {
         id
-        name
+        title
+        subTitle
         description
         size
         price
+        image
         rating
         createdAt
         updatedAt
@@ -221,15 +223,17 @@ export const getProduct = /* GraphQL */ `
   query GetProduct($id: ID!) {
     getProduct(id: $id) {
       id
-      name
+      title
+      subTitle
       description
       size
       price
-      rating
       Likes {
         nextToken
         startedAt
       }
+      image
+      rating
       createdAt
       updatedAt
       _version
@@ -247,10 +251,12 @@ export const listProducts = /* GraphQL */ `
     listProducts(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        name
+        title
+        subTitle
         description
         size
         price
+        image
         rating
         createdAt
         updatedAt
@@ -278,10 +284,12 @@ export const syncProducts = /* GraphQL */ `
     ) {
       items {
         id
-        name
+        title
+        subTitle
         description
         size
         price
+        image
         rating
         createdAt
         updatedAt
@@ -301,10 +309,12 @@ export const getBasketItem = /* GraphQL */ `
       quantity
       Product {
         id
-        name
+        title
+        subTitle
         description
         size
         price
+        image
         rating
         createdAt
         updatedAt
@@ -458,6 +468,7 @@ export const getUser = /* GraphQL */ `
         nextToken
         startedAt
       }
+      image
       createdAt
       updatedAt
       _version
@@ -478,6 +489,7 @@ export const listUsers = /* GraphQL */ `
         id
         username
         email
+        image
         createdAt
         updatedAt
         _version
@@ -507,6 +519,7 @@ export const syncUsers = /* GraphQL */ `
         id
         username
         email
+        image
         createdAt
         updatedAt
         _version

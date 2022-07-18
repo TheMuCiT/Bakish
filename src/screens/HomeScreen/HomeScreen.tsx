@@ -5,39 +5,71 @@ import {
   Image,
   TextInput,
   FlatList,
-  useWindowDimensions,
+  ActivityIndicator,
 } from 'react-native';
-import {DEFAULT_USER_IMAGE} from '../../config';
+import {useQuery} from '@apollo/client';
 
-import user from '../../data/user.json';
+import {DEFAULT_USER_IMAGE} from '../../config';
 
 import SearchIcon from '../../assets/icons/Search';
 
 //DATA
 
-import products from '../../data/products.json';
-
 import styles from './styles';
 import colors from '../../theme/colors';
 
-import Product from '../../components/product/Product';
+import ProductComponent from '../../components/product/ProductComponent';
 
 import HomeScreenHeader from './HomeScreenHeader';
+import {getUser, listProducts} from './queries';
+import {
+  GetUserQuery,
+  GetUserQueryVariables,
+  ListProductsQuery,
+  ListProductsQueryVariables,
+} from '../../API';
+import {useAuthContext} from '../../contexts/AuthContext';
 
 const HomeScreen = () => {
+  const {userId} = useAuthContext();
   const [searchBarValue, setSearchBarValue] = useState('');
+  const {
+    data: userDataExtract,
+    loading: userLoading,
+    error: userError,
+  } = useQuery<GetUserQuery, GetUserQueryVariables>(getUser, {
+    variables: {id: userId},
+  });
+
+  const userData = userDataExtract?.getUser;
+
+  const {
+    data: productData,
+    loading,
+    error,
+  } = useQuery<ListProductsQuery, ListProductsQueryVariables>(listProducts);
+
+  if (loading || userLoading) {
+    return <ActivityIndicator />;
+  }
+
+  if (error || userError) {
+    return <Text>{error?.message || userError?.message}</Text>;
+  }
 
   return (
     <View style={styles.page}>
       {/* HomeScreen header */}
       <View style={styles.homepageHeader}>
         <View>
-          <Text style={styles.heyName}>Hey, {user.name}</Text>
+          <Text style={styles.heyName}>
+            Hey, {userData?.username || 'Guess'}
+          </Text>
           <Text style={styles.welcomeBack}>Welcome back!</Text>
         </View>
         <View>
           <Image
-            source={{uri: user.image || DEFAULT_USER_IMAGE}}
+            source={{uri: userData?.image || DEFAULT_USER_IMAGE}}
             style={styles.avatarImage}
           />
           <View style={styles.avatarDot} />
@@ -56,8 +88,8 @@ const HomeScreen = () => {
       </View>
       {/* HomeScreen product flatList */}
       <FlatList
-        data={products}
-        renderItem={({item}) => <Product product={item} />}
+        data={productData?.listProducts?.items || []}
+        renderItem={({item}) => item && <ProductComponent product={item} />}
         contentContainerStyle={{paddingHorizontal: 0}}
         numColumns={2}
         columnWrapperStyle={{

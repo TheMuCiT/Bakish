@@ -106,11 +106,18 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "name": {
-                    "name": "name",
+                "title": {
+                    "name": "title",
                     "isArray": false,
                     "type": "String",
                     "isRequired": true,
+                    "attributes": []
+                },
+                "subTitle": {
+                    "name": "subTitle",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
                     "attributes": []
                 },
                 "description": {
@@ -135,13 +142,6 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "rating": {
-                    "name": "rating",
-                    "isArray": false,
-                    "type": "Float",
-                    "isRequired": true,
-                    "attributes": []
-                },
                 "Likes": {
                     "name": "Likes",
                     "isArray": true,
@@ -155,6 +155,20 @@ export const schema = {
                         "connectionType": "HAS_MANY",
                         "associatedWith": "productID"
                     }
+                },
+                "image": {
+                    "name": "image",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "rating": {
+                    "name": "rating",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": true,
+                    "attributes": []
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -608,6 +622,13 @@ export const schema = {
                         "associatedWith": "userID"
                     }
                 },
+                "image": {
+                    "name": "image",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -751,5 +772,5 @@ export const schema = {
         }
     },
     "nonModels": {},
-    "version": "b1ca4f4d7cb0adb3d7dca24a37fd4556"
+    "version": "a5d70b5063819ca2ccdba548ef0a47d0"
 };

@@ -56,12 +56,14 @@ export declare class OrderItem {
 
 export declare class Product {
   readonly id: string;
-  readonly name: string;
+  readonly title: string;
+  readonly subTitle?: string | null;
   readonly description: string;
   readonly size?: (string | null)[] | null;
   readonly price: number;
-  readonly rating: number;
   readonly Likes?: (Likes | null)[] | null;
+  readonly image: string;
+  readonly rating: number;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<Product, ProductMetaData>);
@@ -118,6 +120,7 @@ export declare class User {
   readonly Basket?: Basket | null;
   readonly Likes?: (Likes | null)[] | null;
   readonly Orders?: (Order | null)[] | null;
+  readonly image?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   readonly userBasketId?: string | null;

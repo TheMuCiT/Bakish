@@ -7,6 +7,8 @@ import AuthContextProvider from './src/contexts/AuthContext';
 
 import Navigation from './src/navigation';
 
+import Client from './src/apollo/Client';
+
 const urlOpener = async (url: string, redirectUrl: string) => {
   await InAppBrowser.isAvailable();
   const response = await InAppBrowser.openAuth(url, redirectUrl, {
@@ -34,7 +36,9 @@ Amplify.configure(updatedConfig);
 const App = () => {
   return (
     <AuthContextProvider>
-      <Navigation />
+      <Client>
+        <Navigation />
+      </Client>
     </AuthContextProvider>
   );
 };

@@ -55,18 +55,16 @@ exports.handler = async (event, context) => {
     return;
   }
 
+  console.log(event);
+
   // if the user already exists
 
-  const {sub, name, email} = event.request.userAttributes; //{sub, email,name}
+  const {sub, email} = event.request.userAttributes; //{sub, email,name}
 
   const newUser = {
     id: sub,
-    owner: sub,
-    name,
+    username: event.userName,
     email,
-    nofPosts: 0,
-    nofFollowers: 0,
-    nofFollowings: 0,
   };
 
   if (!(await userExists(newUser.id))) {

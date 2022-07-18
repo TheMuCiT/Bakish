@@ -2,12 +2,13 @@ import {View, Text, Image, useWindowDimensions} from 'react-native';
 import React from 'react';
 
 import styles from './styles';
+import {Ads} from '../../API';
 
 interface IAds {
-  ads: {id: number; title: string; text: string; image: string};
+  ads: Ads;
 }
 
-const Ads = ({ads}: IAds) => {
+const AdsComponent = ({ads}: IAds) => {
   const {width} = useWindowDimensions();
   return (
     <View style={[styles.root, {width: width - 50}]}>
@@ -20,4 +21,4 @@ const Ads = ({ads}: IAds) => {
   );
 };
 
-export default Ads;
+export default AdsComponent;

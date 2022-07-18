@@ -19,7 +19,7 @@
       "function": {
         "BakishPostConfirmation": {
           "deploymentBucketName": "amplify-bakish-staging-190346-deployment",
-          "s3Key": "amplify-builds/BakishPostConfirmation-4b75585673526f504d36-build.zip"
+          "s3Key": "amplify-builds/BakishPostConfirmation-6f336f3069314c546933-build.zip"
         }
       }
     }

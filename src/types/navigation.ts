@@ -35,6 +35,13 @@ export type CheckoutNavigatorProp = NativeStackNavigationProp<
   'HomeScreen'
 >;
 
+//Prop
+
+export type ProductRouteProp = RouteProp<
+  HomeStackNavigatorParamList,
+  'ProductScreen'
+>;
+
 //Auth
 
 export type AuthStackNavigatorParamList = {

@@ -5,12 +5,10 @@ import {
   ScrollView,
   Pressable,
   useWindowDimensions,
+  ActivityIndicator,
 } from 'react-native';
 
-//data
-import ads from '../../data/ads.json';
-
-import Ads from '../../components/ads/Ads';
+import AdsComponent from '../../components/ads/AdsComponent';
 
 import Newest from '../../assets/icons/Newest';
 import Recommended from '../../assets/icons/Recommended';
@@ -18,6 +16,9 @@ import Recommended from '../../assets/icons/Recommended';
 import styles from './styles';
 import {useRef, useState} from 'react';
 import colors from '../../theme/colors';
+import {useQuery} from '@apollo/client';
+import {listAds} from './queries';
+import {ListAdsQuery, ListAdsQueryVariables} from '../../API';
 const HomeScreenHeader = () => {
   const [activeCategory, setActiveCategory] = useState(1);
 
@@ -25,22 +26,34 @@ const HomeScreenHeader = () => {
 
   const width = useWindowDimensions().width;
 
-  const test: number[] = [];
+  const snapOffset: number[] = [];
 
-  ads.map((i, index) => {
-    test.push((width - 35) * (index + 1));
+  const {data, loading, error} = useQuery<ListAdsQuery, ListAdsQueryVariables>(
+    listAds,
+  );
+
+  data?.listAds?.items.map((i, index) => {
+    snapOffset.push((width - 35) * (index + 1));
   });
+
+  if (loading) {
+    return <ActivityIndicator />;
+  }
+
+  if (error) {
+    return <Text>{error.message}</Text>;
+  }
 
   return (
     <View style={{flex: 1, backgroundColor: colors.white}}>
       <View>
         <FlatList
-          data={ads}
-          renderItem={({item}) => item && <Ads ads={item} />}
+          data={data?.listAds?.items || []}
+          renderItem={({item}) => item && <AdsComponent ads={item} />}
           horizontal
           showsHorizontalScrollIndicator={false}
           ItemSeparatorComponent={() => <View style={{width: 15}} />}
-          snapToOffsets={test}
+          snapToOffsets={snapOffset}
           snapToAlignment={'center'}
           decelerationRate={'fast'}
           viewabilityConfig={viewConfig.current}

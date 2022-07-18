@@ -9,10 +9,12 @@ export const onCreateOrderItem = /* GraphQL */ `
       quantity
       Product {
         id
-        name
+        title
+        subTitle
         description
         size
         price
+        image
         rating
         createdAt
         updatedAt
@@ -37,10 +39,12 @@ export const onUpdateOrderItem = /* GraphQL */ `
       quantity
       Product {
         id
-        name
+        title
+        subTitle
         description
         size
         price
+        image
         rating
         createdAt
         updatedAt
@@ -65,10 +69,12 @@ export const onDeleteOrderItem = /* GraphQL */ `
       quantity
       Product {
         id
-        name
+        title
+        subTitle
         description
         size
         price
+        image
         rating
         createdAt
         updatedAt
@@ -189,15 +195,17 @@ export const onCreateProduct = /* GraphQL */ `
   subscription OnCreateProduct {
     onCreateProduct {
       id
-      name
+      title
+      subTitle
       description
       size
       price
-      rating
       Likes {
         nextToken
         startedAt
       }
+      image
+      rating
       createdAt
       updatedAt
       _version
@@ -210,15 +218,17 @@ export const onUpdateProduct = /* GraphQL */ `
   subscription OnUpdateProduct {
     onUpdateProduct {
       id
-      name
+      title
+      subTitle
       description
       size
       price
-      rating
       Likes {
         nextToken
         startedAt
       }
+      image
+      rating
       createdAt
       updatedAt
       _version
@@ -231,15 +241,17 @@ export const onDeleteProduct = /* GraphQL */ `
   subscription OnDeleteProduct {
     onDeleteProduct {
       id
-      name
+      title
+      subTitle
       description
       size
       price
-      rating
       Likes {
         nextToken
         startedAt
       }
+      image
+      rating
       createdAt
       updatedAt
       _version
@@ -255,10 +267,12 @@ export const onCreateBasketItem = /* GraphQL */ `
       quantity
       Product {
         id
-        name
+        title
+        subTitle
         description
         size
         price
+        image
         rating
         createdAt
         updatedAt
@@ -283,10 +297,12 @@ export const onUpdateBasketItem = /* GraphQL */ `
       quantity
       Product {
         id
-        name
+        title
+        subTitle
         description
         size
         price
+        image
         rating
         createdAt
         updatedAt
@@ -311,10 +327,12 @@ export const onDeleteBasketItem = /* GraphQL */ `
       quantity
       Product {
         id
-        name
+        title
+        subTitle
         description
         size
         price
+        image
         rating
         createdAt
         updatedAt
@@ -402,6 +420,7 @@ export const onCreateUser = /* GraphQL */ `
         nextToken
         startedAt
       }
+      image
       createdAt
       updatedAt
       _version
@@ -433,6 +452,7 @@ export const onUpdateUser = /* GraphQL */ `
         nextToken
         startedAt
       }
+      image
       createdAt
       updatedAt
       _version
@@ -464,6 +484,7 @@ export const onDeleteUser = /* GraphQL */ `
         nextToken
         startedAt
       }
+      image
       createdAt
       updatedAt
       _version

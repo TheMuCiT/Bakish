@@ -6,8 +6,13 @@ import Plus from '../../assets/icons/Plus';
 import colors from '../../theme/colors';
 import styles from './styles';
 import {HomePageNavigatorProp} from '../../types/navigation';
+import {Product} from '../../API';
 
-const Product = ({product}: any) => {
+interface IProduct {
+  product: Product;
+}
+
+const ProductComponent = ({product}: IProduct) => {
   const navigation = useNavigation<HomePageNavigatorProp>();
   const {width} = useWindowDimensions();
 
@@ -32,11 +37,11 @@ const Product = ({product}: any) => {
       </View>
       <View style={styles.content}>
         <Text style={styles.title}>{product.title}</Text>
-        <Text style={styles.text}>{product.subTitle}</Text>
+        <Text style={styles.text}>{product.subTitle || ' '}</Text>
         <Text style={styles.price}>$ {product.price.toFixed(2)}</Text>
       </View>
     </Pressable>
   );
 };
 
-export default Product;
+export default ProductComponent;

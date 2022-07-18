@@ -29,12 +29,14 @@ type Likes @model @auth(rules: [{allow: public}]) {
 
 type Product @model @auth(rules: [{allow: public}]) {
   id: ID!
-  name: String!
+  title: String!
+  subTitle: String
   description: String!
   size: [String]
   price: Float!
-  rating: Float!
   Likes: [Likes] @hasMany(indexName: "byProduct", fields: ["id"])
+  image: String!
+  rating: Float!
 }
 
 type BasketItem @model @auth(rules: [{allow: public}]) {
@@ -56,6 +58,7 @@ type User @model @auth(rules: [{allow: public}]) {
   Basket: Basket @hasOne
   Likes: [Likes] @hasMany(indexName: "byUser", fields: ["id"])
   Orders: [Order] @hasMany(indexName: "byUser", fields: ["id"])
+  image: String
 }
 
 type Ads @model @auth(rules: [{allow: public}]) {
@@ -65,3 +68,4 @@ type Ads @model @auth(rules: [{allow: public}]) {
   date: AWSDate!
   image: String!
 }
+ 
