@@ -1,4 +1,3 @@
-import {useState} from 'react';
 import {View, Text, Image, Pressable} from 'react-native';
 
 import Plus from '../../assets/icons/Plus';
@@ -6,49 +5,41 @@ import Minus from '../../assets/icons/Minus';
 
 import styles from './styles';
 import colors from '../../theme/colors';
+import {BasketItem} from '../../API';
+
+import useCheckoutService from '../../services/CheckoutService';
 
 interface IItem {
-  item: {
-    id: number;
-    title: string;
-    subTitle: string;
-    price: number;
-    size: string;
-    qty: number;
-    image: string;
-  };
+  item: BasketItem;
 }
 
 const CheckoutItem = ({item}: IItem) => {
-  const [qty, setQty] = useState(item.qty);
+  const {onChangeQuantity} = useCheckoutService();
   const handleQty = (amount: 1 | -1) => {
-    if (amount === -1 && qty === 1) {
-      return;
-    }
-    setQty(qty + amount);
+    onChangeQuantity(amount, item);
   };
 
   return (
     <View style={styles.root}>
       <View style={styles.left}>
-        <Image source={{uri: item.image}} style={styles.image} />
+        <Image source={{uri: item.Product?.image}} style={styles.image} />
       </View>
       <View style={styles.right}>
-        <Text style={styles.title}>{item.title}</Text>
+        <Text style={styles.title}>{item.Product?.title}</Text>
         <View style={styles.subTitle}>
           <Text style={styles.subTitleText}>
-            {item.subTitle} • {item.size}
+            {item.Product?.subTitle} • {item.ProductSize.size}
           </Text>
         </View>
         <View style={styles.container}>
-          <Text style={styles.price}>$ {item.price}</Text>
+          <Text style={styles.price}>$ {item.ProductSize.price}</Text>
           <View style={styles.noFItemContainer}>
             <Pressable
               onPress={() => handleQty(-1)}
               style={styles.noFItemButton}>
               <Minus />
             </Pressable>
-            <Text style={styles.noFItem}>{qty}</Text>
+            <Text style={styles.noFItem}>{item.quantity}</Text>
             <Pressable
               onPress={() => handleQty(1)}
               style={styles.noFItemButton}>

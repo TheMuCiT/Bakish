@@ -3,7 +3,7 @@
   "serviceConfiguration": {
     "apiName": "Bakish",
     "serviceName": "AppSync",
-    "gqlSchemaPath": "/tmp/amplify-aac21eb2-4f43-415c-a3c6-6640f8f1f427/amplify/backend/api/Bakish/schema.graphql",
+    "gqlSchemaPath": "/tmp/amplify-d07b872c-b7f9-49e5-b416-779017811b56/amplify/backend/api/Bakish/schema.graphql",
     "defaultAuthType": {
       "mode": "API_KEY",
       "keyDescription": "api key description",

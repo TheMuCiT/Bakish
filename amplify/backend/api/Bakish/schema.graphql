@@ -6,11 +6,22 @@ enum OrderStatus {
   COMPLETED
 }
 
-type OrderItem @model @auth(rules: [{allow: public}]) {
+type Product @model @auth(rules: [{allow: public}]) {
   id: ID!
-  quantity: Int!
-  Product: Product @hasOne
-  orderID: ID! @index(name: "byOrder")
+  title: String!
+  subTitle: String
+  description: String!
+  Likes: [Likes] @hasMany(indexName: "byProduct", fields: ["id"])
+  image: String!
+  rating: Float!
+  ProductSizes: [ProductSize!] @hasMany(indexName: "byProduct", fields: ["id"])
+}
+
+type ProductSize @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  size: Int!
+  price: Float!
+  productID: ID! @index(name: "byProduct")
 }
 
 type Order @model @auth(rules: [{allow: public}]) {
@@ -27,28 +38,20 @@ type Likes @model @auth(rules: [{allow: public}]) {
   productID: ID! @index(name: "byProduct")
 }
 
-type Product @model @auth(rules: [{allow: public}]) {
+type OrderItem @model @auth(rules: [{allow: public}]) {
   id: ID!
-  title: String!
-  subTitle: String
-  description: String!
-  size: [String]
-  price: Float!
-  Likes: [Likes] @hasMany(indexName: "byProduct", fields: ["id"])
-  image: String!
-  rating: Float!
+  quantity: Int!
+  Product: ProductSize @hasOne
+  orderID: ID! @index(name: "byOrder")
 }
 
 type BasketItem @model @auth(rules: [{allow: public}]) {
   id: ID!
   quantity: Int!
-  Product: Product @hasOne
+  Product: Product! @hasOne
   basketID: ID! @index(name: "byBasket")
-}
-
-type Basket @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  BasketItems: [BasketItem] @hasMany(indexName: "byBasket", fields: ["id"])
+  size: String
+  ProductSize: ProductSize! @hasOne
 }
 
 type User @model @auth(rules: [{allow: public}]) {
@@ -59,6 +62,11 @@ type User @model @auth(rules: [{allow: public}]) {
   Likes: [Likes] @hasMany(indexName: "byUser", fields: ["id"])
   Orders: [Order] @hasMany(indexName: "byUser", fields: ["id"])
   image: String
+}
+
+type Basket @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  BasketItems: [BasketItem] @hasMany(indexName: "byBasket", fields: ["id"])
 }
 
 type Ads @model @auth(rules: [{allow: public}]) {

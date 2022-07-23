@@ -5,6 +5,7 @@ import {
   Pressable,
   ScrollView,
   ActivityIndicator,
+  Alert,
 } from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import styles from './styles';
@@ -17,18 +18,47 @@ import Plus from '../../assets/icons/Plus';
 import Minus from '../../assets/icons/Minus';
 import AddToCart from '../../assets/icons/AddToCart';
 import colors from '../../theme/colors';
-import {useState} from 'react';
+import {useMemo, useState} from 'react';
 import {ProductNavigatorProp, ProductRouteProp} from '../../types/navigation';
 import {useQuery} from '@apollo/client';
-import {getProduct} from './quary';
-import {GetProductQuery, GetProductQueryVariables} from '../../API';
+import {getProduct, getUser} from './queries';
+import {
+  GetProductQuery,
+  GetProductQueryVariables,
+  GetUserQuery,
+  GetUserQueryVariables,
+  ProductSize,
+  User,
+} from '../../API';
 import {DEFAULT_PRODUCT_IMAGE} from '../../config';
+import {useAuthContext} from '../../contexts/AuthContext';
+
+import useCreateBasketService from '../../services/CreateBasketService/CreateBasketService';
 
 const ProductScreen = () => {
+  const {userId} = useAuthContext();
+  const {onCreateBasket, onAddBasketItem} = useCreateBasketService();
   const route = useRoute<ProductRouteProp>();
   const {productId} = route.params;
 
   const navigation = useNavigation<ProductNavigatorProp>();
+
+  const {
+    data: userDataExtract,
+    loading: userLoading,
+    error: userError,
+  } = useQuery<GetUserQuery, GetUserQueryVariables>(getUser, {
+    variables: {id: userId},
+  });
+
+  const {data, loading, error} = useQuery<
+    GetProductQuery,
+    GetProductQueryVariables
+  >(getProduct, {variables: {id: productId}});
+
+  const userData = userDataExtract?.getUser;
+  let userBasketId = userData?.userBasketId;
+
   const [qty, setQty] = useState(1);
 
   const handleQty = (amount: 1 | -1) => {
@@ -42,24 +72,52 @@ const ProductScreen = () => {
     navigation.goBack();
   };
 
-  const {data, loading, error} = useQuery<
-    GetProductQuery,
-    GetProductQueryVariables
-  >(getProduct, {variables: {id: productId}});
-
   const product = data?.getProduct;
 
-  const [selectedSize, setSelectedSize] = useState(product?.size?.[0]);
+  const [selectedItem, setSelectedItem] = useState<ProductSize>();
 
-  if (loading) {
+  const defaultItem = product?.ProductSizes?.items[0];
+
+  const breadSize = product?.ProductSizes?.items || [];
+
+  const handleAddToCard = async () => {
+    if (userBasketId === null) {
+      //create basket
+      if (product && selectedItem && userData) {
+        await onCreateBasket(
+          product.id,
+          qty,
+          selectedItem.id,
+          userData as User,
+        );
+      }
+    } else {
+      if (product && userBasketId && selectedItem) {
+        onAddBasketItem(product.id, qty, userBasketId, selectedItem.id);
+      } else {
+        Alert.alert('Error add new item to the basket');
+      }
+    }
+  };
+
+  useMemo(() => {
+    if (data?.getProduct?.ProductSizes?.items[0]) {
+      setSelectedItem(data.getProduct.ProductSizes.items[0]);
+    }
+  }, [data]);
+
+  const handleSizeChange = (item: ProductSize) => {
+    setSelectedItem(item);
+  };
+
+  if (loading || userLoading) {
     return <ActivityIndicator />;
   }
 
-  if (error) {
-    return <Text>{error.message}</Text>;
+  if (error || userError) {
+    return <Text>{error?.message || userError?.message}</Text>;
   }
 
-  const breadSize = product?.size || [];
   return (
     <View style={styles.page}>
       {/* Product screen header */}
@@ -84,7 +142,9 @@ const ProductScreen = () => {
         <View style={styles.title}>
           <Text style={styles.titleText}>{product?.title}</Text>
           <View style={styles.priceContainer}>
-            <Text style={styles.price}>$ {product?.price}</Text>
+            <Text style={styles.price}>
+              $ {selectedItem?.price || defaultItem?.price}
+            </Text>
             <View style={styles.noFItemContainer}>
               <Pressable
                 onPress={() => handleQty(-1)}
@@ -130,20 +190,20 @@ const ProductScreen = () => {
             <View style={styles.sizeSelectorContainer}>
               {breadSize.map(item => (
                 <Pressable
-                  key={item}
-                  onPress={() => setSelectedSize(item)}
+                  key={item?.id}
+                  onPress={() => item && handleSizeChange(item)}
                   style={
-                    selectedSize === item
+                    selectedItem?.size === item?.size
                       ? styles.sizeSelectorHighlight
                       : styles.sizeSelector
                   }>
                   <Text
                     style={
-                      selectedSize === item
+                      selectedItem?.size === item?.size
                         ? styles.sizeSelectorTextHighlight
                         : styles.sizeSelectorText
                     }>
-                    {item}
+                    {item?.size}
                   </Text>
                 </Pressable>
               ))}
@@ -153,7 +213,7 @@ const ProductScreen = () => {
 
         {/* Product screen button */}
         <View style={styles.buttonContainer}>
-          <Pressable style={styles.button}>
+          <Pressable onPress={handleAddToCard} style={styles.button}>
             <AddToCart />
             <Text style={styles.buttonText}>Add to cart</Text>
           </Pressable>

@@ -2,102 +2,204 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createOrderItem = /* GraphQL */ `
-  mutation CreateOrderItem(
-    $input: CreateOrderItemInput!
-    $condition: ModelOrderItemConditionInput
+export const createProduct = /* GraphQL */ `
+  mutation CreateProduct(
+    $input: CreateProductInput!
+    $condition: ModelProductConditionInput
   ) {
-    createOrderItem(input: $input, condition: $condition) {
+    createProduct(input: $input, condition: $condition) {
       id
-      quantity
-      Product {
-        id
-        title
-        subTitle
-        description
-        size
-        price
-        image
-        rating
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
+      title
+      subTitle
+      description
+      Likes {
+        items {
+          id
+          userID
+          productID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
       }
-      orderID
+      image
+      rating
+      ProductSizes {
+        items {
+          id
+          size
+          price
+          productID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      orderItemProductId
     }
   }
 `;
-export const updateOrderItem = /* GraphQL */ `
-  mutation UpdateOrderItem(
-    $input: UpdateOrderItemInput!
-    $condition: ModelOrderItemConditionInput
+export const updateProduct = /* GraphQL */ `
+  mutation UpdateProduct(
+    $input: UpdateProductInput!
+    $condition: ModelProductConditionInput
   ) {
-    updateOrderItem(input: $input, condition: $condition) {
+    updateProduct(input: $input, condition: $condition) {
       id
-      quantity
-      Product {
-        id
-        title
-        subTitle
-        description
-        size
-        price
-        image
-        rating
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
+      title
+      subTitle
+      description
+      Likes {
+        items {
+          id
+          userID
+          productID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
       }
-      orderID
+      image
+      rating
+      ProductSizes {
+        items {
+          id
+          size
+          price
+          productID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      orderItemProductId
     }
   }
 `;
-export const deleteOrderItem = /* GraphQL */ `
-  mutation DeleteOrderItem(
-    $input: DeleteOrderItemInput!
-    $condition: ModelOrderItemConditionInput
+export const deleteProduct = /* GraphQL */ `
+  mutation DeleteProduct(
+    $input: DeleteProductInput!
+    $condition: ModelProductConditionInput
   ) {
-    deleteOrderItem(input: $input, condition: $condition) {
+    deleteProduct(input: $input, condition: $condition) {
       id
-      quantity
-      Product {
-        id
-        title
-        subTitle
-        description
-        size
-        price
-        image
-        rating
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
+      title
+      subTitle
+      description
+      Likes {
+        items {
+          id
+          userID
+          productID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
       }
-      orderID
+      image
+      rating
+      ProductSizes {
+        items {
+          id
+          size
+          price
+          productID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      orderItemProductId
+    }
+  }
+`;
+export const createProductSize = /* GraphQL */ `
+  mutation CreateProductSize(
+    $input: CreateProductSizeInput!
+    $condition: ModelProductSizeConditionInput
+  ) {
+    createProductSize(input: $input, condition: $condition) {
+      id
+      size
+      price
+      productID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateProductSize = /* GraphQL */ `
+  mutation UpdateProductSize(
+    $input: UpdateProductSizeInput!
+    $condition: ModelProductSizeConditionInput
+  ) {
+    updateProductSize(input: $input, condition: $condition) {
+      id
+      size
+      price
+      productID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteProductSize = /* GraphQL */ `
+  mutation DeleteProductSize(
+    $input: DeleteProductSizeInput!
+    $condition: ModelProductSizeConditionInput
+  ) {
+    deleteProductSize(input: $input, condition: $condition) {
+      id
+      size
+      price
+      productID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -112,6 +214,28 @@ export const createOrder = /* GraphQL */ `
       total
       status
       OrderItems {
+        items {
+          id
+          quantity
+          Product {
+            id
+            size
+            price
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          orderID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          orderItemProductId
+        }
         nextToken
         startedAt
       }
@@ -134,6 +258,28 @@ export const updateOrder = /* GraphQL */ `
       total
       status
       OrderItems {
+        items {
+          id
+          quantity
+          Product {
+            id
+            size
+            price
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          orderID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          orderItemProductId
+        }
         nextToken
         startedAt
       }
@@ -156,6 +302,28 @@ export const deleteOrder = /* GraphQL */ `
       total
       status
       OrderItems {
+        items {
+          id
+          quantity
+          Product {
+            id
+            size
+            price
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          orderID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          orderItemProductId
+        }
         nextToken
         startedAt
       }
@@ -218,81 +386,90 @@ export const deleteLikes = /* GraphQL */ `
     }
   }
 `;
-export const createProduct = /* GraphQL */ `
-  mutation CreateProduct(
-    $input: CreateProductInput!
-    $condition: ModelProductConditionInput
+export const createOrderItem = /* GraphQL */ `
+  mutation CreateOrderItem(
+    $input: CreateOrderItemInput!
+    $condition: ModelOrderItemConditionInput
   ) {
-    createProduct(input: $input, condition: $condition) {
+    createOrderItem(input: $input, condition: $condition) {
       id
-      title
-      subTitle
-      description
-      size
-      price
-      Likes {
-        nextToken
-        startedAt
+      quantity
+      Product {
+        id
+        size
+        price
+        productID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
       }
-      image
-      rating
+      orderID
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      orderItemProductId
     }
   }
 `;
-export const updateProduct = /* GraphQL */ `
-  mutation UpdateProduct(
-    $input: UpdateProductInput!
-    $condition: ModelProductConditionInput
+export const updateOrderItem = /* GraphQL */ `
+  mutation UpdateOrderItem(
+    $input: UpdateOrderItemInput!
+    $condition: ModelOrderItemConditionInput
   ) {
-    updateProduct(input: $input, condition: $condition) {
+    updateOrderItem(input: $input, condition: $condition) {
       id
-      title
-      subTitle
-      description
-      size
-      price
-      Likes {
-        nextToken
-        startedAt
+      quantity
+      Product {
+        id
+        size
+        price
+        productID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
       }
-      image
-      rating
+      orderID
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      orderItemProductId
     }
   }
 `;
-export const deleteProduct = /* GraphQL */ `
-  mutation DeleteProduct(
-    $input: DeleteProductInput!
-    $condition: ModelProductConditionInput
+export const deleteOrderItem = /* GraphQL */ `
+  mutation DeleteOrderItem(
+    $input: DeleteOrderItemInput!
+    $condition: ModelOrderItemConditionInput
   ) {
-    deleteProduct(input: $input, condition: $condition) {
+    deleteOrderItem(input: $input, condition: $condition) {
       id
-      title
-      subTitle
-      description
-      size
-      price
-      Likes {
-        nextToken
-        startedAt
+      quantity
+      Product {
+        id
+        size
+        price
+        productID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
       }
-      image
-      rating
+      orderID
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      orderItemProductId
     }
   }
 `;
@@ -309,10 +486,37 @@ export const createBasketItem = /* GraphQL */ `
         title
         subTitle
         description
-        size
-        price
+        Likes {
+          items {
+            id
+            userID
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
         image
         rating
+        ProductSizes {
+          items {
+            id
+            size
+            price
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
         createdAt
         updatedAt
         _version
@@ -320,12 +524,25 @@ export const createBasketItem = /* GraphQL */ `
         _lastChangedAt
       }
       basketID
+      size
+      ProductSize {
+        id
+        size
+        price
+        productID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
       basketItemProductId
+      basketItemProductSizeId
     }
   }
 `;
@@ -342,10 +559,37 @@ export const updateBasketItem = /* GraphQL */ `
         title
         subTitle
         description
-        size
-        price
+        Likes {
+          items {
+            id
+            userID
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
         image
         rating
+        ProductSizes {
+          items {
+            id
+            size
+            price
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
         createdAt
         updatedAt
         _version
@@ -353,12 +597,25 @@ export const updateBasketItem = /* GraphQL */ `
         _lastChangedAt
       }
       basketID
+      size
+      ProductSize {
+        id
+        size
+        price
+        productID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
       basketItemProductId
+      basketItemProductSizeId
     }
   }
 `;
@@ -375,10 +632,37 @@ export const deleteBasketItem = /* GraphQL */ `
         title
         subTitle
         description
-        size
-        price
+        Likes {
+          items {
+            id
+            userID
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
         image
         rating
+        ProductSizes {
+          items {
+            id
+            size
+            price
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
         createdAt
         updatedAt
         _version
@@ -386,69 +670,25 @@ export const deleteBasketItem = /* GraphQL */ `
         _lastChangedAt
       }
       basketID
+      size
+      ProductSize {
+        id
+        size
+        price
+        productID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
       basketItemProductId
-    }
-  }
-`;
-export const createBasket = /* GraphQL */ `
-  mutation CreateBasket(
-    $input: CreateBasketInput!
-    $condition: ModelBasketConditionInput
-  ) {
-    createBasket(input: $input, condition: $condition) {
-      id
-      BasketItems {
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const updateBasket = /* GraphQL */ `
-  mutation UpdateBasket(
-    $input: UpdateBasketInput!
-    $condition: ModelBasketConditionInput
-  ) {
-    updateBasket(input: $input, condition: $condition) {
-      id
-      BasketItems {
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const deleteBasket = /* GraphQL */ `
-  mutation DeleteBasket(
-    $input: DeleteBasketInput!
-    $condition: ModelBasketConditionInput
-  ) {
-    deleteBasket(input: $input, condition: $condition) {
-      id
-      BasketItems {
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
+      basketItemProductSizeId
     }
   }
 `;
@@ -463,6 +703,23 @@ export const createUser = /* GraphQL */ `
       email
       Basket {
         id
+        BasketItems {
+          items {
+            id
+            quantity
+            basketID
+            size
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            basketItemProductId
+            basketItemProductSizeId
+          }
+          nextToken
+          startedAt
+        }
         createdAt
         updatedAt
         _version
@@ -470,10 +727,35 @@ export const createUser = /* GraphQL */ `
         _lastChangedAt
       }
       Likes {
+        items {
+          id
+          userID
+          productID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
         nextToken
         startedAt
       }
       Orders {
+        items {
+          id
+          userID
+          total
+          status
+          OrderItems {
+            nextToken
+            startedAt
+          }
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
         nextToken
         startedAt
       }
@@ -498,6 +780,23 @@ export const updateUser = /* GraphQL */ `
       email
       Basket {
         id
+        BasketItems {
+          items {
+            id
+            quantity
+            basketID
+            size
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            basketItemProductId
+            basketItemProductSizeId
+          }
+          nextToken
+          startedAt
+        }
         createdAt
         updatedAt
         _version
@@ -505,10 +804,35 @@ export const updateUser = /* GraphQL */ `
         _lastChangedAt
       }
       Likes {
+        items {
+          id
+          userID
+          productID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
         nextToken
         startedAt
       }
       Orders {
+        items {
+          id
+          userID
+          total
+          status
+          OrderItems {
+            nextToken
+            startedAt
+          }
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
         nextToken
         startedAt
       }
@@ -533,6 +857,23 @@ export const deleteUser = /* GraphQL */ `
       email
       Basket {
         id
+        BasketItems {
+          items {
+            id
+            quantity
+            basketID
+            size
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            basketItemProductId
+            basketItemProductSizeId
+          }
+          nextToken
+          startedAt
+        }
         createdAt
         updatedAt
         _version
@@ -540,10 +881,35 @@ export const deleteUser = /* GraphQL */ `
         _lastChangedAt
       }
       Likes {
+        items {
+          id
+          userID
+          productID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
         nextToken
         startedAt
       }
       Orders {
+        items {
+          id
+          userID
+          total
+          status
+          OrderItems {
+            nextToken
+            startedAt
+          }
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
         nextToken
         startedAt
       }
@@ -554,6 +920,174 @@ export const deleteUser = /* GraphQL */ `
       _deleted
       _lastChangedAt
       userBasketId
+    }
+  }
+`;
+export const createBasket = /* GraphQL */ `
+  mutation CreateBasket(
+    $input: CreateBasketInput!
+    $condition: ModelBasketConditionInput
+  ) {
+    createBasket(input: $input, condition: $condition) {
+      id
+      BasketItems {
+        items {
+          id
+          quantity
+          Product {
+            id
+            title
+            subTitle
+            description
+            image
+            rating
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          basketID
+          size
+          ProductSize {
+            id
+            size
+            price
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          basketItemProductId
+          basketItemProductSizeId
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateBasket = /* GraphQL */ `
+  mutation UpdateBasket(
+    $input: UpdateBasketInput!
+    $condition: ModelBasketConditionInput
+  ) {
+    updateBasket(input: $input, condition: $condition) {
+      id
+      BasketItems {
+        items {
+          id
+          quantity
+          Product {
+            id
+            title
+            subTitle
+            description
+            image
+            rating
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          basketID
+          size
+          ProductSize {
+            id
+            size
+            price
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          basketItemProductId
+          basketItemProductSizeId
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteBasket = /* GraphQL */ `
+  mutation DeleteBasket(
+    $input: DeleteBasketInput!
+    $condition: ModelBasketConditionInput
+  ) {
+    deleteBasket(input: $input, condition: $condition) {
+      id
+      BasketItems {
+        items {
+          id
+          quantity
+          Product {
+            id
+            title
+            subTitle
+            description
+            image
+            rating
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          basketID
+          size
+          ProductSize {
+            id
+            size
+            price
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          basketItemProductId
+          basketItemProductSizeId
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;

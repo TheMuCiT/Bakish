@@ -38,7 +38,9 @@ const ProductComponent = ({product}: IProduct) => {
       <View style={styles.content}>
         <Text style={styles.title}>{product.title}</Text>
         <Text style={styles.text}>{product.subTitle || ' '}</Text>
-        <Text style={styles.price}>$ {product.price.toFixed(2)}</Text>
+        <Text style={styles.price}>
+          $ {product.ProductSizes?.items[0]?.price.toFixed(2)}
+        </Text>
       </View>
     </Pressable>
   );

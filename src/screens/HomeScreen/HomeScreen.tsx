@@ -88,7 +88,7 @@ const HomeScreen = () => {
       </View>
       {/* HomeScreen product flatList */}
       <FlatList
-        data={productData?.listProducts?.items || []}
+        data={productData?.listProducts?.items}
         renderItem={({item}) => item && <ProductComponent product={item} />}
         contentContainerStyle={{paddingHorizontal: 0}}
         numColumns={2}

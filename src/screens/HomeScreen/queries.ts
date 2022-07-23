@@ -11,11 +11,22 @@ export const listProducts = gql`
         id
         title
         subTitle
-        description
-        size
-        price
         image
-        rating
+        ProductSizes {
+          items {
+            id
+            size
+            price
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
         createdAt
         updatedAt
         _version

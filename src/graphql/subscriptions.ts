@@ -2,93 +2,186 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateOrderItem = /* GraphQL */ `
-  subscription OnCreateOrderItem {
-    onCreateOrderItem {
+export const onCreateProduct = /* GraphQL */ `
+  subscription OnCreateProduct {
+    onCreateProduct {
       id
-      quantity
-      Product {
-        id
-        title
-        subTitle
-        description
-        size
-        price
-        image
-        rating
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
+      title
+      subTitle
+      description
+      Likes {
+        items {
+          id
+          userID
+          productID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
       }
-      orderID
+      image
+      rating
+      ProductSizes {
+        items {
+          id
+          size
+          price
+          productID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      orderItemProductId
     }
   }
 `;
-export const onUpdateOrderItem = /* GraphQL */ `
-  subscription OnUpdateOrderItem {
-    onUpdateOrderItem {
+export const onUpdateProduct = /* GraphQL */ `
+  subscription OnUpdateProduct {
+    onUpdateProduct {
       id
-      quantity
-      Product {
-        id
-        title
-        subTitle
-        description
-        size
-        price
-        image
-        rating
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
+      title
+      subTitle
+      description
+      Likes {
+        items {
+          id
+          userID
+          productID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
       }
-      orderID
+      image
+      rating
+      ProductSizes {
+        items {
+          id
+          size
+          price
+          productID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      orderItemProductId
     }
   }
 `;
-export const onDeleteOrderItem = /* GraphQL */ `
-  subscription OnDeleteOrderItem {
-    onDeleteOrderItem {
+export const onDeleteProduct = /* GraphQL */ `
+  subscription OnDeleteProduct {
+    onDeleteProduct {
       id
-      quantity
-      Product {
-        id
-        title
-        subTitle
-        description
-        size
-        price
-        image
-        rating
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
+      title
+      subTitle
+      description
+      Likes {
+        items {
+          id
+          userID
+          productID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
       }
-      orderID
+      image
+      rating
+      ProductSizes {
+        items {
+          id
+          size
+          price
+          productID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      orderItemProductId
+    }
+  }
+`;
+export const onCreateProductSize = /* GraphQL */ `
+  subscription OnCreateProductSize {
+    onCreateProductSize {
+      id
+      size
+      price
+      productID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdateProductSize = /* GraphQL */ `
+  subscription OnUpdateProductSize {
+    onUpdateProductSize {
+      id
+      size
+      price
+      productID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeleteProductSize = /* GraphQL */ `
+  subscription OnDeleteProductSize {
+    onDeleteProductSize {
+      id
+      size
+      price
+      productID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -100,6 +193,28 @@ export const onCreateOrder = /* GraphQL */ `
       total
       status
       OrderItems {
+        items {
+          id
+          quantity
+          Product {
+            id
+            size
+            price
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          orderID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          orderItemProductId
+        }
         nextToken
         startedAt
       }
@@ -119,6 +234,28 @@ export const onUpdateOrder = /* GraphQL */ `
       total
       status
       OrderItems {
+        items {
+          id
+          quantity
+          Product {
+            id
+            size
+            price
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          orderID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          orderItemProductId
+        }
         nextToken
         startedAt
       }
@@ -138,6 +275,28 @@ export const onDeleteOrder = /* GraphQL */ `
       total
       status
       OrderItems {
+        items {
+          id
+          quantity
+          Product {
+            id
+            size
+            price
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          orderID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          orderItemProductId
+        }
         nextToken
         startedAt
       }
@@ -191,72 +350,81 @@ export const onDeleteLikes = /* GraphQL */ `
     }
   }
 `;
-export const onCreateProduct = /* GraphQL */ `
-  subscription OnCreateProduct {
-    onCreateProduct {
+export const onCreateOrderItem = /* GraphQL */ `
+  subscription OnCreateOrderItem {
+    onCreateOrderItem {
       id
-      title
-      subTitle
-      description
-      size
-      price
-      Likes {
-        nextToken
-        startedAt
+      quantity
+      Product {
+        id
+        size
+        price
+        productID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
       }
-      image
-      rating
+      orderID
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      orderItemProductId
     }
   }
 `;
-export const onUpdateProduct = /* GraphQL */ `
-  subscription OnUpdateProduct {
-    onUpdateProduct {
+export const onUpdateOrderItem = /* GraphQL */ `
+  subscription OnUpdateOrderItem {
+    onUpdateOrderItem {
       id
-      title
-      subTitle
-      description
-      size
-      price
-      Likes {
-        nextToken
-        startedAt
+      quantity
+      Product {
+        id
+        size
+        price
+        productID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
       }
-      image
-      rating
+      orderID
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      orderItemProductId
     }
   }
 `;
-export const onDeleteProduct = /* GraphQL */ `
-  subscription OnDeleteProduct {
-    onDeleteProduct {
+export const onDeleteOrderItem = /* GraphQL */ `
+  subscription OnDeleteOrderItem {
+    onDeleteOrderItem {
       id
-      title
-      subTitle
-      description
-      size
-      price
-      Likes {
-        nextToken
-        startedAt
+      quantity
+      Product {
+        id
+        size
+        price
+        productID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
       }
-      image
-      rating
+      orderID
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      orderItemProductId
     }
   }
 `;
@@ -270,10 +438,37 @@ export const onCreateBasketItem = /* GraphQL */ `
         title
         subTitle
         description
-        size
-        price
+        Likes {
+          items {
+            id
+            userID
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
         image
         rating
+        ProductSizes {
+          items {
+            id
+            size
+            price
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
         createdAt
         updatedAt
         _version
@@ -281,12 +476,25 @@ export const onCreateBasketItem = /* GraphQL */ `
         _lastChangedAt
       }
       basketID
+      size
+      ProductSize {
+        id
+        size
+        price
+        productID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
       basketItemProductId
+      basketItemProductSizeId
     }
   }
 `;
@@ -300,10 +508,37 @@ export const onUpdateBasketItem = /* GraphQL */ `
         title
         subTitle
         description
-        size
-        price
+        Likes {
+          items {
+            id
+            userID
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
         image
         rating
+        ProductSizes {
+          items {
+            id
+            size
+            price
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
         createdAt
         updatedAt
         _version
@@ -311,12 +546,25 @@ export const onUpdateBasketItem = /* GraphQL */ `
         _lastChangedAt
       }
       basketID
+      size
+      ProductSize {
+        id
+        size
+        price
+        productID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
       basketItemProductId
+      basketItemProductSizeId
     }
   }
 `;
@@ -330,10 +578,37 @@ export const onDeleteBasketItem = /* GraphQL */ `
         title
         subTitle
         description
-        size
-        price
+        Likes {
+          items {
+            id
+            userID
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
         image
         rating
+        ProductSizes {
+          items {
+            id
+            size
+            price
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
         createdAt
         updatedAt
         _version
@@ -341,60 +616,25 @@ export const onDeleteBasketItem = /* GraphQL */ `
         _lastChangedAt
       }
       basketID
+      size
+      ProductSize {
+        id
+        size
+        price
+        productID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
       basketItemProductId
-    }
-  }
-`;
-export const onCreateBasket = /* GraphQL */ `
-  subscription OnCreateBasket {
-    onCreateBasket {
-      id
-      BasketItems {
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const onUpdateBasket = /* GraphQL */ `
-  subscription OnUpdateBasket {
-    onUpdateBasket {
-      id
-      BasketItems {
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const onDeleteBasket = /* GraphQL */ `
-  subscription OnDeleteBasket {
-    onDeleteBasket {
-      id
-      BasketItems {
-        nextToken
-        startedAt
-      }
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
+      basketItemProductSizeId
     }
   }
 `;
@@ -406,6 +646,23 @@ export const onCreateUser = /* GraphQL */ `
       email
       Basket {
         id
+        BasketItems {
+          items {
+            id
+            quantity
+            basketID
+            size
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            basketItemProductId
+            basketItemProductSizeId
+          }
+          nextToken
+          startedAt
+        }
         createdAt
         updatedAt
         _version
@@ -413,10 +670,35 @@ export const onCreateUser = /* GraphQL */ `
         _lastChangedAt
       }
       Likes {
+        items {
+          id
+          userID
+          productID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
         nextToken
         startedAt
       }
       Orders {
+        items {
+          id
+          userID
+          total
+          status
+          OrderItems {
+            nextToken
+            startedAt
+          }
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
         nextToken
         startedAt
       }
@@ -438,6 +720,23 @@ export const onUpdateUser = /* GraphQL */ `
       email
       Basket {
         id
+        BasketItems {
+          items {
+            id
+            quantity
+            basketID
+            size
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            basketItemProductId
+            basketItemProductSizeId
+          }
+          nextToken
+          startedAt
+        }
         createdAt
         updatedAt
         _version
@@ -445,10 +744,35 @@ export const onUpdateUser = /* GraphQL */ `
         _lastChangedAt
       }
       Likes {
+        items {
+          id
+          userID
+          productID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
         nextToken
         startedAt
       }
       Orders {
+        items {
+          id
+          userID
+          total
+          status
+          OrderItems {
+            nextToken
+            startedAt
+          }
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
         nextToken
         startedAt
       }
@@ -470,6 +794,23 @@ export const onDeleteUser = /* GraphQL */ `
       email
       Basket {
         id
+        BasketItems {
+          items {
+            id
+            quantity
+            basketID
+            size
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            basketItemProductId
+            basketItemProductSizeId
+          }
+          nextToken
+          startedAt
+        }
         createdAt
         updatedAt
         _version
@@ -477,10 +818,35 @@ export const onDeleteUser = /* GraphQL */ `
         _lastChangedAt
       }
       Likes {
+        items {
+          id
+          userID
+          productID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
         nextToken
         startedAt
       }
       Orders {
+        items {
+          id
+          userID
+          total
+          status
+          OrderItems {
+            nextToken
+            startedAt
+          }
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
         nextToken
         startedAt
       }
@@ -491,6 +857,165 @@ export const onDeleteUser = /* GraphQL */ `
       _deleted
       _lastChangedAt
       userBasketId
+    }
+  }
+`;
+export const onCreateBasket = /* GraphQL */ `
+  subscription OnCreateBasket {
+    onCreateBasket {
+      id
+      BasketItems {
+        items {
+          id
+          quantity
+          Product {
+            id
+            title
+            subTitle
+            description
+            image
+            rating
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          basketID
+          size
+          ProductSize {
+            id
+            size
+            price
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          basketItemProductId
+          basketItemProductSizeId
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdateBasket = /* GraphQL */ `
+  subscription OnUpdateBasket {
+    onUpdateBasket {
+      id
+      BasketItems {
+        items {
+          id
+          quantity
+          Product {
+            id
+            title
+            subTitle
+            description
+            image
+            rating
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          basketID
+          size
+          ProductSize {
+            id
+            size
+            price
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          basketItemProductId
+          basketItemProductSizeId
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeleteBasket = /* GraphQL */ `
+  subscription OnDeleteBasket {
+    onDeleteBasket {
+      id
+      BasketItems {
+        items {
+          id
+          quantity
+          Product {
+            id
+            title
+            subTitle
+            description
+            image
+            rating
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          basketID
+          size
+          ProductSize {
+            id
+            size
+            price
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          basketItemProductId
+          basketItemProductSizeId
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
