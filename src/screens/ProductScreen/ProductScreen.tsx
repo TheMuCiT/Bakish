@@ -41,6 +41,8 @@ const ProductScreen = () => {
   const route = useRoute<ProductRouteProp>();
   const {productId} = route.params;
 
+  const [loadingAdd, setLoadingAdd] = useState(false);
+
   const navigation = useNavigation<ProductNavigatorProp>();
 
   const {
@@ -81,6 +83,7 @@ const ProductScreen = () => {
   const breadSize = product?.ProductSizes?.items || [];
 
   const handleAddToCard = async () => {
+    setLoadingAdd(true);
     if (userBasketId === null) {
       //create basket
       if (product && selectedItem && userData) {
@@ -93,11 +96,13 @@ const ProductScreen = () => {
       }
     } else {
       if (product && userBasketId && selectedItem) {
+        loading;
         onAddBasketItem(product.id, qty, userBasketId, selectedItem.id);
       } else {
         Alert.alert('Error add new item to the basket');
       }
     }
+    setLoadingAdd(false);
   };
 
   useMemo(() => {
@@ -215,7 +220,9 @@ const ProductScreen = () => {
         <View style={styles.buttonContainer}>
           <Pressable onPress={handleAddToCard} style={styles.button}>
             <AddToCart />
-            <Text style={styles.buttonText}>Add to cart</Text>
+            <Text style={styles.buttonText}>
+              {loadingAdd ? 'Loading...' : 'Add to cart'}
+            </Text>
           </Pressable>
         </View>
       </ScrollView>
