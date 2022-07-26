@@ -2,6 +2,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import colors from '../theme/colors';
 import {BottomTabNavigatorParamList} from '../types/navigation';
 import HomeStackNavigator from './HomeStackNavigator';
+import PaymentStackNavigator from './PaymentStackNavigator';
 
 //Icons
 
@@ -39,7 +40,7 @@ const BottomTabNavigator = () => {
       />
       <Tab.Screen
         name="Checkout"
-        component={CheckoutScreen}
+        component={PaymentStackNavigator}
         options={{
           headerShown: false,
           tabBarIcon: ({color}) => <CheckoutPageIcon color={color} />,

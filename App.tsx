@@ -2,12 +2,15 @@ import Amplify from 'aws-amplify';
 import {Linking} from 'react-native';
 import InAppBrowser from 'react-native-inappbrowser-reborn';
 
+import {StripeProvider} from '@stripe/stripe-react-native';
+
 import config from './src/aws-exports';
 import AuthContextProvider from './src/contexts/AuthContext';
 
 import Navigation from './src/navigation';
 
 import Client from './src/apollo/Client';
+import {STRIPE_PRODUCT_KEY} from './src/config';
 
 const urlOpener = async (url: string, redirectUrl: string) => {
   await InAppBrowser.isAvailable();
@@ -36,9 +39,11 @@ Amplify.configure(updatedConfig);
 const App = () => {
   return (
     <AuthContextProvider>
-      <Client>
-        <Navigation />
-      </Client>
+      <StripeProvider publishableKey={STRIPE_PRODUCT_KEY}>
+        <Client>
+          <Navigation />
+        </Client>
+      </StripeProvider>
     </AuthContextProvider>
   );
 };

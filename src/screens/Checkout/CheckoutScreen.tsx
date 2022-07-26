@@ -47,7 +47,7 @@ const CheckoutScreen = () => {
   );
 
   const goBack = () => {
-    navigation.navigate('HomeScreen');
+    navigation.navigate('PaymentScreen');
   };
 
   const calcTotalPrice = () => {
@@ -68,6 +68,10 @@ const CheckoutScreen = () => {
     }
     calcTotalPrice();
   }, [checkout]);
+
+  const GoToPayment = () => {
+    navigation.navigate('PaymentScreen');
+  };
 
   if (loading || userLoading) {
     return <ActivityIndicator />;
@@ -121,7 +125,7 @@ const CheckoutScreen = () => {
           <Text style={styles.total}>$ {totalPrice.toFixed(2)}</Text>
         </View>
         <View style={styles.buttonContainer}>
-          <Pressable style={styles.button}>
+          <Pressable onPress={GoToPayment} style={styles.button}>
             <Text style={styles.buttonText}>Checkout</Text>
           </Pressable>
         </View>

@@ -11,6 +11,11 @@ export type HomeStackNavigatorParamList = {
   ProductScreen: {productId: string};
 };
 
+export type PaymentStackNavigatorParamList = {
+  CheckoutScreen: undefined;
+  PaymentScreen: undefined;
+};
+
 export type BottomTabNavigatorParamList = {
   HomeStack: undefined;
   Favorite: undefined;
@@ -31,8 +36,8 @@ export type ProductNavigatorProp = NativeStackNavigationProp<
 >;
 
 export type CheckoutNavigatorProp = NativeStackNavigationProp<
-  HomeStackNavigatorParamList,
-  'HomeScreen'
+  PaymentStackNavigatorParamList,
+  'PaymentScreen'
 >;
 
 //Prop
