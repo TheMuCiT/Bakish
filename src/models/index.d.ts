@@ -8,7 +8,10 @@ export enum OrderStatus {
   COMPLETED = "COMPLETED"
 }
 
-
+export declare class PaymentIntent {
+  readonly clientSecret: string;
+  constructor(init: ModelInit<PaymentIntent>);
+}
 
 type ProductMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';

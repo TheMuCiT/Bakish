@@ -47,7 +47,7 @@ const CheckoutScreen = () => {
   );
 
   const goBack = () => {
-    navigation.navigate('PaymentScreen');
+    navigation.goBack();
   };
 
   const calcTotalPrice = () => {
@@ -70,7 +70,9 @@ const CheckoutScreen = () => {
   }, [checkout]);
 
   const GoToPayment = () => {
-    navigation.navigate('PaymentScreen');
+    navigation.navigate('PaymentScreen', {
+      totalPrice: Math.floor(totalPrice * 100),
+    });
   };
 
   if (loading || userLoading) {

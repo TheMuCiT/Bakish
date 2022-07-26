@@ -13,7 +13,7 @@ export type HomeStackNavigatorParamList = {
 
 export type PaymentStackNavigatorParamList = {
   CheckoutScreen: undefined;
-  PaymentScreen: undefined;
+  PaymentScreen: {totalPrice: number};
 };
 
 export type BottomTabNavigatorParamList = {
@@ -45,6 +45,11 @@ export type CheckoutNavigatorProp = NativeStackNavigationProp<
 export type ProductRouteProp = RouteProp<
   HomeStackNavigatorParamList,
   'ProductScreen'
+>;
+
+export type PaymentRouteProp = RouteProp<
+  PaymentStackNavigatorParamList,
+  'PaymentScreen'
 >;
 
 //Auth

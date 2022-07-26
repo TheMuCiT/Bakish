@@ -2,6 +2,11 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
+export type PaymentIntent = {
+  __typename: "PaymentIntent",
+  clientSecret: string,
+};
+
 export type CreateProductInput = {
   id?: string | null,
   title: string,
@@ -654,6 +659,17 @@ export type ModelAdsConnection = {
   items:  Array<Ads | null >,
   nextToken?: string | null,
   startedAt?: number | null,
+};
+
+export type CreatePaymentIntentMutationVariables = {
+  amount: number,
+};
+
+export type CreatePaymentIntentMutation = {
+  createPaymentIntent:  {
+    __typename: "PaymentIntent",
+    clientSecret: string,
+  },
 };
 
 export type CreateProductMutationVariables = {
