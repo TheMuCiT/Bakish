@@ -22,7 +22,6 @@ import {
 } from './queries';
 
 const useCreateBasketService = () => {
-  console.log('TEST');
   const {userId} = useAuthContext();
 
   const [doCreateBasket] = useMutation<

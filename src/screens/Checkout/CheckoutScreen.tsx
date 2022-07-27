@@ -20,6 +20,7 @@ import {
   GetUserQueryVariables,
 } from '../../API';
 import {useAuthContext} from '../../contexts/AuthContext';
+import AppHeader from '../../components/appHeader/AppHeader';
 
 const CheckoutScreen = () => {
   const {userId} = useAuthContext();
@@ -85,13 +86,7 @@ const CheckoutScreen = () => {
 
   return (
     <View style={styles.page}>
-      <View style={styles.header}>
-        <Pressable onPress={goBack} style={styles.goBack}>
-          <GoBackIcon />
-        </Pressable>
-        <Text style={styles.product}>Product</Text>
-        <View style={styles.favorite}></View>
-      </View>
+      <AppHeader goBack={goBack} title={'Checkout'} />
 
       <FlatList
         data={checkout}

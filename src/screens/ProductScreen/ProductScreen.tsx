@@ -10,8 +10,6 @@ import {
 import {useNavigation, useRoute} from '@react-navigation/native';
 import styles from './styles';
 
-import GoBackIcon from '../../assets/icons/GoBackIcon';
-import Favorite from '../../assets/icons/Favorite';
 import Stars from '../../assets/icons/Stars';
 import StarsEmpty from '../../assets/icons/StarsEmpty';
 import Plus from '../../assets/icons/Plus';
@@ -34,6 +32,7 @@ import {DEFAULT_PRODUCT_IMAGE} from '../../config';
 import {useAuthContext} from '../../contexts/AuthContext';
 
 import useCreateBasketService from '../../services/CreateBasketService/CreateBasketService';
+import AppHeader from '../../components/appHeader/AppHeader';
 
 const ProductScreen = () => {
   const {userId} = useAuthContext();
@@ -126,15 +125,8 @@ const ProductScreen = () => {
   return (
     <View style={styles.page}>
       {/* Product screen header */}
-      <View style={styles.header}>
-        <Pressable onPress={goBack} style={styles.goBack}>
-          <GoBackIcon />
-        </Pressable>
-        <Text style={styles.product}>Product</Text>
-        <View style={styles.favorite}>
-          <Favorite />
-        </View>
-      </View>
+      <AppHeader goBack={goBack} title={'Product'} favorite />
+
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Product screen Image */}
         <View style={styles.imageContainer}>

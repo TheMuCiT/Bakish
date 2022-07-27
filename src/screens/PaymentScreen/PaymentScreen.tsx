@@ -1,82 +1,110 @@
-import {useMutation} from '@apollo/client';
-import {useRoute} from '@react-navigation/native';
-import {CardField, useStripe} from '@stripe/stripe-react-native';
-import {useEffect, useState} from 'react';
-import {View, Text, ActivityIndicator, Alert} from 'react-native';
-import {
-  CreatePaymentIntentMutation,
-  CreatePaymentIntentMutationVariables,
-} from '../../API';
-import {useAuthContext} from '../../contexts/AuthContext';
-import {PaymentRouteProp} from '../../types/navigation';
-import {createPaymentIntent} from './queries';
+import {useNavigation, useRoute} from '@react-navigation/native';
+import {Pressable, ScrollView, Text, View} from 'react-native';
+import usePaymentService from '../../services/PaymentService/PaymentService';
+import {PaymentNavigatorProp, PaymentRouteProp} from '../../types/navigation';
+
+import GoBackIcon from '../../assets/icons/GoBackIcon';
+import PickUpIcon from '../../assets/icons/PickUp';
+import DeliveryIcon from '../../assets/icons/Delivery';
+
+import styles from './styles';
+import colors from '../../theme/colors';
+import {useState} from 'react';
+import ComingSoon from '../../components/comingSoon';
+import PaymentHeader from '../../components/payment/PaymentHeader';
+import AppHeader from '../../components/appHeader/AppHeader';
 
 const PaymentScreen = () => {
-  const [clientSecret, setClientSecret] = useState<string | null>(null);
-  const {userId} = useAuthContext();
+  const {initPayment} = usePaymentService();
+  const navigation = useNavigation<PaymentNavigatorProp>();
   const route = useRoute<PaymentRouteProp>();
   const amount = route.params?.totalPrice || 0;
 
-  const {initPaymentSheet, presentPaymentSheet, confirmPayment} = useStripe();
+  const [deliveryOption, setDeliveryOption] = useState(false);
 
-  const [doCreatePaymentInstant, {data, loading, error}] = useMutation<
-    CreatePaymentIntentMutation,
-    CreatePaymentIntentMutationVariables
-  >(createPaymentIntent);
-
-  useEffect(() => {
-    doCreatePaymentInstant({variables: {amount: amount}});
-  }, []);
-
-  useEffect(() => {
-    if (data?.createPaymentIntent.clientSecret) {
-      setClientSecret(data.createPaymentIntent.clientSecret);
-    }
-  }, [data]);
-
-  useEffect(() => {
-    if (clientSecret) {
-      initializePaymentSheet();
-    }
-  }, [clientSecret]);
-
-  const initializePaymentSheet = async () => {
-    if (!clientSecret) {
-      return;
-    }
-    const {error} = await initPaymentSheet({
-      customerId: userId,
-      paymentIntentClientSecret: clientSecret,
-      merchantDisplayName: 'Bakish',
-    });
-
-    if (error) {
-      console.log(error);
-    }
-
-    await openPaymentSheet();
+  const goBack = () => {
+    navigation.goBack();
   };
 
-  const openPaymentSheet = async () => {
-    const {error, paymentOption} = await presentPaymentSheet();
+  const processNextStep = () => {};
 
-    console.log(paymentOption);
+  return (
+    <View style={styles.page}>
+      <AppHeader goBack={goBack} title={'Payment'} />
 
-    if (error) {
-      Alert.alert(`Error code: ${error.code}`, error.message);
-    } else {
-      Alert.alert('Success', 'Your order is confirmed!');
-    }
-  };
+      {/* Delivery Step */}
+      <ScrollView showsVerticalScrollIndicator={false} style={{flex: 1}}>
+        <PaymentHeader step={[true, false, false]} />
 
-  if (loading) {
-    return <ActivityIndicator />;
-  }
+        {/* Delivery option */}
+        <View style={styles.chooseDeliveryOption}>
+          <Pressable
+            onPress={() => setDeliveryOption(false)}
+            style={[
+              styles.deliveryOption,
+              !deliveryOption && styles.deliveryOptionActive,
+            ]}>
+            <PickUpIcon color={!deliveryOption ? colors.white : colors.main} />
+            <Text
+              style={[
+                styles.deliveryOptionText,
+                !deliveryOption && styles.deliveryOptionTextActive,
+              ]}>
+              Pick Up
+            </Text>
+          </Pressable>
+          <Pressable
+            onPress={() => setDeliveryOption(true)}
+            style={[
+              styles.deliveryOption,
+              styles.deliveryOptionGap,
+              deliveryOption && styles.deliveryOptionActive,
+            ]}>
+            <DeliveryIcon color={deliveryOption ? colors.white : colors.main} />
+            <Text
+              style={[
+                styles.deliveryOptionText,
+                deliveryOption && styles.deliveryOptionTextActive,
+              ]}>
+              Delivery
+            </Text>
+          </Pressable>
+        </View>
+        {/* Delivery option Pick Up  */}
 
-  if (error) {
-    return <Text>{error.message}</Text>;
-  }
-  return <View></View>;
+        {deliveryOption ? (
+          <View style={styles.messageContainer}>
+            <ComingSoon />
+          </View>
+        ) : (
+          <View style={styles.infoBarSection}>
+            <View style={styles.infoBar}>
+              <Text style={styles.infoBarTitle}>Pick Up From</Text>
+              <Text style={styles.infoBarText}>
+                G. Mazvyo g.21, 31, LT 03412
+              </Text>
+            </View>
+            <View style={styles.infoBar}>
+              <Text style={styles.infoBarTitle}>Additional Information</Text>
+              <Text style={styles.infoBarText}>Doors near Stop sign</Text>
+            </View>
+          </View>
+        )}
+      </ScrollView>
+
+      {/* Proccess Button */}
+      <View style={styles.buttonWrapper}>
+        <View style={styles.buttonContainer}>
+          <Pressable
+            onPress={processNextStep}
+            style={[styles.button, deliveryOption && styles.buttonDisabled]}
+            disabled={deliveryOption}>
+            <Text style={styles.buttonText}>Continue</Text>
+          </Pressable>
+        </View>
+      </View>
+    </View>
+  );
 };
 
 export default PaymentScreen;

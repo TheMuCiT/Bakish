@@ -8,36 +8,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.white,
   },
-  header: {
-    paddingVertical: 10,
-    paddingHorizontal: 25,
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: colors.grey,
-  },
-  goBack: {
-    width: 21,
-    aspectRatio: 1,
-    backgroundColor: colors.main,
-    borderRadius: 6,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  product: {
-    fontSize: fonts.size.md,
-    fontFamily: fonts.family.semiBold,
-    color: colors.textDark,
-  },
-  favorite: {
-    width: 21,
-    aspectRatio: 1,
-    backgroundColor: colors.white,
-    borderRadius: 6,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
   //image
   imageContainer: {
     paddingTop: 20,

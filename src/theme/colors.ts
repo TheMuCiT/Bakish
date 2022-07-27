@@ -11,6 +11,8 @@ const colors = {
   textRegister: '#A3A3A3',
   textRegisterBold: '#3D3C3C',
 
+  separatorColor: '#f1f1f1',
+
   shadowColor: '#d6d6d6',
 
   tabBarBottomActiveColor: '#1F1F1F',

@@ -40,6 +40,10 @@ export type CheckoutNavigatorProp = NativeStackNavigationProp<
   'PaymentScreen'
 >;
 
+export type PaymentNavigatorProp = NativeStackNavigationProp<
+  PaymentStackNavigatorParamList,
+  'CheckoutScreen'
+>;
 //Prop
 
 export type ProductRouteProp = RouteProp<
