@@ -13,7 +13,9 @@ export type HomeStackNavigatorParamList = {
 
 export type PaymentStackNavigatorParamList = {
   CheckoutScreen: undefined;
-  PaymentScreen: {totalPrice: number};
+  PaymentScreen: undefined;
+  PaymentConfirmationScreen: undefined;
+  PaymentStripeScreen: {amount: number};
 };
 
 export type BottomTabNavigatorParamList = {
@@ -27,22 +29,32 @@ export type BottomTabNavigatorParamList = {
 
 export type HomePageNavigatorProp = NativeStackNavigationProp<
   HomeStackNavigatorParamList,
-  'ProductScreen'
+  'HomeScreen'
 >;
 
 export type ProductNavigatorProp = NativeStackNavigationProp<
   HomeStackNavigatorParamList,
-  'HomeScreen'
+  'ProductScreen'
 >;
 
 export type CheckoutNavigatorProp = NativeStackNavigationProp<
   PaymentStackNavigatorParamList,
-  'PaymentScreen'
+  'CheckoutScreen'
 >;
 
 export type PaymentNavigatorProp = NativeStackNavigationProp<
   PaymentStackNavigatorParamList,
-  'CheckoutScreen'
+  'PaymentScreen'
+>;
+
+export type PaymentConfirmationNavigatorProp = NativeStackNavigationProp<
+  PaymentStackNavigatorParamList,
+  'PaymentConfirmationScreen'
+>;
+
+export type PaymentStripeNavigatorProp = NativeStackNavigationProp<
+  PaymentStackNavigatorParamList,
+  'PaymentStripeScreen'
 >;
 //Prop
 
@@ -51,9 +63,9 @@ export type ProductRouteProp = RouteProp<
   'ProductScreen'
 >;
 
-export type PaymentRouteProp = RouteProp<
+export type PaymentStripeRouteProp = RouteProp<
   PaymentStackNavigatorParamList,
-  'PaymentScreen'
+  'PaymentStripeScreen'
 >;
 
 //Auth

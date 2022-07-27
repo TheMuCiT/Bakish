@@ -11,9 +11,10 @@ import useCheckoutService from '../../services/CheckoutService';
 
 interface IItem {
   item: BasketItem;
+  changeQTY?: boolean;
 }
 
-const CheckoutItem = ({item}: IItem) => {
+const CheckoutItem = ({item, changeQTY}: IItem) => {
   const {onChangeQuantity} = useCheckoutService();
   const handleQty = (amount: 1 | -1) => {
     onChangeQuantity(amount, item);
@@ -28,24 +29,30 @@ const CheckoutItem = ({item}: IItem) => {
         <Text style={styles.title}>{item.Product?.title}</Text>
         <View style={styles.subTitle}>
           <Text style={styles.subTitleText}>
-            {item.Product?.subTitle} • {item.ProductSize.size}
+            {item.Product.subTitle} • {item.ProductSize.size}
           </Text>
         </View>
         <View style={styles.container}>
           <Text style={styles.price}>$ {item.ProductSize.price}</Text>
-          <View style={styles.noFItemContainer}>
-            <Pressable
-              onPress={() => handleQty(-1)}
-              style={styles.noFItemButton}>
-              <Minus />
-            </Pressable>
-            <Text style={styles.noFItem}>{item.quantity}</Text>
-            <Pressable
-              onPress={() => handleQty(1)}
-              style={styles.noFItemButton}>
-              <Plus color={colors.textDark} />
-            </Pressable>
-          </View>
+          {changeQTY ? (
+            <View style={styles.noFItemContainer}>
+              <Pressable
+                onPress={() => handleQty(-1)}
+                style={styles.noFItemButton}>
+                <Minus />
+              </Pressable>
+              <Text style={styles.noFItem}>{item.quantity}</Text>
+              <Pressable
+                onPress={() => handleQty(1)}
+                style={styles.noFItemButton}>
+                <Plus color={colors.textDark} />
+              </Pressable>
+            </View>
+          ) : (
+            <View style={styles.noFItemContainer}>
+              <Text style={styles.qty}>Qty. - {item.quantity}</Text>
+            </View>
+          )}
         </View>
       </View>
     </View>

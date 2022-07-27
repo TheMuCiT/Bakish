@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   bottom: {
     paddingHorizontal: 25,
     paddingTop: 20,
-    paddingBottom: 30,
+    paddingBottom: 15,
     backgroundColor: colors.white,
   },
   infoContainer: {

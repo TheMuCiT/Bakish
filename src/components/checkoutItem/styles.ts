@@ -67,6 +67,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  qty: {
+    color: colors.textDark,
+    fontFamily: fonts.family.medium,
+    fontSize: fonts.size.xs,
+    opacity: 0.5,
+  },
 });
 
 export default styles;

@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   buttonWrapper: {
     paddingHorizontal: 25,
     paddingTop: 20,
-    paddingBottom: 30,
+    paddingBottom: 15,
     backgroundColor: colors.white,
     justifyContent: 'flex-end',
   },
@@ -94,6 +94,31 @@ const styles = StyleSheet.create({
     fontFamily: fonts.family.medium,
     fontSize: fonts.size.sm,
     marginTop: 5,
+  },
+  buttonItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginVertical: 5,
+  },
+  buttonItemText: {
+    color: colors.textDark,
+    fontFamily: fonts.family.medium,
+    fontSize: fonts.size.sm,
+  },
+  buttonItemTotal: {
+    marginTop: 10,
+    borderTopColor: colors.separatorColor,
+    borderTopWidth: 0.5,
+  },
+  infoBarTitleTotal: {
+    color: colors.textDark,
+    fontFamily: fonts.family.medium,
+    fontSize: fonts.size.md,
+  },
+  buttonItemTextTotal: {
+    color: colors.textDark,
+    fontFamily: fonts.family.medium,
+    fontSize: fonts.size.md,
   },
 });
 

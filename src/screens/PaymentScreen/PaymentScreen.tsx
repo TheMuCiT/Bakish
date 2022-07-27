@@ -1,9 +1,7 @@
-import {useNavigation, useRoute} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import {Pressable, ScrollView, Text, View} from 'react-native';
-import usePaymentService from '../../services/PaymentService/PaymentService';
-import {PaymentNavigatorProp, PaymentRouteProp} from '../../types/navigation';
+import {PaymentNavigatorProp} from '../../types/navigation';
 
-import GoBackIcon from '../../assets/icons/GoBackIcon';
 import PickUpIcon from '../../assets/icons/PickUp';
 import DeliveryIcon from '../../assets/icons/Delivery';
 
@@ -15,10 +13,7 @@ import PaymentHeader from '../../components/payment/PaymentHeader';
 import AppHeader from '../../components/appHeader/AppHeader';
 
 const PaymentScreen = () => {
-  const {initPayment} = usePaymentService();
   const navigation = useNavigation<PaymentNavigatorProp>();
-  const route = useRoute<PaymentRouteProp>();
-  const amount = route.params?.totalPrice || 0;
 
   const [deliveryOption, setDeliveryOption] = useState(false);
 
@@ -26,7 +21,9 @@ const PaymentScreen = () => {
     navigation.goBack();
   };
 
-  const processNextStep = () => {};
+  const processNextStep = () => {
+    navigation.navigate('PaymentConfirmationScreen');
+  };
 
   return (
     <View style={styles.page}>

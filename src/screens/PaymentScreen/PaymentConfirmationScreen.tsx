@@ -1,17 +1,7 @@
-import {View, Text, FlatList, Pressable, ActivityIndicator} from 'react-native';
+import {useQuery} from '@apollo/client';
 import {useNavigation} from '@react-navigation/native';
 import {useEffect, useState} from 'react';
-
-import GoBackIcon from '../../assets/icons/GoBackIcon';
-import CheckoutItem from '../../components/checkoutItem/CheckoutItem';
-
-import colors from '../../theme/colors';
-
-import {CheckoutNavigatorProp} from '../../types/navigation';
-
-import styles from './styles';
-import {useQuery} from '@apollo/client';
-import {getBasket, getUser} from './queries';
+import {View, Text, Pressable, FlatList, ActivityIndicator} from 'react-native';
 import {
   BasketItem,
   GetBasketQuery,
@@ -19,14 +9,24 @@ import {
   GetUserQuery,
   GetUserQueryVariables,
 } from '../../API';
-import {useAuthContext} from '../../contexts/AuthContext';
 import AppHeader from '../../components/appHeader/AppHeader';
+import CheckoutItem from '../../components/checkoutItem/CheckoutItem';
+import PaymentHeader from '../../components/payment/PaymentHeader';
+import {useAuthContext} from '../../contexts/AuthContext';
+import colors from '../../theme/colors';
+import {PaymentConfirmationNavigatorProp} from '../../types/navigation';
+import {getBasket, getUser} from './queries';
+import styles from './styles';
 
-const CheckoutScreen = () => {
+const PaymentConfirmationScreen = () => {
   const {userId} = useAuthContext();
-  const navigation = useNavigation<CheckoutNavigatorProp>();
+  const navigation = useNavigation<PaymentConfirmationNavigatorProp>();
 
   const [totalPrice, setTotalPrice] = useState(0);
+
+  const goBack = () => {
+    navigation.goBack();
+  };
 
   const {
     data: userDataExtract,
@@ -47,10 +47,6 @@ const CheckoutScreen = () => {
     checkoutItem => !checkoutItem?._deleted,
   );
 
-  const goBack = () => {
-    navigation.goBack();
-  };
-
   const calcTotalPrice = () => {
     let sum = 0;
     if (checkout) {
@@ -70,10 +66,6 @@ const CheckoutScreen = () => {
     calcTotalPrice();
   }, [checkout]);
 
-  const GoToPayment = () => {
-    navigation.navigate('PaymentScreen');
-  };
-
   if (loading || userLoading) {
     return <ActivityIndicator />;
   }
@@ -82,16 +74,23 @@ const CheckoutScreen = () => {
     return <Text>{error?.message || userError?.message}</Text>;
   }
 
+  const handlePayment = () => {
+    navigation.navigate('PaymentStripeScreen', {
+      amount: Math.floor(totalPrice * 100),
+    });
+  };
+
   return (
     <View style={styles.page}>
-      <AppHeader goBack={goBack} title={'Checkout'} />
+      <AppHeader goBack={goBack} title={'Proceed'} />
 
       <FlatList
         data={checkout}
         showsVerticalScrollIndicator={false}
         renderItem={({item}) =>
-          item && <CheckoutItem item={item as BasketItem} changeQTY />
+          item && <CheckoutItem item={item as BasketItem} />
         }
+        ListHeaderComponentStyle={{marginBottom: 10}}
         ItemSeparatorComponent={() => (
           <View
             style={{
@@ -102,26 +101,30 @@ const CheckoutScreen = () => {
         )}
         onRefresh={refetch}
         refreshing={loading}
+        ListHeaderComponent={() => <PaymentHeader step={[true, true, false]} />}
       />
-      <View style={styles.bottom}>
-        <View style={styles.infoContainer}>
-          <Text style={styles.infoTitle}>items</Text>
-          <Text style={styles.info}>$ {totalPrice.toFixed(2)}</Text>
+
+      {/* Proccess Button */}
+      <View style={styles.buttonWrapper}>
+        <View style={styles.buttonItem}>
+          <Text style={styles.infoBarTitle}>Delivery To</Text>
+          <Text style={styles.buttonItemText}>Pick up</Text>
         </View>
-        <View
-          style={{
-            height: 0.6,
-            backgroundColor: colors.grey,
-            width: '100%',
-            marginVertical: 10,
-          }}></View>
-        <View style={styles.totalContainer}>
-          <Text style={styles.total}>Total</Text>
-          <Text style={styles.total}>$ {totalPrice.toFixed(2)}</Text>
+        <View style={styles.buttonItem}>
+          <Text style={styles.infoBarTitle}>Items</Text>
+          <Text style={styles.buttonItemText}>$ {totalPrice}</Text>
+        </View>
+        <View style={styles.buttonItem}>
+          <Text style={styles.infoBarTitle}>Discounts</Text>
+          <Text style={styles.buttonItemText}>$ -0.00</Text>
+        </View>
+        <View style={[styles.buttonItem, styles.buttonItemTotal]}>
+          <Text style={styles.infoBarTitleTotal}>Total</Text>
+          <Text style={styles.buttonItemTextTotal}>$ {totalPrice}</Text>
         </View>
         <View style={styles.buttonContainer}>
-          <Pressable onPress={GoToPayment} style={styles.button}>
-            <Text style={styles.buttonText}>Checkout</Text>
+          <Pressable onPress={() => handlePayment()} style={styles.button}>
+            <Text style={styles.buttonText}>Continue To Pay</Text>
           </Pressable>
         </View>
       </View>
@@ -129,4 +132,4 @@ const CheckoutScreen = () => {
   );
 };
 
-export default CheckoutScreen;
+export default PaymentConfirmationScreen;
