@@ -1,4 +1,4 @@
-import {useQuery} from '@apollo/client';
+import {useMutation, useQuery} from '@apollo/client';
 import {useNavigation} from '@react-navigation/native';
 import {useEffect, useState} from 'react';
 import {View, Text, Pressable, FlatList, ActivityIndicator} from 'react-native';
@@ -8,6 +8,8 @@ import {
   GetBasketQueryVariables,
   GetUserQuery,
   GetUserQueryVariables,
+  UpdateUserMutation,
+  UpdateUserMutationVariables,
 } from '../../API';
 import AppHeader from '../../components/appHeader/AppHeader';
 import CheckoutItem from '../../components/checkoutItem/CheckoutItem';
@@ -18,8 +20,11 @@ import {PaymentConfirmationNavigatorProp} from '../../types/navigation';
 import {getBasket, getUser} from './queries';
 import styles from './styles';
 
+import usePaymentService from '../../services/PaymentService/PaymentService';
+
 const PaymentConfirmationScreen = () => {
   const {userId} = useAuthContext();
+  const {createNewOrder, onDeleteBasketIdFromUser} = usePaymentService();
   const navigation = useNavigation<PaymentConfirmationNavigatorProp>();
 
   const [totalPrice, setTotalPrice] = useState(0);
@@ -59,26 +64,33 @@ const PaymentConfirmationScreen = () => {
     setTotalPrice(sum);
   };
 
+  const handlePayment = async () => {
+    // navigation.navigate('PaymentStripeScreen', {
+    //   amount: Math.floor(totalPrice * 100),
+    // });
+    await createNewOrder(Math.floor(totalPrice * 100));
+    await onDeleteBasketIdFromUser();
+
+    navigation.navigate('CheckoutScreen');
+  };
+
   useEffect(() => {
     if (!checkout) {
+      console.log('First');
       return;
     }
     calcTotalPrice();
   }, [checkout]);
 
   if (loading || userLoading) {
+    console.log('second');
     return <ActivityIndicator />;
   }
 
   if (error || userError) {
+    console.log('third');
     return <Text>{error?.message || userError?.message}</Text>;
   }
-
-  const handlePayment = () => {
-    navigation.navigate('PaymentStripeScreen', {
-      amount: Math.floor(totalPrice * 100),
-    });
-  };
 
   return (
     <View style={styles.page}>

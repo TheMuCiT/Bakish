@@ -55,7 +55,7 @@ const useCreateBasketService = () => {
       const createdBasket = await doCreateBasket({variables: {input}});
       const basketID = createdBasket.data?.createBasket?.id;
       if (basketID) {
-        doUpdateUser({
+        await doUpdateUser({
           variables: {
             input: {
               id: userId,
@@ -64,7 +64,7 @@ const useCreateBasketService = () => {
             },
           },
         });
-        onAddBasketItem(productId, quantity, basketID, productSize);
+        await onAddBasketItem(productId, quantity, basketID, productSize);
       }
     } catch (e) {
       Alert.alert('Error creating basket', (e as Error).message);
@@ -87,7 +87,7 @@ const useCreateBasketService = () => {
     try {
       await doCreateBasketItem({variables: {input}});
     } catch (e) {
-      Alert.alert('Error to create basket item', (e as Error).message);
+      Alert.alert('Error create basket item', (e as Error).message);
     }
   };
 

@@ -10,11 +10,13 @@ import {
 import {createPaymentIntent} from './queries';
 import {useRoute} from '@react-navigation/native';
 import {PaymentStripeRouteProp} from '../../types/navigation';
+import usePaymentService from '../../services/PaymentService/PaymentService';
 
 const PaymentStripeScreen = () => {
   const {userId} = useAuthContext();
   const route = useRoute<PaymentStripeRouteProp>();
   const amount = route.params.amount;
+  const {createNewOrder} = usePaymentService();
 
   const {initPaymentSheet, presentPaymentSheet} = useStripe();
 
@@ -70,6 +72,7 @@ const PaymentStripeScreen = () => {
     if (error) {
       Alert.alert(`Error code: ${error.code}`, error.message);
     } else {
+      createNewOrder(amount);
       Alert.alert('Success', 'Your order is confirmed!');
     }
   };

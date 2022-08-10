@@ -16,6 +16,7 @@ export type PaymentStackNavigatorParamList = {
   PaymentScreen: undefined;
   PaymentConfirmationScreen: undefined;
   PaymentStripeScreen: {amount: number};
+  EmptyBasketScreen: undefined;
 };
 
 export type BottomTabNavigatorParamList = {

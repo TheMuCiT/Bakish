@@ -267,12 +267,14 @@ export type OrderItem = {
   quantity: number,
   Product?: ProductSize | null,
   orderID: string,
+  ProductSize: ProductSize,
   createdAt: string,
   updatedAt: string,
   _version: number,
   _deleted?: boolean | null,
   _lastChangedAt: number,
   orderItemProductId?: string | null,
+  orderItemProductSizeId: string,
 };
 
 export type UpdateOrderInput = {
@@ -321,6 +323,7 @@ export type CreateOrderItemInput = {
   orderID: string,
   _version?: number | null,
   orderItemProductId?: string | null,
+  orderItemProductSizeId: string,
 };
 
 export type ModelOrderItemConditionInput = {
@@ -330,6 +333,7 @@ export type ModelOrderItemConditionInput = {
   or?: Array< ModelOrderItemConditionInput | null > | null,
   not?: ModelOrderItemConditionInput | null,
   orderItemProductId?: ModelIDInput | null,
+  orderItemProductSizeId?: ModelIDInput | null,
 };
 
 export type UpdateOrderItemInput = {
@@ -338,6 +342,7 @@ export type UpdateOrderItemInput = {
   orderID?: string | null,
   _version?: number | null,
   orderItemProductId?: string | null,
+  orderItemProductSizeId: string,
 };
 
 export type DeleteOrderItemInput = {
@@ -349,7 +354,6 @@ export type CreateBasketItemInput = {
   id?: string | null,
   quantity: number,
   basketID: string,
-  size?: string | null,
   _version?: number | null,
   basketItemProductId: string,
   basketItemProductSizeId: string,
@@ -358,7 +362,6 @@ export type CreateBasketItemInput = {
 export type ModelBasketItemConditionInput = {
   quantity?: ModelIntInput | null,
   basketID?: ModelIDInput | null,
-  size?: ModelStringInput | null,
   and?: Array< ModelBasketItemConditionInput | null > | null,
   or?: Array< ModelBasketItemConditionInput | null > | null,
   not?: ModelBasketItemConditionInput | null,
@@ -372,7 +375,6 @@ export type BasketItem = {
   quantity: number,
   Product: Product,
   basketID: string,
-  size?: string | null,
   ProductSize: ProductSize,
   createdAt: string,
   updatedAt: string,
@@ -387,7 +389,6 @@ export type UpdateBasketItemInput = {
   id: string,
   quantity?: number | null,
   basketID?: string | null,
-  size?: string | null,
   _version?: number | null,
   basketItemProductId: string,
   basketItemProductSizeId: string,
@@ -437,6 +438,7 @@ export type User = {
 export type Basket = {
   __typename: "Basket",
   id: string,
+  name?: string | null,
   BasketItems?: ModelBasketItemConnection | null,
   createdAt: string,
   updatedAt: string,
@@ -475,10 +477,12 @@ export type DeleteUserInput = {
 
 export type CreateBasketInput = {
   id?: string | null,
+  name?: string | null,
   _version?: number | null,
 };
 
 export type ModelBasketConditionInput = {
+  name?: ModelStringInput | null,
   and?: Array< ModelBasketConditionInput | null > | null,
   or?: Array< ModelBasketConditionInput | null > | null,
   not?: ModelBasketConditionInput | null,
@@ -486,6 +490,7 @@ export type ModelBasketConditionInput = {
 
 export type UpdateBasketInput = {
   id: string,
+  name?: string | null,
   _version?: number | null,
 };
 
@@ -597,13 +602,13 @@ export type ModelOrderItemFilterInput = {
   or?: Array< ModelOrderItemFilterInput | null > | null,
   not?: ModelOrderItemFilterInput | null,
   orderItemProductId?: ModelIDInput | null,
+  orderItemProductSizeId?: ModelIDInput | null,
 };
 
 export type ModelBasketItemFilterInput = {
   id?: ModelIDInput | null,
   quantity?: ModelIntInput | null,
   basketID?: ModelIDInput | null,
-  size?: ModelStringInput | null,
   and?: Array< ModelBasketItemFilterInput | null > | null,
   or?: Array< ModelBasketItemFilterInput | null > | null,
   not?: ModelBasketItemFilterInput | null,
@@ -631,6 +636,7 @@ export type ModelUserConnection = {
 
 export type ModelBasketFilterInput = {
   id?: ModelIDInput | null,
+  name?: ModelStringInput | null,
   and?: Array< ModelBasketFilterInput | null > | null,
   or?: Array< ModelBasketFilterInput | null > | null,
   not?: ModelBasketFilterInput | null,
@@ -928,12 +934,25 @@ export type CreateOrderMutation = {
           _lastChangedAt: number,
         } | null,
         orderID: string,
+        ProductSize:  {
+          __typename: "ProductSize",
+          id: string,
+          size: number,
+          price: number,
+          productID: string,
+          createdAt: string,
+          updatedAt: string,
+          _version: number,
+          _deleted?: boolean | null,
+          _lastChangedAt: number,
+        },
         createdAt: string,
         updatedAt: string,
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
         orderItemProductId?: string | null,
+        orderItemProductSizeId: string,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -977,12 +996,25 @@ export type UpdateOrderMutation = {
           _lastChangedAt: number,
         } | null,
         orderID: string,
+        ProductSize:  {
+          __typename: "ProductSize",
+          id: string,
+          size: number,
+          price: number,
+          productID: string,
+          createdAt: string,
+          updatedAt: string,
+          _version: number,
+          _deleted?: boolean | null,
+          _lastChangedAt: number,
+        },
         createdAt: string,
         updatedAt: string,
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
         orderItemProductId?: string | null,
+        orderItemProductSizeId: string,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -1026,12 +1058,25 @@ export type DeleteOrderMutation = {
           _lastChangedAt: number,
         } | null,
         orderID: string,
+        ProductSize:  {
+          __typename: "ProductSize",
+          id: string,
+          size: number,
+          price: number,
+          productID: string,
+          createdAt: string,
+          updatedAt: string,
+          _version: number,
+          _deleted?: boolean | null,
+          _lastChangedAt: number,
+        },
         createdAt: string,
         updatedAt: string,
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
         orderItemProductId?: string | null,
+        orderItemProductSizeId: string,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -1124,12 +1169,25 @@ export type CreateOrderItemMutation = {
       _lastChangedAt: number,
     } | null,
     orderID: string,
+    ProductSize:  {
+      __typename: "ProductSize",
+      id: string,
+      size: number,
+      price: number,
+      productID: string,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    },
     createdAt: string,
     updatedAt: string,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
     orderItemProductId?: string | null,
+    orderItemProductSizeId: string,
   } | null,
 };
 
@@ -1156,12 +1214,25 @@ export type UpdateOrderItemMutation = {
       _lastChangedAt: number,
     } | null,
     orderID: string,
+    ProductSize:  {
+      __typename: "ProductSize",
+      id: string,
+      size: number,
+      price: number,
+      productID: string,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    },
     createdAt: string,
     updatedAt: string,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
     orderItemProductId?: string | null,
+    orderItemProductSizeId: string,
   } | null,
 };
 
@@ -1188,12 +1259,25 @@ export type DeleteOrderItemMutation = {
       _lastChangedAt: number,
     } | null,
     orderID: string,
+    ProductSize:  {
+      __typename: "ProductSize",
+      id: string,
+      size: number,
+      price: number,
+      productID: string,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    },
     createdAt: string,
     updatedAt: string,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
     orderItemProductId?: string | null,
+    orderItemProductSizeId: string,
   } | null,
 };
 
@@ -1255,7 +1339,6 @@ export type CreateBasketItemMutation = {
       _lastChangedAt: number,
     },
     basketID: string,
-    size?: string | null,
     ProductSize:  {
       __typename: "ProductSize",
       id: string,
@@ -1336,7 +1419,6 @@ export type UpdateBasketItemMutation = {
       _lastChangedAt: number,
     },
     basketID: string,
-    size?: string | null,
     ProductSize:  {
       __typename: "ProductSize",
       id: string,
@@ -1417,7 +1499,6 @@ export type DeleteBasketItemMutation = {
       _lastChangedAt: number,
     },
     basketID: string,
-    size?: string | null,
     ProductSize:  {
       __typename: "ProductSize",
       id: string,
@@ -1454,6 +1535,7 @@ export type CreateUserMutation = {
     Basket?:  {
       __typename: "Basket",
       id: string,
+      name?: string | null,
       BasketItems?:  {
         __typename: "ModelBasketItemConnection",
         items:  Array< {
@@ -1461,7 +1543,6 @@ export type CreateUserMutation = {
           id: string,
           quantity: number,
           basketID: string,
-          size?: string | null,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -1541,6 +1622,7 @@ export type UpdateUserMutation = {
     Basket?:  {
       __typename: "Basket",
       id: string,
+      name?: string | null,
       BasketItems?:  {
         __typename: "ModelBasketItemConnection",
         items:  Array< {
@@ -1548,7 +1630,6 @@ export type UpdateUserMutation = {
           id: string,
           quantity: number,
           basketID: string,
-          size?: string | null,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -1628,6 +1709,7 @@ export type DeleteUserMutation = {
     Basket?:  {
       __typename: "Basket",
       id: string,
+      name?: string | null,
       BasketItems?:  {
         __typename: "ModelBasketItemConnection",
         items:  Array< {
@@ -1635,7 +1717,6 @@ export type DeleteUserMutation = {
           id: string,
           quantity: number,
           basketID: string,
-          size?: string | null,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -1710,6 +1791,7 @@ export type CreateBasketMutation = {
   createBasket?:  {
     __typename: "Basket",
     id: string,
+    name?: string | null,
     BasketItems?:  {
       __typename: "ModelBasketItemConnection",
       items:  Array< {
@@ -1731,7 +1813,6 @@ export type CreateBasketMutation = {
           _lastChangedAt: number,
         },
         basketID: string,
-        size?: string | null,
         ProductSize:  {
           __typename: "ProductSize",
           id: string,
@@ -1772,6 +1853,7 @@ export type UpdateBasketMutation = {
   updateBasket?:  {
     __typename: "Basket",
     id: string,
+    name?: string | null,
     BasketItems?:  {
       __typename: "ModelBasketItemConnection",
       items:  Array< {
@@ -1793,7 +1875,6 @@ export type UpdateBasketMutation = {
           _lastChangedAt: number,
         },
         basketID: string,
-        size?: string | null,
         ProductSize:  {
           __typename: "ProductSize",
           id: string,
@@ -1834,6 +1915,7 @@ export type DeleteBasketMutation = {
   deleteBasket?:  {
     __typename: "Basket",
     id: string,
+    name?: string | null,
     BasketItems?:  {
       __typename: "ModelBasketItemConnection",
       items:  Array< {
@@ -1855,7 +1937,6 @@ export type DeleteBasketMutation = {
           _lastChangedAt: number,
         },
         basketID: string,
-        size?: string | null,
         ProductSize:  {
           __typename: "ProductSize",
           id: string,
@@ -2229,12 +2310,25 @@ export type GetOrderQuery = {
           _lastChangedAt: number,
         } | null,
         orderID: string,
+        ProductSize:  {
+          __typename: "ProductSize",
+          id: string,
+          size: number,
+          price: number,
+          productID: string,
+          createdAt: string,
+          updatedAt: string,
+          _version: number,
+          _deleted?: boolean | null,
+          _lastChangedAt: number,
+        },
         createdAt: string,
         updatedAt: string,
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
         orderItemProductId?: string | null,
+        orderItemProductSizeId: string,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -2275,6 +2369,7 @@ export type ListOrdersQuery = {
           _deleted?: boolean | null,
           _lastChangedAt: number,
           orderItemProductId?: string | null,
+          orderItemProductSizeId: string,
         } | null >,
         nextToken?: string | null,
         startedAt?: number | null,
@@ -2319,6 +2414,7 @@ export type SyncOrdersQuery = {
           _deleted?: boolean | null,
           _lastChangedAt: number,
           orderItemProductId?: string | null,
+          orderItemProductSizeId: string,
         } | null >,
         nextToken?: string | null,
         startedAt?: number | null,
@@ -2425,12 +2521,25 @@ export type GetOrderItemQuery = {
       _lastChangedAt: number,
     } | null,
     orderID: string,
+    ProductSize:  {
+      __typename: "ProductSize",
+      id: string,
+      size: number,
+      price: number,
+      productID: string,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    },
     createdAt: string,
     updatedAt: string,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
     orderItemProductId?: string | null,
+    orderItemProductSizeId: string,
   } | null,
 };
 
@@ -2460,12 +2569,25 @@ export type ListOrderItemsQuery = {
         _lastChangedAt: number,
       } | null,
       orderID: string,
+      ProductSize:  {
+        __typename: "ProductSize",
+        id: string,
+        size: number,
+        price: number,
+        productID: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      },
       createdAt: string,
       updatedAt: string,
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
       orderItemProductId?: string | null,
+      orderItemProductSizeId: string,
     } | null >,
     nextToken?: string | null,
     startedAt?: number | null,
@@ -2499,12 +2621,25 @@ export type SyncOrderItemsQuery = {
         _lastChangedAt: number,
       } | null,
       orderID: string,
+      ProductSize:  {
+        __typename: "ProductSize",
+        id: string,
+        size: number,
+        price: number,
+        productID: string,
+        createdAt: string,
+        updatedAt: string,
+        _version: number,
+        _deleted?: boolean | null,
+        _lastChangedAt: number,
+      },
       createdAt: string,
       updatedAt: string,
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
       orderItemProductId?: string | null,
+      orderItemProductSizeId: string,
     } | null >,
     nextToken?: string | null,
     startedAt?: number | null,
@@ -2568,7 +2703,6 @@ export type GetBasketItemQuery = {
       _lastChangedAt: number,
     },
     basketID: string,
-    size?: string | null,
     ProductSize:  {
       __typename: "ProductSize",
       id: string,
@@ -2629,7 +2763,6 @@ export type ListBasketItemsQuery = {
         _lastChangedAt: number,
       },
       basketID: string,
-      size?: string | null,
       ProductSize:  {
         __typename: "ProductSize",
         id: string,
@@ -2694,7 +2827,6 @@ export type SyncBasketItemsQuery = {
         _lastChangedAt: number,
       },
       basketID: string,
-      size?: string | null,
       ProductSize:  {
         __typename: "ProductSize",
         id: string,
@@ -2733,6 +2865,7 @@ export type GetUserQuery = {
     Basket?:  {
       __typename: "Basket",
       id: string,
+      name?: string | null,
       BasketItems?:  {
         __typename: "ModelBasketItemConnection",
         items:  Array< {
@@ -2740,7 +2873,6 @@ export type GetUserQuery = {
           id: string,
           quantity: number,
           basketID: string,
-          size?: string | null,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -2823,6 +2955,7 @@ export type ListUsersQuery = {
       Basket?:  {
         __typename: "Basket",
         id: string,
+        name?: string | null,
         BasketItems?:  {
           __typename: "ModelBasketItemConnection",
           nextToken?: string | null,
@@ -2898,6 +3031,7 @@ export type SyncUsersQuery = {
       Basket?:  {
         __typename: "Basket",
         id: string,
+        name?: string | null,
         BasketItems?:  {
           __typename: "ModelBasketItemConnection",
           nextToken?: string | null,
@@ -2963,6 +3097,7 @@ export type GetBasketQuery = {
   getBasket?:  {
     __typename: "Basket",
     id: string,
+    name?: string | null,
     BasketItems?:  {
       __typename: "ModelBasketItemConnection",
       items:  Array< {
@@ -2984,7 +3119,6 @@ export type GetBasketQuery = {
           _lastChangedAt: number,
         },
         basketID: string,
-        size?: string | null,
         ProductSize:  {
           __typename: "ProductSize",
           id: string,
@@ -3028,6 +3162,7 @@ export type ListBasketsQuery = {
     items:  Array< {
       __typename: "Basket",
       id: string,
+      name?: string | null,
       BasketItems?:  {
         __typename: "ModelBasketItemConnection",
         items:  Array< {
@@ -3035,7 +3170,6 @@ export type ListBasketsQuery = {
           id: string,
           quantity: number,
           basketID: string,
-          size?: string | null,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -3071,6 +3205,7 @@ export type SyncBasketsQuery = {
     items:  Array< {
       __typename: "Basket",
       id: string,
+      name?: string | null,
       BasketItems?:  {
         __typename: "ModelBasketItemConnection",
         items:  Array< {
@@ -3078,7 +3213,6 @@ export type SyncBasketsQuery = {
           id: string,
           quantity: number,
           basketID: string,
-          size?: string | null,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -3397,12 +3531,25 @@ export type OnCreateOrderSubscription = {
           _lastChangedAt: number,
         } | null,
         orderID: string,
+        ProductSize:  {
+          __typename: "ProductSize",
+          id: string,
+          size: number,
+          price: number,
+          productID: string,
+          createdAt: string,
+          updatedAt: string,
+          _version: number,
+          _deleted?: boolean | null,
+          _lastChangedAt: number,
+        },
         createdAt: string,
         updatedAt: string,
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
         orderItemProductId?: string | null,
+        orderItemProductSizeId: string,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -3441,12 +3588,25 @@ export type OnUpdateOrderSubscription = {
           _lastChangedAt: number,
         } | null,
         orderID: string,
+        ProductSize:  {
+          __typename: "ProductSize",
+          id: string,
+          size: number,
+          price: number,
+          productID: string,
+          createdAt: string,
+          updatedAt: string,
+          _version: number,
+          _deleted?: boolean | null,
+          _lastChangedAt: number,
+        },
         createdAt: string,
         updatedAt: string,
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
         orderItemProductId?: string | null,
+        orderItemProductSizeId: string,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -3485,12 +3645,25 @@ export type OnDeleteOrderSubscription = {
           _lastChangedAt: number,
         } | null,
         orderID: string,
+        ProductSize:  {
+          __typename: "ProductSize",
+          id: string,
+          size: number,
+          price: number,
+          productID: string,
+          createdAt: string,
+          updatedAt: string,
+          _version: number,
+          _deleted?: boolean | null,
+          _lastChangedAt: number,
+        },
         createdAt: string,
         updatedAt: string,
         _version: number,
         _deleted?: boolean | null,
         _lastChangedAt: number,
         orderItemProductId?: string | null,
+        orderItemProductSizeId: string,
       } | null >,
       nextToken?: string | null,
       startedAt?: number | null,
@@ -3563,12 +3736,25 @@ export type OnCreateOrderItemSubscription = {
       _lastChangedAt: number,
     } | null,
     orderID: string,
+    ProductSize:  {
+      __typename: "ProductSize",
+      id: string,
+      size: number,
+      price: number,
+      productID: string,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    },
     createdAt: string,
     updatedAt: string,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
     orderItemProductId?: string | null,
+    orderItemProductSizeId: string,
   } | null,
 };
 
@@ -3590,12 +3776,25 @@ export type OnUpdateOrderItemSubscription = {
       _lastChangedAt: number,
     } | null,
     orderID: string,
+    ProductSize:  {
+      __typename: "ProductSize",
+      id: string,
+      size: number,
+      price: number,
+      productID: string,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    },
     createdAt: string,
     updatedAt: string,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
     orderItemProductId?: string | null,
+    orderItemProductSizeId: string,
   } | null,
 };
 
@@ -3617,12 +3816,25 @@ export type OnDeleteOrderItemSubscription = {
       _lastChangedAt: number,
     } | null,
     orderID: string,
+    ProductSize:  {
+      __typename: "ProductSize",
+      id: string,
+      size: number,
+      price: number,
+      productID: string,
+      createdAt: string,
+      updatedAt: string,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+    },
     createdAt: string,
     updatedAt: string,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
     orderItemProductId?: string | null,
+    orderItemProductSizeId: string,
   } | null,
 };
 
@@ -3679,7 +3891,6 @@ export type OnCreateBasketItemSubscription = {
       _lastChangedAt: number,
     },
     basketID: string,
-    size?: string | null,
     ProductSize:  {
       __typename: "ProductSize",
       id: string,
@@ -3755,7 +3966,6 @@ export type OnUpdateBasketItemSubscription = {
       _lastChangedAt: number,
     },
     basketID: string,
-    size?: string | null,
     ProductSize:  {
       __typename: "ProductSize",
       id: string,
@@ -3831,7 +4041,6 @@ export type OnDeleteBasketItemSubscription = {
       _lastChangedAt: number,
     },
     basketID: string,
-    size?: string | null,
     ProductSize:  {
       __typename: "ProductSize",
       id: string,
@@ -3863,6 +4072,7 @@ export type OnCreateUserSubscription = {
     Basket?:  {
       __typename: "Basket",
       id: string,
+      name?: string | null,
       BasketItems?:  {
         __typename: "ModelBasketItemConnection",
         items:  Array< {
@@ -3870,7 +4080,6 @@ export type OnCreateUserSubscription = {
           id: string,
           quantity: number,
           basketID: string,
-          size?: string | null,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -3945,6 +4154,7 @@ export type OnUpdateUserSubscription = {
     Basket?:  {
       __typename: "Basket",
       id: string,
+      name?: string | null,
       BasketItems?:  {
         __typename: "ModelBasketItemConnection",
         items:  Array< {
@@ -3952,7 +4162,6 @@ export type OnUpdateUserSubscription = {
           id: string,
           quantity: number,
           basketID: string,
-          size?: string | null,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -4027,6 +4236,7 @@ export type OnDeleteUserSubscription = {
     Basket?:  {
       __typename: "Basket",
       id: string,
+      name?: string | null,
       BasketItems?:  {
         __typename: "ModelBasketItemConnection",
         items:  Array< {
@@ -4034,7 +4244,6 @@ export type OnDeleteUserSubscription = {
           id: string,
           quantity: number,
           basketID: string,
-          size?: string | null,
           createdAt: string,
           updatedAt: string,
           _version: number,
@@ -4104,6 +4313,7 @@ export type OnCreateBasketSubscription = {
   onCreateBasket?:  {
     __typename: "Basket",
     id: string,
+    name?: string | null,
     BasketItems?:  {
       __typename: "ModelBasketItemConnection",
       items:  Array< {
@@ -4125,7 +4335,6 @@ export type OnCreateBasketSubscription = {
           _lastChangedAt: number,
         },
         basketID: string,
-        size?: string | null,
         ProductSize:  {
           __typename: "ProductSize",
           id: string,
@@ -4161,6 +4370,7 @@ export type OnUpdateBasketSubscription = {
   onUpdateBasket?:  {
     __typename: "Basket",
     id: string,
+    name?: string | null,
     BasketItems?:  {
       __typename: "ModelBasketItemConnection",
       items:  Array< {
@@ -4182,7 +4392,6 @@ export type OnUpdateBasketSubscription = {
           _lastChangedAt: number,
         },
         basketID: string,
-        size?: string | null,
         ProductSize:  {
           __typename: "ProductSize",
           id: string,
@@ -4218,6 +4427,7 @@ export type OnDeleteBasketSubscription = {
   onDeleteBasket?:  {
     __typename: "Basket",
     id: string,
+    name?: string | null,
     BasketItems?:  {
       __typename: "ModelBasketItemConnection",
       items:  Array< {
@@ -4239,7 +4449,6 @@ export type OnDeleteBasketSubscription = {
           _lastChangedAt: number,
         },
         basketID: string,
-        size?: string | null,
         ProductSize:  {
           __typename: "ProductSize",
           id: string,

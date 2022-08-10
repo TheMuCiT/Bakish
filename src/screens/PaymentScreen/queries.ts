@@ -18,6 +18,7 @@ export const getBasket = gql`
   query GetBasket($id: ID!) {
     getBasket(id: $id) {
       id
+      name
       BasketItems {
         items {
           id
@@ -36,7 +37,6 @@ export const getBasket = gql`
             _lastChangedAt
           }
           basketID
-          size
           ProductSize {
             id
             size

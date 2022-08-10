@@ -69,6 +69,20 @@ export const createBasketItem = gql`
         title
         subTitle
         description
+        Likes {
+          items {
+            id
+            userID
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
         image
         rating
         ProductSizes {
@@ -93,7 +107,6 @@ export const createBasketItem = gql`
         _lastChangedAt
       }
       basketID
-      size
       ProductSize {
         id
         size
@@ -115,7 +128,6 @@ export const createBasketItem = gql`
     }
   }
 `;
-
 export const updateBasket = gql`
   mutation UpdateBasket(
     $input: UpdateBasketInput!

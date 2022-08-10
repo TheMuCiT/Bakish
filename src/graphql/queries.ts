@@ -252,12 +252,24 @@ export const getOrder = /* GraphQL */ `
             _lastChangedAt
           }
           orderID
+          ProductSize {
+            id
+            size
+            price
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
           orderItemProductId
+          orderItemProductSizeId
         }
         nextToken
         startedAt
@@ -293,6 +305,7 @@ export const listOrders = /* GraphQL */ `
             _deleted
             _lastChangedAt
             orderItemProductId
+            orderItemProductSizeId
           }
           nextToken
           startedAt
@@ -337,6 +350,7 @@ export const syncOrders = /* GraphQL */ `
             _deleted
             _lastChangedAt
             orderItemProductId
+            orderItemProductSizeId
           }
           nextToken
           startedAt
@@ -433,12 +447,24 @@ export const getOrderItem = /* GraphQL */ `
         _lastChangedAt
       }
       orderID
+      ProductSize {
+        id
+        size
+        price
+        productID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
       orderItemProductId
+      orderItemProductSizeId
     }
   }
 `;
@@ -464,12 +490,24 @@ export const listOrderItems = /* GraphQL */ `
           _lastChangedAt
         }
         orderID
+        ProductSize {
+          id
+          size
+          price
+          productID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
         orderItemProductId
+        orderItemProductSizeId
       }
       nextToken
       startedAt
@@ -504,12 +542,24 @@ export const syncOrderItems = /* GraphQL */ `
           _lastChangedAt
         }
         orderID
+        ProductSize {
+          id
+          size
+          price
+          productID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
         orderItemProductId
+        orderItemProductSizeId
       }
       nextToken
       startedAt
@@ -564,7 +614,6 @@ export const getBasketItem = /* GraphQL */ `
         _lastChangedAt
       }
       basketID
-      size
       ProductSize {
         id
         size
@@ -618,7 +667,6 @@ export const listBasketItems = /* GraphQL */ `
           _lastChangedAt
         }
         basketID
-        size
         ProductSize {
           id
           size
@@ -681,7 +729,6 @@ export const syncBasketItems = /* GraphQL */ `
           _lastChangedAt
         }
         basketID
-        size
         ProductSize {
           id
           size
@@ -714,12 +761,12 @@ export const getUser = /* GraphQL */ `
       email
       Basket {
         id
+        name
         BasketItems {
           items {
             id
             quantity
             basketID
-            size
             createdAt
             updatedAt
             _version
@@ -793,6 +840,7 @@ export const listUsers = /* GraphQL */ `
         email
         Basket {
           id
+          name
           BasketItems {
             nextToken
             startedAt
@@ -864,6 +912,7 @@ export const syncUsers = /* GraphQL */ `
         email
         Basket {
           id
+          name
           BasketItems {
             nextToken
             startedAt
@@ -920,6 +969,7 @@ export const getBasket = /* GraphQL */ `
   query GetBasket($id: ID!) {
     getBasket(id: $id) {
       id
+      name
       BasketItems {
         items {
           id
@@ -938,7 +988,6 @@ export const getBasket = /* GraphQL */ `
             _lastChangedAt
           }
           basketID
-          size
           ProductSize {
             id
             size
@@ -978,12 +1027,12 @@ export const listBaskets = /* GraphQL */ `
     listBaskets(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        name
         BasketItems {
           items {
             id
             quantity
             basketID
-            size
             createdAt
             updatedAt
             _version
@@ -1021,12 +1070,12 @@ export const syncBaskets = /* GraphQL */ `
     ) {
       items {
         id
+        name
         BasketItems {
           items {
             id
             quantity
             basketID
-            size
             createdAt
             updatedAt
             _version

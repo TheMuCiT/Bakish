@@ -236,12 +236,24 @@ export const createOrder = /* GraphQL */ `
             _lastChangedAt
           }
           orderID
+          ProductSize {
+            id
+            size
+            price
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
           orderItemProductId
+          orderItemProductSizeId
         }
         nextToken
         startedAt
@@ -280,12 +292,24 @@ export const updateOrder = /* GraphQL */ `
             _lastChangedAt
           }
           orderID
+          ProductSize {
+            id
+            size
+            price
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
           orderItemProductId
+          orderItemProductSizeId
         }
         nextToken
         startedAt
@@ -324,12 +348,24 @@ export const deleteOrder = /* GraphQL */ `
             _lastChangedAt
           }
           orderID
+          ProductSize {
+            id
+            size
+            price
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
           orderItemProductId
+          orderItemProductSizeId
         }
         nextToken
         startedAt
@@ -413,12 +449,24 @@ export const createOrderItem = /* GraphQL */ `
         _lastChangedAt
       }
       orderID
+      ProductSize {
+        id
+        size
+        price
+        productID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
       orderItemProductId
+      orderItemProductSizeId
     }
   }
 `;
@@ -442,12 +490,24 @@ export const updateOrderItem = /* GraphQL */ `
         _lastChangedAt
       }
       orderID
+      ProductSize {
+        id
+        size
+        price
+        productID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
       orderItemProductId
+      orderItemProductSizeId
     }
   }
 `;
@@ -471,12 +531,24 @@ export const deleteOrderItem = /* GraphQL */ `
         _lastChangedAt
       }
       orderID
+      ProductSize {
+        id
+        size
+        price
+        productID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
       orderItemProductId
+      orderItemProductSizeId
     }
   }
 `;
@@ -531,7 +603,6 @@ export const createBasketItem = /* GraphQL */ `
         _lastChangedAt
       }
       basketID
-      size
       ProductSize {
         id
         size
@@ -604,7 +675,6 @@ export const updateBasketItem = /* GraphQL */ `
         _lastChangedAt
       }
       basketID
-      size
       ProductSize {
         id
         size
@@ -677,7 +747,6 @@ export const deleteBasketItem = /* GraphQL */ `
         _lastChangedAt
       }
       basketID
-      size
       ProductSize {
         id
         size
@@ -710,12 +779,12 @@ export const createUser = /* GraphQL */ `
       email
       Basket {
         id
+        name
         BasketItems {
           items {
             id
             quantity
             basketID
-            size
             createdAt
             updatedAt
             _version
@@ -787,12 +856,12 @@ export const updateUser = /* GraphQL */ `
       email
       Basket {
         id
+        name
         BasketItems {
           items {
             id
             quantity
             basketID
-            size
             createdAt
             updatedAt
             _version
@@ -864,12 +933,12 @@ export const deleteUser = /* GraphQL */ `
       email
       Basket {
         id
+        name
         BasketItems {
           items {
             id
             quantity
             basketID
-            size
             createdAt
             updatedAt
             _version
@@ -937,6 +1006,7 @@ export const createBasket = /* GraphQL */ `
   ) {
     createBasket(input: $input, condition: $condition) {
       id
+      name
       BasketItems {
         items {
           id
@@ -955,7 +1025,6 @@ export const createBasket = /* GraphQL */ `
             _lastChangedAt
           }
           basketID
-          size
           ProductSize {
             id
             size
@@ -993,6 +1062,7 @@ export const updateBasket = /* GraphQL */ `
   ) {
     updateBasket(input: $input, condition: $condition) {
       id
+      name
       BasketItems {
         items {
           id
@@ -1011,7 +1081,6 @@ export const updateBasket = /* GraphQL */ `
             _lastChangedAt
           }
           basketID
-          size
           ProductSize {
             id
             size
@@ -1049,6 +1118,7 @@ export const deleteBasket = /* GraphQL */ `
   ) {
     deleteBasket(input: $input, condition: $condition) {
       id
+      name
       BasketItems {
         items {
           id
@@ -1067,7 +1137,6 @@ export const deleteBasket = /* GraphQL */ `
             _lastChangedAt
           }
           basketID
-          size
           ProductSize {
             id
             size

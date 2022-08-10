@@ -417,6 +417,20 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "ProductSize": {
+                    "name": "ProductSize",
+                    "isArray": false,
+                    "type": {
+                        "model": "ProductSize"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "HAS_ONE",
+                        "associatedWith": "id",
+                        "targetName": "orderItemProductSizeId"
+                    }
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -438,6 +452,13 @@ export const schema = {
                     "isArray": false,
                     "type": "ID",
                     "isRequired": false,
+                    "attributes": []
+                },
+                "orderItemProductSizeId": {
+                    "name": "orderItemProductSizeId",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
                     "attributes": []
                 }
             },
@@ -511,13 +532,6 @@ export const schema = {
                     "isArray": false,
                     "type": "ID",
                     "isRequired": true,
-                    "attributes": []
-                },
-                "size": {
-                    "name": "size",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
                     "attributes": []
                 },
                 "ProductSize": {
@@ -731,6 +745,13 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "name": {
+                    "name": "name",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "BasketItems": {
                     "name": "BasketItems",
                     "isArray": true,
@@ -894,5 +915,5 @@ export const schema = {
             }
         }
     },
-    "version": "21ad81007ad413aeae15ec666b10764d"
+    "version": "eefe829b16d9d7f298e19e5784f5fcbc"
 };

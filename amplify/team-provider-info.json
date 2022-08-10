@@ -23,7 +23,7 @@
         },
         "CreatePaymentIntent": {
           "deploymentBucketName": "amplify-bakish-staging-190346-deployment",
-          "s3Key": "amplify-builds/CreatePaymentIntent-68516e73473973325a52-build.zip"
+          "s3Key": "amplify-builds/CreatePaymentIntent-39722b365465536c7473-build.zip"
         }
       }
     }

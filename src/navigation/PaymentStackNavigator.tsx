@@ -1,5 +1,6 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import CheckoutScreen from '../screens/Checkout/CheckoutScreen';
+import EmptyBasketScreen from '../screens/EmptyBasketScreen';
 import PaymentScreen from '../screens/PaymentScreen';
 import PaymentConfirmationScreen from '../screens/PaymentScreen/PaymentConfirmationScreen';
 import PaymentStripeScreen from '../screens/PaymentScreen/PaymentStripeScreen';
@@ -28,6 +29,11 @@ const HomeStackNavigator = () => {
       <Stack.Screen
         name="PaymentStripeScreen"
         component={PaymentStripeScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="EmptyBasketScreen"
+        component={EmptyBasketScreen}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

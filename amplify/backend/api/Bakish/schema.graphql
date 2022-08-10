@@ -52,6 +52,7 @@ type OrderItem @model @auth(rules: [{allow: public}]) {
   quantity: Int!
   Product: ProductSize @hasOne
   orderID: ID! @index(name: "byOrder")
+  ProductSize: ProductSize! @hasOne
 }
 
 type BasketItem @model @auth(rules: [{allow: public}]) {
@@ -59,7 +60,6 @@ type BasketItem @model @auth(rules: [{allow: public}]) {
   quantity: Int!
   Product: Product! @hasOne
   basketID: ID! @index(name: "byBasket")
-  size: String
   ProductSize: ProductSize! @hasOne
 }
 
@@ -75,6 +75,7 @@ type User @model @auth(rules: [{allow: public}]) {
 
 type Basket @model @auth(rules: [{allow: public}]) {
   id: ID!
+  name: String
   BasketItems: [BasketItem] @hasMany(indexName: "byBasket", fields: ["id"])
 }
 

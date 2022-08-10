@@ -23,6 +23,7 @@ import {useAuthContext} from '../../contexts/AuthContext';
 import AppHeader from '../../components/appHeader/AppHeader';
 
 const CheckoutScreen = () => {
+  console.log('CheckoutScreen');
   const {userId} = useAuthContext();
   const navigation = useNavigation<CheckoutNavigatorProp>();
 
@@ -38,10 +39,15 @@ const CheckoutScreen = () => {
 
   const userData = userDataExtract?.getUser;
 
+  console.log(userData?.userBasketId ? true : undefined);
+
   const {data, loading, error, refetch} = useQuery<
     GetBasketQuery,
     GetBasketQueryVariables
-  >(getBasket, {variables: {id: userData?.userBasketId || ''}});
+  >(getBasket, {
+    skip: userData?.userBasketId ? false : undefined,
+    variables: {id: userData?.userBasketId || ''},
+  });
 
   const checkout = (data?.getBasket?.BasketItems?.items || []).filter(
     checkoutItem => !checkoutItem?._deleted,
@@ -70,9 +76,17 @@ const CheckoutScreen = () => {
     calcTotalPrice();
   }, [checkout]);
 
+  if (!userData?.userBasketId) {
+    return <Text>NO DATA</Text>;
+  }
+
   const GoToPayment = () => {
     navigation.navigate('PaymentScreen');
   };
+
+  if (!checkout) {
+    return <Text>No data</Text>;
+  }
 
   if (loading || userLoading) {
     return <ActivityIndicator />;

@@ -95,7 +95,6 @@ const ProductScreen = () => {
       }
     } else {
       if (product && userBasketId && selectedItem) {
-        loading;
         onAddBasketItem(product.id, qty, userBasketId, selectedItem.id);
       } else {
         Alert.alert('Error add new item to the basket');
