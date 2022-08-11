@@ -95,7 +95,7 @@ const ProductScreen = () => {
       }
     } else {
       if (product && userBasketId && selectedItem) {
-        onAddBasketItem(product.id, qty, userBasketId, selectedItem.id);
+        await onAddBasketItem(product.id, qty, userBasketId, selectedItem.id);
       } else {
         Alert.alert('Error add new item to the basket');
       }

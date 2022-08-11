@@ -76,19 +76,16 @@ const PaymentConfirmationScreen = () => {
 
   useEffect(() => {
     if (!checkout) {
-      console.log('First');
       return;
     }
     calcTotalPrice();
   }, [checkout]);
 
   if (loading || userLoading) {
-    console.log('second');
     return <ActivityIndicator />;
   }
 
   if (error || userError) {
-    console.log('third');
     return <Text>{error?.message || userError?.message}</Text>;
   }
 

@@ -86,6 +86,7 @@ const useCreateBasketService = () => {
 
     try {
       await doCreateBasketItem({variables: {input}});
+      await doUpdateBasket({variables: {input: {id: basketId}}});
     } catch (e) {
       Alert.alert('Error create basket item', (e as Error).message);
     }

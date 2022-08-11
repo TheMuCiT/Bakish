@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -27,12 +27,14 @@ import {
   GetUserQueryVariables,
   ListProductsQuery,
   ListProductsQueryVariables,
+  Product,
 } from '../../API';
 import {useAuthContext} from '../../contexts/AuthContext';
 
 const HomeScreen = () => {
   const {userId} = useAuthContext();
   const [searchBarValue, setSearchBarValue] = useState('');
+  const [valueSearch, setValueSearch] = useState<null | Product[]>(null);
   const {
     data: userDataExtract,
     loading: userLoading,
@@ -48,6 +50,17 @@ const HomeScreen = () => {
     loading,
     error,
   } = useQuery<ListProductsQuery, ListProductsQueryVariables>(listProducts);
+
+  useEffect(() => {
+    if (searchBarValue !== '') {
+      const FilterValue = productData?.listProducts?.items.filter(item =>
+        item?.title.toLowerCase().includes(searchBarValue),
+      );
+      setValueSearch((FilterValue as Product[]) || null);
+    }
+  }, [searchBarValue]);
+
+  console.log(valueSearch);
 
   if (loading || userLoading) {
     return <ActivityIndicator />;
@@ -88,7 +101,9 @@ const HomeScreen = () => {
       </View>
       {/* HomeScreen product flatList */}
       <FlatList
-        data={productData?.listProducts?.items}
+        data={
+          searchBarValue !== '' ? valueSearch : productData?.listProducts?.items
+        }
         renderItem={({item}) => item && <ProductComponent product={item} />}
         contentContainerStyle={{paddingHorizontal: 0}}
         numColumns={2}

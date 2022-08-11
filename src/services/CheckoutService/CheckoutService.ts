@@ -20,7 +20,7 @@ const useCheckoutService = () => {
     DeleteBasketItemMutationVariables
   >(deleteBasketItem);
 
-  const onChangeQuantity = (amount: 1 | -1, basketItem: BasketItem) => {
+  const onChangeQuantity = async (amount: 1 | -1, basketItem: BasketItem) => {
     if (amount === -1 && basketItem.quantity === 1) {
       Alert.alert(
         'Are you sure?',
@@ -43,7 +43,7 @@ const useCheckoutService = () => {
 
     //setNewBasketItemValue
     try {
-      doUpdateBasketItem({
+      await doUpdateBasketItem({
         variables: {
           input: {
             id: basketItem.id,
@@ -59,9 +59,9 @@ const useCheckoutService = () => {
     }
   };
 
-  const onDeleteBasketItem = (basketItem: BasketItem) => {
+  const onDeleteBasketItem = async (basketItem: BasketItem) => {
     try {
-      doDelete({
+      await doDelete({
         variables: {input: {id: basketItem.id, _version: basketItem._version}},
       });
     } catch (e) {

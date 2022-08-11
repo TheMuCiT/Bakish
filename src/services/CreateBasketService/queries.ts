@@ -135,6 +135,7 @@ export const updateBasket = gql`
   ) {
     updateBasket(input: $input, condition: $condition) {
       id
+      name
       BasketItems {
         items {
           id
@@ -153,7 +154,6 @@ export const updateBasket = gql`
             _lastChangedAt
           }
           basketID
-          size
           ProductSize {
             id
             size

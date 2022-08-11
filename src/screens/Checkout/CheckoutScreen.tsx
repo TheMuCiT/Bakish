@@ -23,7 +23,6 @@ import {useAuthContext} from '../../contexts/AuthContext';
 import AppHeader from '../../components/appHeader/AppHeader';
 
 const CheckoutScreen = () => {
-  console.log('CheckoutScreen');
   const {userId} = useAuthContext();
   const navigation = useNavigation<CheckoutNavigatorProp>();
 
@@ -38,8 +37,6 @@ const CheckoutScreen = () => {
   });
 
   const userData = userDataExtract?.getUser;
-
-  console.log(userData?.userBasketId ? true : undefined);
 
   const {data, loading, error, refetch} = useQuery<
     GetBasketQuery,
