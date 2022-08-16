@@ -60,8 +60,6 @@ const HomeScreen = () => {
     }
   }, [searchBarValue]);
 
-  console.log(valueSearch);
-
   if (loading || userLoading) {
     return <ActivityIndicator />;
   }

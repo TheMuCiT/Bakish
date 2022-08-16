@@ -21,6 +21,18 @@ type LikesMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
+type UserMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
+type BasketMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
+type BasketItemMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
 type ProductSizeMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
@@ -30,18 +42,6 @@ type OrderMetaData = {
 }
 
 type OrderItemMetaData = {
-  readOnlyFields: 'createdAt' | 'updatedAt';
-}
-
-type BasketItemMetaData = {
-  readOnlyFields: 'createdAt' | 'updatedAt';
-}
-
-type UserMetaData = {
-  readOnlyFields: 'createdAt' | 'updatedAt';
-}
-
-type BasketMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
@@ -66,12 +66,51 @@ export declare class Product {
 
 export declare class Likes {
   readonly id: string;
-  readonly userID: string;
-  readonly productID: string;
+  readonly User?: User | null;
+  readonly Product?: Product | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<Likes, LikesMetaData>);
   static copyOf(source: Likes, mutator: (draft: MutableModel<Likes, LikesMetaData>) => MutableModel<Likes, LikesMetaData> | void): Likes;
+}
+
+export declare class User {
+  readonly id: string;
+  readonly username: string;
+  readonly email: string;
+  readonly Basket?: Basket | null;
+  readonly Likes?: (Likes | null)[] | null;
+  readonly Orders?: (Order | null)[] | null;
+  readonly image?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  readonly userBasketId?: string | null;
+  constructor(init: ModelInit<User, UserMetaData>);
+  static copyOf(source: User, mutator: (draft: MutableModel<User, UserMetaData>) => MutableModel<User, UserMetaData> | void): User;
+}
+
+export declare class Basket {
+  readonly id: string;
+  readonly name?: string | null;
+  readonly BasketItems?: (BasketItem | null)[] | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  constructor(init: ModelInit<Basket, BasketMetaData>);
+  static copyOf(source: Basket, mutator: (draft: MutableModel<Basket, BasketMetaData>) => MutableModel<Basket, BasketMetaData> | void): Basket;
+}
+
+export declare class BasketItem {
+  readonly id: string;
+  readonly quantity: number;
+  readonly Product: Product;
+  readonly basketID: string;
+  readonly ProductSize: ProductSize;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  readonly basketItemProductId: string;
+  readonly basketItemProductSizeId: string;
+  constructor(init: ModelInit<BasketItem, BasketItemMetaData>);
+  static copyOf(source: BasketItem, mutator: (draft: MutableModel<BasketItem, BasketItemMetaData>) => MutableModel<BasketItem, BasketItemMetaData> | void): BasketItem;
 }
 
 export declare class ProductSize {
@@ -109,45 +148,6 @@ export declare class OrderItem {
   readonly orderItemProductSizeId: string;
   constructor(init: ModelInit<OrderItem, OrderItemMetaData>);
   static copyOf(source: OrderItem, mutator: (draft: MutableModel<OrderItem, OrderItemMetaData>) => MutableModel<OrderItem, OrderItemMetaData> | void): OrderItem;
-}
-
-export declare class BasketItem {
-  readonly id: string;
-  readonly quantity: number;
-  readonly Product: Product;
-  readonly basketID: string;
-  readonly ProductSize: ProductSize;
-  readonly createdAt?: string | null;
-  readonly updatedAt?: string | null;
-  readonly basketItemProductId: string;
-  readonly basketItemProductSizeId: string;
-  constructor(init: ModelInit<BasketItem, BasketItemMetaData>);
-  static copyOf(source: BasketItem, mutator: (draft: MutableModel<BasketItem, BasketItemMetaData>) => MutableModel<BasketItem, BasketItemMetaData> | void): BasketItem;
-}
-
-export declare class User {
-  readonly id: string;
-  readonly username: string;
-  readonly email: string;
-  readonly Basket?: Basket | null;
-  readonly Likes?: (Likes | null)[] | null;
-  readonly Orders?: (Order | null)[] | null;
-  readonly image?: string | null;
-  readonly createdAt?: string | null;
-  readonly updatedAt?: string | null;
-  readonly userBasketId?: string | null;
-  constructor(init: ModelInit<User, UserMetaData>);
-  static copyOf(source: User, mutator: (draft: MutableModel<User, UserMetaData>) => MutableModel<User, UserMetaData> | void): User;
-}
-
-export declare class Basket {
-  readonly id: string;
-  readonly name?: string | null;
-  readonly BasketItems?: (BasketItem | null)[] | null;
-  readonly createdAt?: string | null;
-  readonly updatedAt?: string | null;
-  constructor(init: ModelInit<Basket, BasketMetaData>);
-  static copyOf(source: Basket, mutator: (draft: MutableModel<Basket, BasketMetaData>) => MutableModel<Basket, BasketMetaData> | void): Basket;
 }
 
 export declare class Ads {

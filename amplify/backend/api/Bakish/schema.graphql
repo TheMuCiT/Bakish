@@ -43,8 +43,16 @@ type Order @model @auth(rules: [{allow: public}]) {
 
 type Likes @model @auth(rules: [{allow: public}]) {
   id: ID!
-  userID: ID! @index(name: "byUser")
+  userID: ID!
+    @index(
+      name: "byUser"
+      queryField: "likesByUserForProduct"
+      sortKeyFields: ["productID"]
+    )
   productID: ID! @index(name: "byProduct")
+
+  User: User @belongsTo(fields: ["userID"])
+  Product: Product @belongsTo(fields: ["productID"])
 }
 
 type OrderItem @model @auth(rules: [{allow: public}]) {

@@ -14,6 +14,31 @@ export const onCreateProduct = /* GraphQL */ `
           id
           userID
           productID
+          User {
+            id
+            username
+            email
+            image
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            userBasketId
+          }
+          Product {
+            id
+            title
+            subTitle
+            description
+            image
+            rating
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
           createdAt
           updatedAt
           _version
@@ -60,6 +85,31 @@ export const onUpdateProduct = /* GraphQL */ `
           id
           userID
           productID
+          User {
+            id
+            username
+            email
+            image
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            userBasketId
+          }
+          Product {
+            id
+            title
+            subTitle
+            description
+            image
+            rating
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
           createdAt
           updatedAt
           _version
@@ -106,6 +156,31 @@ export const onDeleteProduct = /* GraphQL */ `
           id
           userID
           productID
+          User {
+            id
+            username
+            email
+            image
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            userBasketId
+          }
+          Product {
+            id
+            title
+            subTitle
+            description
+            image
+            rating
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
           createdAt
           updatedAt
           _version
@@ -350,6 +425,102 @@ export const onCreateLikes = /* GraphQL */ `
       id
       userID
       productID
+      User {
+        id
+        username
+        email
+        Basket {
+          id
+          name
+          BasketItems {
+            nextToken
+            startedAt
+          }
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        Likes {
+          items {
+            id
+            userID
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
+        Orders {
+          items {
+            id
+            userID
+            total
+            status
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
+        image
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        userBasketId
+      }
+      Product {
+        id
+        title
+        subTitle
+        description
+        Likes {
+          items {
+            id
+            userID
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
+        image
+        rating
+        ProductSizes {
+          items {
+            id
+            size
+            price
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
@@ -364,6 +535,102 @@ export const onUpdateLikes = /* GraphQL */ `
       id
       userID
       productID
+      User {
+        id
+        username
+        email
+        Basket {
+          id
+          name
+          BasketItems {
+            nextToken
+            startedAt
+          }
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        Likes {
+          items {
+            id
+            userID
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
+        Orders {
+          items {
+            id
+            userID
+            total
+            status
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
+        image
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        userBasketId
+      }
+      Product {
+        id
+        title
+        subTitle
+        description
+        Likes {
+          items {
+            id
+            userID
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
+        image
+        rating
+        ProductSizes {
+          items {
+            id
+            size
+            price
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
@@ -378,6 +645,102 @@ export const onDeleteLikes = /* GraphQL */ `
       id
       userID
       productID
+      User {
+        id
+        username
+        email
+        Basket {
+          id
+          name
+          BasketItems {
+            nextToken
+            startedAt
+          }
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        Likes {
+          items {
+            id
+            userID
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
+        Orders {
+          items {
+            id
+            userID
+            total
+            status
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
+        image
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        userBasketId
+      }
+      Product {
+        id
+        title
+        subTitle
+        description
+        Likes {
+          items {
+            id
+            userID
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
+        image
+        rating
+        ProductSizes {
+          items {
+            id
+            size
+            price
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
@@ -743,6 +1106,31 @@ export const onCreateUser = /* GraphQL */ `
           id
           userID
           productID
+          User {
+            id
+            username
+            email
+            image
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            userBasketId
+          }
+          Product {
+            id
+            title
+            subTitle
+            description
+            image
+            rating
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
           createdAt
           updatedAt
           _version
@@ -817,6 +1205,31 @@ export const onUpdateUser = /* GraphQL */ `
           id
           userID
           productID
+          User {
+            id
+            username
+            email
+            image
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            userBasketId
+          }
+          Product {
+            id
+            title
+            subTitle
+            description
+            image
+            rating
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
           createdAt
           updatedAt
           _version
@@ -891,6 +1304,31 @@ export const onDeleteUser = /* GraphQL */ `
           id
           userID
           productID
+          User {
+            id
+            username
+            email
+            image
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            userBasketId
+          }
+          Product {
+            id
+            title
+            subTitle
+            description
+            image
+            rating
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
           createdAt
           updatedAt
           _version
