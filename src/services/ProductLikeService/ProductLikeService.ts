@@ -39,7 +39,6 @@ const useLikeService = (product: Product) => {
   )?.[0];
 
   const toggleLike = () => {
-    console.log(userLike);
     if (userLike) {
       doDeleteLikes({
         variables: {input: {id: userLike.id, _version: userLike._version}},

@@ -17,6 +17,8 @@ const colors = {
 
   tabBarBottomActiveColor: '#1F1F1F',
   tabBarBottomInactiveColor: '#1f1f1f33',
+
+  separatorLineColor: '#EEEEEE',
 };
 
 export default colors;

@@ -75,3 +75,35 @@ export const listAds = gql`
     }
   }
 `;
+export const likesByUserForProduct = gql`
+  query LikesByUserForProduct(
+    $userID: ID!
+    $productID: ModelIDKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelLikesFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    likesByUserForProduct(
+      userID: $userID
+      productID: $productID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        userID
+        productID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;

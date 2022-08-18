@@ -19,8 +19,14 @@ import colors from '../../theme/colors';
 import {useQuery} from '@apollo/client';
 import {listAds} from './queries';
 import {ListAdsQuery, ListAdsQueryVariables} from '../../API';
-const HomeScreenHeader = () => {
-  const [activeCategory, setActiveCategory] = useState(1);
+
+interface IHomeScreenHeader {
+  onChange: (value: number) => void;
+  value: number;
+}
+
+const HomeScreenHeader = ({onChange, value}: IHomeScreenHeader) => {
+  const [activeCategory, setActiveCategory] = useState(value);
 
   const viewConfig = useRef({itemVisiblePercentThreshold: 30});
 
@@ -35,6 +41,11 @@ const HomeScreenHeader = () => {
   data?.listAds?.items.map((i, index) => {
     snapOffset.push((width - 35) * (index + 1));
   });
+
+  const changeCategory = (value: number) => {
+    setActiveCategory(value);
+    onChange(value);
+  };
 
   if (loading) {
     return <ActivityIndicator />;
@@ -71,14 +82,14 @@ const HomeScreenHeader = () => {
           marginBottom: 20,
         }}>
         <Pressable
-          onPress={() => setActiveCategory(0)}
+          onPress={() => changeCategory(0)}
           style={
             activeCategory === 0
               ? styles.categoryContainerActive
               : styles.categoryContainer
           }>
           <View style={styles.categoryIcon}>
-            <Newest />
+            <Newest color={activeCategory === 0 ? '#FFA827' : '#999'} />
           </View>
           <Text
             style={
@@ -86,21 +97,21 @@ const HomeScreenHeader = () => {
                 ? styles.categoryTextActive
                 : styles.categoryText
             }>
-            Popular
+            All
           </Text>
         </Pressable>
 
         <View style={styles.gap} />
 
         <Pressable
-          onPress={() => setActiveCategory(1)}
+          onPress={() => changeCategory(1)}
           style={
             activeCategory === 1
               ? styles.categoryContainerActive
               : styles.categoryContainer
           }>
           <View style={styles.categoryIcon}>
-            <Newest />
+            <Newest color={activeCategory === 1 ? '#FFA827' : '#999'} />
           </View>
           <Text
             style={
@@ -115,14 +126,14 @@ const HomeScreenHeader = () => {
         <View style={styles.gap} />
 
         <Pressable
-          onPress={() => setActiveCategory(2)}
+          onPress={() => changeCategory(2)}
           style={
             activeCategory === 2
               ? styles.categoryContainerActive
               : styles.categoryContainer
           }>
           <View style={styles.categoryIcon}>
-            <Recommended />
+            <Recommended color={activeCategory === 2 ? '#FFA827' : '#999'} />
           </View>
           <Text
             style={
@@ -130,7 +141,7 @@ const HomeScreenHeader = () => {
                 ? styles.categoryTextActive
                 : styles.categoryText
             }>
-            Recommended
+            Favorite
           </Text>
         </Pressable>
       </ScrollView>

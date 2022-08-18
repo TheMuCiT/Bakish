@@ -21,20 +21,26 @@ import colors from '../../theme/colors';
 import ProductComponent from '../../components/product/ProductComponent';
 
 import HomeScreenHeader from './HomeScreenHeader';
-import {getUser, listProducts} from './queries';
+import {getUser, likesByUserForProduct, listProducts} from './queries';
 import {
   GetUserQuery,
   GetUserQueryVariables,
+  LikesByUserForProductQuery,
+  LikesByUserForProductQueryVariables,
   ListProductsQuery,
   ListProductsQueryVariables,
   Product,
 } from '../../API';
 import {useAuthContext} from '../../contexts/AuthContext';
+import useLikeService from '../../services/ProductLikeService/ProductLikeService';
 
 const HomeScreen = () => {
   const {userId} = useAuthContext();
   const [searchBarValue, setSearchBarValue] = useState('');
+  const [activeCategory, setActiveCategory] = useState(0);
+  const [dataToShow, setDataToShow] = useState<null | Product[]>(null);
   const [valueSearch, setValueSearch] = useState<null | Product[]>(null);
+
   const {
     data: userDataExtract,
     loading: userLoading,
@@ -51,14 +57,45 @@ const HomeScreen = () => {
     error,
   } = useQuery<ListProductsQuery, ListProductsQueryVariables>(listProducts);
 
+  const {data: likeData} = useQuery<
+    LikesByUserForProductQuery,
+    LikesByUserForProductQueryVariables
+  >(likesByUserForProduct, {
+    variables: {userID: userId},
+  });
+
+  const likeDataFilter = (likeData?.likesByUserForProduct?.items || []).filter(
+    like => !like?._deleted,
+  );
+
   useEffect(() => {
     if (searchBarValue !== '') {
+      setActiveCategory(0);
       const FilterValue = productData?.listProducts?.items.filter(item =>
         item?.title.toLowerCase().includes(searchBarValue),
       );
       setValueSearch((FilterValue as Product[]) || null);
     }
   }, [searchBarValue]);
+
+  const handleValueChange = (value: number) => {
+    setActiveCategory(value);
+  };
+
+  useEffect(() => {
+    let value = null;
+    if (activeCategory === 0) {
+      value =
+        searchBarValue !== '' ? valueSearch : productData?.listProducts?.items;
+    } else if (activeCategory === 1) {
+      value = productData?.listProducts?.items;
+    } else if (activeCategory === 2) {
+      value = productData?.listProducts?.items.filter(item =>
+        likeDataFilter.find(filterData => filterData?.productID === item?.id),
+      );
+    }
+    setDataToShow(value as Product[]);
+  }, [activeCategory]);
 
   if (loading || userLoading) {
     return <ActivityIndicator />;
@@ -99,9 +136,7 @@ const HomeScreen = () => {
       </View>
       {/* HomeScreen product flatList */}
       <FlatList
-        data={
-          searchBarValue !== '' ? valueSearch : productData?.listProducts?.items
-        }
+        data={dataToShow || productData?.listProducts?.items}
         renderItem={({item}) => item && <ProductComponent product={item} />}
         contentContainerStyle={{paddingHorizontal: 0}}
         numColumns={2}
@@ -110,7 +145,13 @@ const HomeScreen = () => {
           paddingHorizontal: 25,
         }}
         ItemSeparatorComponent={() => <View style={{height: 19}} />}
-        ListHeaderComponent={() => <HomeScreenHeader />}
+        ListHeaderComponent={() => (
+          <HomeScreenHeader
+            onChange={handleValueChange}
+            value={activeCategory}
+          />
+        )}
+        extraData={dataToShow}
       />
     </View>
   );

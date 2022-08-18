@@ -12,6 +12,9 @@ import Navigation from './src/navigation';
 import Client from './src/apollo/Client';
 import {STRIPE_PRODUCT_KEY} from './src/config';
 
+import relativeTime from 'dayjs/plugin/relativeTime';
+import dayjs from 'dayjs';
+
 const urlOpener = async (url: string, redirectUrl: string) => {
   await InAppBrowser.isAvailable();
   const response = await InAppBrowser.openAuth(url, redirectUrl, {
@@ -37,6 +40,7 @@ const updatedConfig = {
 Amplify.configure(updatedConfig);
 
 const App = () => {
+  dayjs.extend(relativeTime);
   return (
     <AuthContextProvider>
       <StripeProvider publishableKey={STRIPE_PRODUCT_KEY}>

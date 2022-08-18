@@ -48,6 +48,11 @@ export type PaymentNavigatorProp = NativeStackNavigationProp<
   'PaymentScreen'
 >;
 
+export type ProfileNavigatorProp = NativeStackNavigationProp<
+  BottomTabNavigatorParamList,
+  'Portfolio'
+>;
+
 export type PaymentConfirmationNavigatorProp = NativeStackNavigationProp<
   PaymentStackNavigatorParamList,
   'PaymentConfirmationScreen'
