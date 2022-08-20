@@ -37,7 +37,6 @@ const OrderListItem = ({orderId, slice = false}: IOrderListItem) => {
   const orderItemOne = order?.OrderItems?.items;
 
   const goToOrderDetails = () => {
-    console.log('first');
     navigation.navigate('OrderDetailsScreen', {orderId: orderId});
   };
 
@@ -62,7 +61,7 @@ const OrderListItem = ({orderId, slice = false}: IOrderListItem) => {
         ItemSeparatorComponent={() => (
           <View
             style={{
-              height: 0.5,
+              height: 1,
               backgroundColor: colors.grey,
             }}></View>
         )}

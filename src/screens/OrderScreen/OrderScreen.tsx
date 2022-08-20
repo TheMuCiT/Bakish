@@ -45,7 +45,7 @@ const OrderScreen = () => {
         ItemSeparatorComponent={() => (
           <View
             style={{
-              height: 0.5,
+              height: 1,
               backgroundColor: colors.grey,
               marginHorizontal: 25,
             }}></View>
