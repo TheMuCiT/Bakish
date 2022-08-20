@@ -1,8 +1,7 @@
 import {useNavigation, useRoute} from '@react-navigation/native';
-import {View, Text} from 'react-native';
+import {ScrollView, View} from 'react-native';
 import AppHeader from '../../components/appHeader/AppHeader';
 import OrderListItem from '../../components/order/OrderListItem';
-import {useAuthContext} from '../../contexts/AuthContext';
 import {
   OrderDetailsRouteProp,
   OrderNavigatorProp,
@@ -10,8 +9,6 @@ import {
 import styles from './style';
 
 const OrderDetailsScreen = () => {
-  const {userId} = useAuthContext();
-
   const route = useRoute<OrderDetailsRouteProp>();
   const {orderId} = route.params;
   const navigation = useNavigation<OrderNavigatorProp>();

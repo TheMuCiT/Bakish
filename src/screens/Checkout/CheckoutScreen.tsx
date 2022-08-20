@@ -45,8 +45,6 @@ const CheckoutScreen = () => {
     variables: {id: userData?.userBasketId || ''},
   });
 
-  console.log(data);
-
   const checkout = (data?.getBasket?.BasketItems?.items || []).filter(
     checkoutItem => !checkoutItem?._deleted,
   );

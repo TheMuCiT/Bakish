@@ -37,6 +37,7 @@ const OrderListItem = ({orderId, slice = false}: IOrderListItem) => {
   const orderItemOne = order?.OrderItems?.items;
 
   const goToOrderDetails = () => {
+    console.log('first');
     navigation.navigate('OrderDetailsScreen', {orderId: orderId});
   };
 
@@ -49,25 +50,10 @@ const OrderListItem = ({orderId, slice = false}: IOrderListItem) => {
   }
 
   return (
-    <Pressable onPress={goToOrderDetails} style={styles.root}>
-      <View style={styles.orderInfo}>
-        <View>
-          <Text style={styles.orderText}>Order#: 156254---</Text>
-          <Text style={styles.orderText}>Status: {order?.status}</Text>
-          <View style={styles.dateContainer}>
-            <Text style={styles.time}>
-              {dayjs(order?.createdAt).format('hh:mm A')}
-            </Text>
-            <View style={styles.line} />
-            <Text style={styles.time}>
-              {dayjs(order?.createdAt).format('D MMM YYYY')}
-            </Text>
-          </View>
-        </View>
-        <View>
-          <Text style={styles.total}>${order?.total}</Text>
-        </View>
-      </View>
+    <Pressable
+      onPress={goToOrderDetails}
+      style={slice ? styles.root : styles.rootMain}
+      disabled={!slice}>
       <FlatList
         data={slice ? orderItemOne?.slice(0, 2) : orderItemOne}
         renderItem={({item}) =>
@@ -79,6 +65,27 @@ const OrderListItem = ({orderId, slice = false}: IOrderListItem) => {
               height: 0.5,
               backgroundColor: colors.grey,
             }}></View>
+        )}
+        showsVerticalScrollIndicator={false}
+        ListHeaderComponent={() => (
+          <View style={styles.orderInfo}>
+            <View>
+              <Text style={styles.orderText}>Order#: 156254---</Text>
+              <Text style={styles.orderText}>Status: {order?.status}</Text>
+              <View style={styles.dateContainer}>
+                <Text style={styles.time}>
+                  {dayjs(order?.createdAt).format('hh:mm A')}
+                </Text>
+                <View style={styles.line} />
+                <Text style={styles.time}>
+                  {dayjs(order?.createdAt).format('D MMM YYYY')}
+                </Text>
+              </View>
+            </View>
+            <View>
+              <Text style={styles.total}>${order?.total}</Text>
+            </View>
+          </View>
         )}
       />
     </Pressable>

@@ -19,11 +19,17 @@ const styles = StyleSheet.create({
     elevation: 20,
   },
 
+  rootMain: {
+    marginHorizontal: 25,
+    marginVertical: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+  },
+
   orderInfo: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    flex: 1,
   },
 
   orderText: {

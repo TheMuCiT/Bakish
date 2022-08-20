@@ -28,8 +28,6 @@ const PaymentStripeScreen = () => {
   const [clientSecret, setClientSecret] = useState<string | null>(null);
 
   useEffect(() => {
-    console.log('InitPayment');
-    console.log(amount);
     if (amount) {
       doCreatePaymentInstant({variables: {amount: amount}});
     }
@@ -66,8 +64,6 @@ const PaymentStripeScreen = () => {
 
   const openPaymentSheet = async () => {
     const {error, paymentOption} = await presentPaymentSheet();
-
-    console.log(paymentOption);
 
     if (error) {
       Alert.alert(`Error code: ${error.code}`, error.message);

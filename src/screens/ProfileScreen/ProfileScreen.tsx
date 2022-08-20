@@ -42,7 +42,6 @@ const ProfileScreen = () => {
   });
 
   const userData = userDataExtract?.getUser;
-  console.log(userData);
 
   const signOutPressed = () => {
     Auth.signOut();
