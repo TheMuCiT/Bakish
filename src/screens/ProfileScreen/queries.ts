@@ -8,23 +8,6 @@ export const getUser = gql`
       email
       Basket {
         id
-        name
-        BasketItems {
-          items {
-            id
-            quantity
-            basketID
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-            basketItemProductId
-            basketItemProductSizeId
-          }
-          nextToken
-          startedAt
-        }
         createdAt
         updatedAt
         _version
@@ -36,31 +19,6 @@ export const getUser = gql`
           id
           userID
           productID
-          User {
-            id
-            username
-            email
-            image
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-            userBasketId
-          }
-          Product {
-            id
-            title
-            subTitle
-            description
-            image
-            rating
-            createdAt
-            updatedAt
-            _version
-            _deleted
-            _lastChangedAt
-          }
           createdAt
           updatedAt
           _version
@@ -73,13 +31,6 @@ export const getUser = gql`
       Orders {
         items {
           id
-          userID
-          total
-          status
-          OrderItems {
-            nextToken
-            startedAt
-          }
           createdAt
           updatedAt
           _version

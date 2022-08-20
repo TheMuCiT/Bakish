@@ -90,7 +90,7 @@ const SignInScreen = () => {
   return (
     <View style={styles.backgroundSVG}>
       <SignUpSVG style={styles.backSVG} />
-      <ScrollView style={styles.root}>
+      <ScrollView style={styles.root} showsVerticalScrollIndicator={false}>
         <View style={styles.header}>
           <Logo />
           <Text style={styles.title}>

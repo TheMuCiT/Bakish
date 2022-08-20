@@ -61,7 +61,7 @@ const ForgotPasswordScreen = () => {
   return (
     <View style={styles.backgroundSVG}>
       <SignUpSVG style={styles.backSVG} />
-      <ScrollView style={styles.root}>
+      <ScrollView style={styles.root} showsVerticalScrollIndicator={false}>
         <View style={styles.header}>
           <Pressable onPress={goBack} style={styles.goBack}>
             <GoBackIcon />
