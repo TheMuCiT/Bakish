@@ -18,10 +18,14 @@ export type PaymentStackNavigatorParamList = {
   PaymentStripeScreen: {amount: number};
   EmptyBasketScreen: undefined;
 };
+export type OrdersStackNavigatorParamList = {
+  OrderScreen: undefined;
+  OrderDetailsScreen: {orderId: string};
+};
 
 export type BottomTabNavigatorParamList = {
   HomeStack: undefined;
-  Favorite: undefined;
+  Order: undefined;
   Checkout: undefined;
   Portfolio: undefined;
 };
@@ -36,6 +40,11 @@ export type HomePageNavigatorProp = NativeStackNavigationProp<
 export type ProductNavigatorProp = NativeStackNavigationProp<
   HomeStackNavigatorParamList,
   'ProductScreen'
+>;
+
+export type OrderNavigatorProp = NativeStackNavigationProp<
+  OrdersStackNavigatorParamList,
+  'OrderScreen'
 >;
 
 export type CheckoutNavigatorProp = NativeStackNavigationProp<
@@ -72,6 +81,11 @@ export type ProductRouteProp = RouteProp<
 export type PaymentStripeRouteProp = RouteProp<
   PaymentStackNavigatorParamList,
   'PaymentStripeScreen'
+>;
+
+export type OrderDetailsRouteProp = RouteProp<
+  OrdersStackNavigatorParamList,
+  'OrderDetailsScreen'
 >;
 
 //Auth

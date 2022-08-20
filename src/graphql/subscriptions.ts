@@ -273,9 +273,11 @@ export const onCreateOrder = /* GraphQL */ `
           quantity
           Product {
             id
-            size
-            price
-            productID
+            title
+            subTitle
+            description
+            image
+            rating
             createdAt
             updatedAt
             _version
@@ -326,9 +328,11 @@ export const onUpdateOrder = /* GraphQL */ `
           quantity
           Product {
             id
-            size
-            price
-            productID
+            title
+            subTitle
+            description
+            image
+            rating
             createdAt
             updatedAt
             _version
@@ -379,9 +383,11 @@ export const onDeleteOrder = /* GraphQL */ `
           quantity
           Product {
             id
-            size
-            price
-            productID
+            title
+            subTitle
+            description
+            image
+            rating
             createdAt
             updatedAt
             _version
@@ -756,9 +762,40 @@ export const onCreateOrderItem = /* GraphQL */ `
       quantity
       Product {
         id
-        size
-        price
-        productID
+        title
+        subTitle
+        description
+        Likes {
+          items {
+            id
+            userID
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
+        image
+        rating
+        ProductSizes {
+          items {
+            id
+            size
+            price
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
         createdAt
         updatedAt
         _version
@@ -794,9 +831,40 @@ export const onUpdateOrderItem = /* GraphQL */ `
       quantity
       Product {
         id
-        size
-        price
-        productID
+        title
+        subTitle
+        description
+        Likes {
+          items {
+            id
+            userID
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
+        image
+        rating
+        ProductSizes {
+          items {
+            id
+            size
+            price
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
         createdAt
         updatedAt
         _version
@@ -832,9 +900,40 @@ export const onDeleteOrderItem = /* GraphQL */ `
       quantity
       Product {
         id
-        size
-        price
-        productID
+        title
+        subTitle
+        description
+        Likes {
+          items {
+            id
+            userID
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
+        image
+        rating
+        ProductSizes {
+          items {
+            id
+            size
+            price
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
         createdAt
         updatedAt
         _version

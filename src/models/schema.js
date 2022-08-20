@@ -726,9 +726,9 @@ export const schema = {
                     "name": "Product",
                     "isArray": false,
                     "type": {
-                        "model": "ProductSize"
+                        "model": "Product"
                     },
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": [],
                     "association": {
                         "connectionType": "HAS_ONE",
@@ -777,7 +777,7 @@ export const schema = {
                     "name": "orderItemProductId",
                     "isArray": false,
                     "type": "ID",
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 },
                 "orderItemProductSizeId": {
@@ -929,5 +929,5 @@ export const schema = {
             }
         }
     },
-    "version": "4eb1e1d3804b541e8422e7f0a85ca8f5"
+    "version": "b9b69d7aa0d17a1badcba2fa8b0faf84"
 };

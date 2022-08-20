@@ -2,7 +2,6 @@ import {View, Text, FlatList, Pressable, ActivityIndicator} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {useEffect, useState} from 'react';
 
-import GoBackIcon from '../../assets/icons/GoBackIcon';
 import CheckoutItem from '../../components/checkoutItem/CheckoutItem';
 
 import colors from '../../theme/colors';
@@ -45,6 +44,8 @@ const CheckoutScreen = () => {
     skip: userData?.userBasketId ? false : undefined,
     variables: {id: userData?.userBasketId || ''},
   });
+
+  console.log(data);
 
   const checkout = (data?.getBasket?.BasketItems?.items || []).filter(
     checkoutItem => !checkoutItem?._deleted,

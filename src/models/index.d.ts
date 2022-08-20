@@ -139,12 +139,12 @@ export declare class Order {
 export declare class OrderItem {
   readonly id: string;
   readonly quantity: number;
-  readonly Product?: ProductSize | null;
+  readonly Product: Product;
   readonly orderID: string;
   readonly ProductSize: ProductSize;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
-  readonly orderItemProductId?: string | null;
+  readonly orderItemProductId: string;
   readonly orderItemProductSizeId: string;
   constructor(init: ModelInit<OrderItem, OrderItemMetaData>);
   static copyOf(source: OrderItem, mutator: (draft: MutableModel<OrderItem, OrderItemMetaData>) => MutableModel<OrderItem, OrderItemMetaData> | void): OrderItem;

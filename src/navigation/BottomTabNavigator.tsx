@@ -10,8 +10,8 @@ import HomePageIcon from '../assets/icons/HomePageIcon';
 import FavoritePageIcon from '../assets/icons/FavoritePageIcon';
 import CheckoutPageIcon from '../assets/icons/CheckoutPageIcon';
 import PortfolioPageIcon from '../assets/icons/PortfolioPageIcon';
-import CheckoutScreen from '../screens/Checkout/CheckoutScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import OrderStackNavigator from './OrderStackNavigator';
 
 const Tab = createBottomTabNavigator<BottomTabNavigatorParamList>();
 const BottomTabNavigator = () => {
@@ -31,14 +31,6 @@ const BottomTabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Favorite"
-        component={HomeStackNavigator}
-        options={{
-          headerShown: false,
-          tabBarIcon: ({color}) => <FavoritePageIcon color={color} />,
-        }}
-      />
-      <Tab.Screen
         name="Checkout"
         component={PaymentStackNavigator}
         options={{
@@ -46,6 +38,15 @@ const BottomTabNavigator = () => {
           tabBarIcon: ({color}) => <CheckoutPageIcon color={color} />,
         }}
       />
+      <Tab.Screen
+        name="Order"
+        component={OrderStackNavigator}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({color}) => <FavoritePageIcon color={color} />,
+        }}
+      />
+
       <Tab.Screen
         name="Portfolio"
         component={ProfileScreen}

@@ -267,9 +267,11 @@ export const getOrder = /* GraphQL */ `
           quantity
           Product {
             id
-            size
-            price
-            productID
+            title
+            subTitle
+            description
+            image
+            rating
             createdAt
             updatedAt
             _version
@@ -740,9 +742,40 @@ export const getOrderItem = /* GraphQL */ `
       quantity
       Product {
         id
-        size
-        price
-        productID
+        title
+        subTitle
+        description
+        Likes {
+          items {
+            id
+            userID
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
+        image
+        rating
+        ProductSizes {
+          items {
+            id
+            size
+            price
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
         createdAt
         updatedAt
         _version
@@ -783,9 +816,19 @@ export const listOrderItems = /* GraphQL */ `
         quantity
         Product {
           id
-          size
-          price
-          productID
+          title
+          subTitle
+          description
+          Likes {
+            nextToken
+            startedAt
+          }
+          image
+          rating
+          ProductSizes {
+            nextToken
+            startedAt
+          }
           createdAt
           updatedAt
           _version
@@ -835,9 +878,19 @@ export const syncOrderItems = /* GraphQL */ `
         quantity
         Product {
           id
-          size
-          price
-          productID
+          title
+          subTitle
+          description
+          Likes {
+            nextToken
+            startedAt
+          }
+          image
+          rating
+          ProductSizes {
+            nextToken
+            startedAt
+          }
           createdAt
           updatedAt
           _version

@@ -58,7 +58,7 @@ type Likes @model @auth(rules: [{allow: public}]) {
 type OrderItem @model @auth(rules: [{allow: public}]) {
   id: ID!
   quantity: Int!
-  Product: ProductSize @hasOne
+  Product: Product! @hasOne
   orderID: ID! @index(name: "byOrder")
   ProductSize: ProductSize! @hasOne
 }
