@@ -1,5 +1,9 @@
 import {useNavigation} from '@react-navigation/native';
-import {Pressable, ScrollView, Text, View} from 'react-native';
+import {Pressable, ScrollView, Text, TextInput, View} from 'react-native';
+import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
+
+import ComingSoon from '../../components/comingSoon';
+
 import {PaymentNavigatorProp} from '../../types/navigation';
 
 import PickUpIcon from '../../assets/icons/PickUp';
@@ -8,7 +12,6 @@ import DeliveryIcon from '../../assets/icons/Delivery';
 import styles from './styles';
 import colors from '../../theme/colors';
 import {useState} from 'react';
-import ComingSoon from '../../components/comingSoon';
 import PaymentHeader from '../../components/payment/PaymentHeader';
 import AppHeader from '../../components/appHeader/AppHeader';
 

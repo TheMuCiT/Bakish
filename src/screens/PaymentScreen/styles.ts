@@ -94,6 +94,8 @@ const styles = StyleSheet.create({
     fontFamily: fonts.family.medium,
     fontSize: fonts.size.sm,
     marginTop: 5,
+    height: 30,
+    padding: 0,
   },
   buttonItem: {
     flexDirection: 'row',
