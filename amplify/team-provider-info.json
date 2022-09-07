@@ -56,5 +56,34 @@
         }
       }
     }
+  },
+  "prod": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-bakish-prod-05718-authRole",
+      "UnauthRoleArn": "arn:aws:iam::969782989435:role/amplify-bakish-prod-05718-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::969782989435:role/amplify-bakish-prod-05718-authRole",
+      "Region": "eu-west-1",
+      "DeploymentBucketName": "amplify-bakish-prod-05718-deployment",
+      "UnauthRoleName": "amplify-bakish-prod-05718-unauthRole",
+      "StackName": "amplify-bakish-prod-05718",
+      "StackId": "arn:aws:cloudformation:eu-west-1:969782989435:stack/amplify-bakish-prod-05718/0d2f1570-2ef8-11ed-a73f-06b319857875",
+      "AmplifyAppId": "d9lhbuvrfq373",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-bakish-prod-05718-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+    },
+    "categories": {
+      "auth": {
+        "Bakish": {}
+      },
+      "function": {
+        "BakishPostConfirmation": {
+          "deploymentBucketName": "amplify-bakish-prod-05718-deployment",
+          "s3Key": "amplify-builds/BakishPostConfirmation-6f336f3069314c546933-build.zip"
+        },
+        "CreatePaymentIntent": {
+          "deploymentBucketName": "amplify-bakish-prod-05718-deployment",
+          "s3Key": "amplify-builds/CreatePaymentIntent-39722b365465536c7473-build.zip"
+        }
+      }
+    }
   }
 }
