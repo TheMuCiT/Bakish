@@ -1,0 +1,68 @@
+name: Initialize Amplify environment
+on:
+  workflow_call:
+    inputs:
+      AMPLIFY_ENV_NAME:
+        required: true
+        type: string
+
+env:
+  AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
+  AWS_SECRET_ACCESS_KEY_ID: ${{secrets.AWS_SECRET_ACCESS_KEY_ID}}
+  AWS_REGION: ${{secrets.AWS_REGION}}
+  AMPLIFY_FACEBOOK_CLIENT_ID: ${{secrets.AMPLIFY_FACEBOOK_CLIENT_ID}}
+  AMPLIFY_FACEBOOK_CLIENT_SECRET: ${{secrets.AMPLIFY_FACEBOOK_CLIENT_SECRET}}
+  AMPLIFY_GOOGLE_CLIENT_ID: ${{secrets.AMPLIFY_GOOGLE_CLIENT_ID}}
+  AMPLIFY_GOOGLE_CLIENT_SECRET: ${{secrets.AMPLIFY_GOOGLE_CLIENT_SECRET}}
+
+jobs:
+  deploy-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+          cache: npm
+
+      # Install and configure AWS cli
+
+      - name: Install and configure AWS cli
+
+        run: |
+          curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+          unzip awscli-bundle.zip
+          sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+
+      - name: Configure AWS cli credentials
+        run: |
+          aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID --profile default
+          aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY_ID --profile default
+          aws configure set default.region $AWS_REGION
+
+      # Install and configure AWS amplify cli
+
+      - name: Install AWS Amplify cli
+        run: |
+          npm install -g --unsafe-perm @aws-amplify/cli@latest
+          echo "amplify version $(amplify --version)"
+
+      # Initialize the backend environment
+
+      - name: Change wrapper permissions
+        run: chmod +x ./.github/scripts/amplify-init.sh
+
+      - name: Initialize backend environment
+        run: ./.github/scripts/amplify-init.sh ${{inputs.AMPLIFY_ENV_NAME}}
+
+      # Push changes to cloud
+
+      - name: Push backend changes
+        run: amplify push --yes
+
+      # Commit and push changes to github
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          file_pattern: src amplify
