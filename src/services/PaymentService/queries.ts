@@ -16,6 +16,20 @@ export const createOrder = gql`
           quantity
           Product {
             id
+            title
+            subTitle
+            description
+            image
+            rating
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          orderID
+          ProductSize {
+            id
             size
             price
             productID
@@ -25,13 +39,13 @@ export const createOrder = gql`
             _deleted
             _lastChangedAt
           }
-          orderID
           createdAt
           updatedAt
           _version
           _deleted
           _lastChangedAt
           orderItemProductId
+          orderItemProductSizeId
         }
         nextToken
         startedAt
@@ -109,6 +123,49 @@ export const createOrderItem = gql`
       quantity
       Product {
         id
+        title
+        subTitle
+        description
+        Likes {
+          items {
+            id
+            userID
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
+        image
+        rating
+        ProductSizes {
+          items {
+            id
+            size
+            price
+            productID
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      orderID
+      ProductSize {
+        id
         size
         price
         productID
@@ -118,13 +175,13 @@ export const createOrderItem = gql`
         _deleted
         _lastChangedAt
       }
-      orderID
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
       orderItemProductId
+      orderItemProductSizeId
     }
   }
 `;
