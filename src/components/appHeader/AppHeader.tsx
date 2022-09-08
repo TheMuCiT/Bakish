@@ -12,7 +12,7 @@ interface AppHeaderProps {
 const AppHeader = ({goBack, title, favorite}: AppHeaderProps) => {
   return (
     <View style={styles.header}>
-      <Pressable onPress={goBack} style={styles.goBack}>
+      <Pressable onPress={goBack} style={styles.goBack} hitSlop={10}>
         <GoBackIcon />
       </Pressable>
       <Text style={styles.product}>{title}</Text>
