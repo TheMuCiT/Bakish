@@ -80,3 +80,7 @@ amplifytools.xcconfig
 .secret-*
 **.sample
 #amplify-do-not-edit-end
+
+
+!aws-exports.js
+service_account.json
