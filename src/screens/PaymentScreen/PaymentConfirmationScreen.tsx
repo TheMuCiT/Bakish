@@ -65,9 +65,9 @@ const PaymentConfirmationScreen = () => {
   };
 
   const handlePayment = async () => {
-    // navigation.navigate('PaymentStripeScreen', {
-    //   amount: Math.floor(totalPrice * 100),
-    // });
+    navigation.navigate('PaymentStripeScreen', {
+      amount: Math.floor(totalPrice * 100),
+    });
     await createNewOrder(Math.floor(totalPrice * 100));
     await onDeleteBasketIdFromUser();
 
